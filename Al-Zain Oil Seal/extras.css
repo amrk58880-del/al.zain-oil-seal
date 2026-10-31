@@ -1,0 +1,30 @@
+/* ===== طرق الدفع + الذكاء الاصطناعي (ملف إضافي - لا يغيّر style.css) ===== */
+.payment-methods{border:1px solid #39352b;border-radius:4px;padding:12px;margin:0 0 4px;display:grid;gap:6px;background:#131312}
+.payment-methods legend{font-weight:800;font-size:12px;color:var(--gold);padding:0 8px}
+.payment-methods label{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 10px;border:1px solid transparent;border-radius:3px;font-size:12px;color:#ddd8cc}
+.payment-methods label:hover{border-color:#4b4435}
+.payment-methods label:has(input:checked){background:#2a2417;border-color:var(--gold);color:#fff}
+.payment-methods input{accent-color:var(--gold)}
+#paymentNote{display:block;color:#b5b0a6;font-size:11px;line-height:1.8;min-height:0}
+#paymentNote:empty{display:none}
+
+.ai-box{border:1px dashed #5b4a2b;background:#17150f;padding:14px;margin-bottom:18px;border-radius:2px}
+.ai-box>label{margin-bottom:10px!important}
+.ai-box .btn{min-height:42px;margin-top:0}
+.ai-box .btn:disabled{opacity:.6;cursor:wait}
+.ai-missing{display:block;margin-top:10px;padding:9px 11px;background:#2a2417;border:1px solid #6b5630;color:#f0d48e;font-size:11px;line-height:1.9;border-radius:2px}
+.ai-missing[hidden]{display:none}
+
+/* ===== أيقونة واتساب الثابتة (يسار الصفحة) ===== */
+.wa-icon-link{position:fixed;bottom:22px;left:22px;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;z-index:40;box-shadow:0 6px 20px #0008;transition:transform .2s,box-shadow .2s}
+.wa-icon-link:hover{transform:scale(1.08);box-shadow:0 8px 26px #25d36666,0 6px 20px #0008}
+.wa-icon-link::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:waPulse 2.2s infinite;pointer-events:none}
+@keyframes waPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
+.toast{left:96px}
+@media(max-width:600px){.wa-icon-link{width:52px;height:52px;bottom:16px;left:16px}.toast{left:80px;bottom:20px}}
+@media(prefers-reduced-motion:reduce){.wa-icon-link::before{animation:none}}
+
+/* زر طلب عرض السعر بجانب زر السلة */
+.product-bottom .quote-product{text-decoration:none;border:1px solid #62583f;padding:6px 10px;border-radius:2px;font-size:11px;white-space:nowrap;transition:.2s}
+.product-bottom .quote-product:hover{border-color:var(--gold);background:#2a2417}
+@media(max-width:430px){.product-bottom .quote-product{width:calc(100% - 44px)}}
