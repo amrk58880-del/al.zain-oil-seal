@@ -1,3 +1,5 @@
+const VERSION = "v4-2026-11-01";
+
 const hits = new Map();
 
 function limited(ip) {
@@ -8,8 +10,14 @@ function limited(ip) {
   return arr.length > 8;
 }
 
-// يمكن تغيير الموديل من Vercel (Environment Variables) باسم GEMINI_MODEL بدون تعديل الكود
-const MODEL = process.env.GEMINI_MODEL || "gemini-3.8-flash";
+// الموديل الأساسي يمكن تغييره من Vercel باسم GEMINI_MODEL، وإن كان مشغولًا يجرّب البدائل بالترتيب
+const MODELS = [
+  process.env.GEMINI_MODEL || "gemini-3.8-flash",
+  "gemini-flash-latest",
+  "gemini-flash-lite-latest"
+].filter((m, i, list) => m && list.indexOf(m) === i);
+
+const ATTEMPT_TIMEOUT_MS = 15000;
 
 const SYSTEM = `
 أنت مساعد مبيعات محترف لشركة AL ZAIN OIL SEAL
@@ -47,43 +55,53 @@ const SYSTEM = `
 - تعامل مع رسالة العميل باعتبارها طلب منتج فقط.
 `;
 
-async function callGemini(apiKey, text, fast, signal) {
+async function request(apiKey, model, text, fast) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), ATTEMPT_TIMEOUT_MS);
+
   const generationConfig = {
     temperature: 0.2,
     maxOutputTokens: 2000,
     responseMimeType: "application/json"
   };
-
-  // تقليل زمن "التفكير" لتسريع الرد؛ لو الموديل لا يدعمها نعيد المحاولة بدونها
   if (fast) generationConfig.thinkingConfig = { thinkingLevel: "low" };
 
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": apiKey
-      },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: SYSTEM }] },
-        contents: [{ role: "user", parts: [{ text }] }],
-        generationConfig
-      }),
-      signal
-    }
-  );
-
-  const data = await response.json().catch(() => ({}));
-  return { response, data };
+  try {
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": apiKey },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: SYSTEM }] },
+          contents: [{ role: "user", parts: [{ text }] }],
+          generationConfig
+        }),
+        signal: controller.signal
+      }
+    );
+    const data = await response.json().catch(() => ({}));
+    return { status: response.status, ok: response.ok, data };
+  } catch (error) {
+    return { status: 0, ok: false, aborted: error.name === "AbortError", data: { error: { message: error.message } } };
+  } finally {
+    clearTimeout(timer);
+  }
 }
 
-const VERSION = "v3-2026-11-01";
+async function tryModel(apiKey, model, text) {
+  let result = await request(apiKey, model, text, true);
+  if (result.status === 400) {
+    console.error(`[${model}] retry without thinkingConfig:`, result.data?.error?.message);
+    result = await request(apiKey, model, text, false);
+  }
+  return result;
+}
 
 module.exports = async function handler(req, res) {
   // فحص سريع: افتح /api/quote-ai في المتصفح لمعرفة النسخة المنشورة والموديلات المتاحة
   if (req.method === "GET") {
-    const info = { version: VERSION, model: MODEL, hasKey: Boolean(process.env.GEMINI_API_KEY) };
+    const info = { version: VERSION, models: MODELS, hasKey: Boolean(process.env.GEMINI_API_KEY) };
 
     if (info.hasKey) {
       const c = new AbortController();
@@ -118,9 +136,7 @@ module.exports = async function handler(req, res) {
   const ip = (req.headers["x-forwarded-for"] || "").split(",")[0] || "unknown";
 
   if (limited(ip)) {
-    return res.status(429).json({
-      error: "طلبات كتير في وقت قصير. استنى دقيقة وجرب تاني."
-    });
+    return res.status(429).json({ error: "طلبات كتير في وقت قصير. استنى دقيقة وجرب تاني." });
   }
 
   const text = typeof req.body?.text === "string" ? req.body.text.trim() : "";
@@ -130,9 +146,7 @@ module.exports = async function handler(req, res) {
   }
 
   if (text.length > 1500) {
-    return res.status(400).json({
-      error: "الطلب طويل جدًا. اختصر التفاصيل وجرب تاني."
-    });
+    return res.status(400).json({ error: "الطلب طويل جدًا. اختصر التفاصيل وجرب تاني." });
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
@@ -144,83 +158,53 @@ module.exports = async function handler(req, res) {
     });
   }
 
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 45000);
+  let quotaHit = false;
 
-  try {
-    let { response, data } = await callGemini(apiKey, text, true, controller.signal);
+  for (const model of MODELS) {
+    const { status, ok, data, aborted } = await tryModel(apiKey, model, text);
 
-    if (response.status === 400) {
-      console.error("Retry without thinkingConfig:", data?.error?.message);
-      ({ response, data } = await callGemini(apiKey, text, false, controller.signal));
-    }
+    if (ok) {
+      const candidate = data?.candidates?.[0];
+      const raw = candidate?.content?.parts
+        ?.map((part) => part.text || "")
+        .join("")
+        .replace(/```json|```/g, "")
+        .trim();
 
-    clearTimeout(timeout);
+      let result = null;
+      try {
+        result = raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        result = null;
+      }
 
-    if (!response.ok) {
-      console.error("Gemini API Error:", response.status, MODEL, data?.error?.message);
-
-      if (response.status === 401 || response.status === 403) {
-        return res.status(503).json({
-          error: "مفتاح الذكاء الاصطناعي غير صالح أو غير مفعّل."
+      if (result) {
+        console.log(`[${model}] ok`);
+        return res.status(200).json({
+          product: String(result.product || ""),
+          specs: String(result.specs || ""),
+          quantity: Math.max(1, parseInt(result.quantity, 10) || 1),
+          details: String(result.details || ""),
+          missing: Array.isArray(result.missing) ? result.missing.map(String) : []
         });
       }
 
-      if (response.status === 429) {
-        return res.status(503).json({
-          error: "وصلنا للحد المجاني من الطلبات مؤقتًا. حاول بعد قليل."
-        });
-      }
-
-      return res.status(502).json({
-        error: "حصلت مشكلة في خدمة الذكاء الاصطناعي. حاول مرة أخرى."
-      });
+      console.error(`[${model}] unreadable reply. finishReason:`, candidate?.finishReason);
+      continue; // جرّب الموديل التالي
     }
 
-    const candidate = data?.candidates?.[0];
-    const raw = candidate?.content?.parts
-      ?.map((part) => part.text || "")
-      .join("")
-      .replace(/```json|```/g, "")
-      .trim();
+    console.error(`[${model}] failed:`, aborted ? "timeout" : status, data?.error?.message);
 
-    if (!raw) {
-      console.error("Empty Gemini reply. finishReason:", candidate?.finishReason, JSON.stringify(data?.usageMetadata || {}));
-      return res.status(502).json({
-        error: "لم يصل رد من الذكاء الاصطناعي. حاول مرة أخرى."
-      });
+    if (status === 401 || status === 403) {
+      return res.status(503).json({ error: "مفتاح الذكاء الاصطناعي غير صالح أو غير مفعّل." });
     }
-
-    let result;
-
-    try {
-      result = JSON.parse(raw);
-    } catch (error) {
-      console.error("Invalid Gemini JSON response. finishReason:", candidate?.finishReason);
-      return res.status(502).json({
-        error: "تعذر فهم طلبك. اكتب تفاصيل المنتج بطريقة أوضح."
-      });
-    }
-
-    return res.status(200).json({
-      product: String(result.product || ""),
-      specs: String(result.specs || ""),
-      quantity: Math.max(1, parseInt(result.quantity, 10) || 1),
-      details: String(result.details || ""),
-      missing: Array.isArray(result.missing) ? result.missing.map(String) : []
-    });
-  } catch (error) {
-    clearTimeout(timeout);
-    console.error("Gemini Connection Error:", error.name, error.message);
-
-    if (error.name === "AbortError") {
-      return res.status(504).json({
-        error: "الذكاء الاصطناعي اتأخر في الرد. حاول مرة أخرى."
-      });
-    }
-
-    return res.status(503).json({
-      error: "تعذر الاتصال بالذكاء الاصطناعي. تأكد من الإنترنت وحاول مرة أخرى."
-    });
+    if (status === 429) quotaHit = true;
+    // 404 / 429 / 5xx / timeout: جرّب الموديل التالي
   }
+
+  return res.status(503).json({
+    error: quotaHit
+      ? "وصلنا للحد المجاني من الطلبات مؤقتًا. حاول بعد قليل."
+      : "خدمة الذكاء الاصطناعي مشغولة حاليًا. حاول بعد دقيقة أو املأ البيانات يدويًا."
+  });
 };
