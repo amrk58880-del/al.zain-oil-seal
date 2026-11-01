@@ -726,3 +726,42 @@ section .product-grid,
 .admin-link:hover {
   color: #f0d48e;
 }
+
+/* تنسيق السلة ولوحة التحكم */
+.cart-button,
+.admin-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.admin-link {
+  color: #d6ad57;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 12px;
+  border: 1px solid #d6ad57;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+.admin-link:hover {
+  background: #d6ad57;
+  color: #111;
+}
+
+/* الموبايل */
+@media (max-width: 600px) {
+  .cart-button,
+  .admin-link {
+    font-size: 12px;
+    padding: 7px 9px;
+  }
+
+  .admin-link {
+    margin-right: 5px;
+  }
+}
