@@ -765,3 +765,79 @@ section .product-grid,
     margin-right: 5px;
   }
 }
+
+/* تنظيم الهيدر */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* السلة ولوحة التحكم */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.admin-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 12px;
+  border: 1px solid #d6ad57;
+  border-radius: 8px;
+  color: #d6ad57;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: 0.3s ease;
+}
+
+.admin-link:hover {
+  background: #d6ad57;
+  color: #111;
+}
+
+/* ضبط الموبايل */
+@media (max-width: 768px) {
+  .site-header {
+    gap: 8px;
+  }
+
+  .brand-logo {
+    max-width: 45px;
+    height: auto;
+  }
+
+  .header-actions {
+    gap: 5px;
+  }
+
+  .admin-link {
+    padding: 7px 8px;
+    font-size: 11px;
+  }
+
+  .cart-button {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+}
+
+/* الشاشات الصغيرة جدًا */
+@media (max-width: 380px) {
+  .admin-link {
+    font-size: 10px;
+    padding: 6px;
+  }
+
+  .cart-button {
+    font-size: 11px;
+    padding: 6px;
+  }
+}
