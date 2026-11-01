@@ -53,6 +53,10 @@ const products = [
 ];
 
 
+/* مكان الصور: داخل فولدر Al-Zain Oil Seal (أو على الجهاز) = image/ ، ومن جذر الموقع = Al-Zain%20Oil%20Seal/image/ */
+const IMG_BASE = decodeURIComponent(location.pathname).includes("/Al-Zain Oil Seal/") ? "image/" : "Al-Zain%20Oil%20Seal/image/";
+const imgSrc = path => String(path).replace(/^(\.\/)?image\//, IMG_BASE);
+
 let cart = [];
 const $ = selector => document.querySelector(selector);
 const productGrid = $("#productGrid");
@@ -101,7 +105,7 @@ function renderProducts() {
     <article class="product-card" data-category="${escapeHtml(product.category)}">
       <div class="product-visual">
         ${product.tag ? `<span class="product-tag">${escapeHtml(product.tag)}</span>` : ""}
-        <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='./image/Logo.png'">
+        <img src="${escapeHtml(imgSrc(product.image))}" alt="${escapeHtml(product.name)}" loading="lazy">
       </div>
       <div class="product-info">
         <p class="product-category">${escapeHtml(product.categoryLabel)}</p>
@@ -224,6 +228,25 @@ ${asQuote ? "أرغب في طلب عرض سعر للمنتجات التالية:
 ${rows}
 ${payment}
 يرجى تأكيد التوفر والسعر النهائي وتكلفة الشحن.`;
+}
+
+/* ===== حفظ الطلبات لتظهر في لوحة admin.html ===== */
+function saveRequest(payload) {
+  try {
+    fetch("/api/requests", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+      keepalive: true
+    }).catch(() => {});
+  } catch (error) {}
+}
+
+function cartItemsText() {
+  return cart.map(item => {
+    const product = products.find(row => row.id === item.id);
+    return `${product.name} × ${item.quantity}`;
+  }).join("\n");
 }
 
 function openCart() {
@@ -353,11 +376,13 @@ $("#paymentMethods").addEventListener("change", updatePaymentNote);
 
 $("#checkoutButton").addEventListener("click", () => {
   if (!cart.length) return showToast("السلة فارغة، أضف المنتجات أولًا");
+  saveRequest({ type: "order", items: cartItemsText(), payment: getPayment().label });
   openWhatsApp(cartMessage(false));
 });
 
 $("#quoteCartButton").addEventListener("click", () => {
   if (!cart.length) return showToast("السلة فارغة، أضف المنتجات أولًا");
+  saveRequest({ type: "cart-quote", items: cartItemsText() });
   openWhatsApp(cartMessage(true));
 });
 
@@ -375,6 +400,17 @@ $("#quoteForm").addEventListener("submit", event => {
 الكمية: ${data.get("quantity")}
 تفاصيل إضافية: ${data.get("details") || "لا توجد"}
 برجاء تأكيد السعر والتوفر.`;
+
+
+  saveRequest({
+    type: "quote",
+    customer: data.get("customer"),
+    phone: data.get("phone"),
+    product: data.get("product"),
+    specs: data.get("specs"),
+    quantity: data.get("quantity"),
+    details: data.get("details")
+  });
 
   openWhatsApp(message);
 });
@@ -402,3 +438,33 @@ $("#mainNav").addEventListener("click", event => {
     $("#menuToggle").setAttribute("aria-expanded", "false");
   }
 });
+
+
+/* مسارات بديلة للصور: تجرّب أماكن مختلفة (تعمل على الموقع وعلى الجهاز) */
+document.addEventListener("error", event => {
+  const img = event.target;
+  if (!(img instanceof HTMLImageElement)) return;
+
+  const tried = Number(img.dataset.retry || 0);
+  const current = new URL(img.getAttribute("src"), location.href).href;
+  const file = decodeURIComponent(current.split("/").pop().split("?")[0]);
+  const swapped = /^logo\.png$/i.test(file) ? (file === "Logo.png" ? "logo.png" : "Logo.png") : file;
+  const name = encodeURIComponent(file);
+  const alt = encodeURIComponent(swapped);
+
+  const options = [
+    "Al-Zain%20Oil%20Seal/image/" + name,
+    "image/" + name,
+    name,
+    "Al-Zain%20Oil%20Seal/image/" + alt,
+    "image/" + alt,
+    alt
+  ]
+    .map(path => new URL(path, location.href).href)
+    .filter((href, i, list) => href !== current && list.indexOf(href) === i);
+
+  if (tried < options.length) {
+    img.dataset.retry = tried + 1;
+    img.src = options[tried];
+  }
+}, true);
