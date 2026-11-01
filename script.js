@@ -32,24 +32,24 @@ const categories = [
 
 
 const products = [
-  {id:1,name:"أويل سيل",category:"oil-seal",categoryLabel:"أويل سيل",description:"مانع تسرب للاستخدامات الميكانيكية والصناعية.",size:"مقاسات متعددة",price:85,image:"./Al-Zain%20Oil%20Seal/image/اويل سيلات.png",tag:"الأكثر طلبًا"},
-  {id:2,name:"أورينج مطاطي",category:"O-rings",categoryLabel:"أورينجات",description:"حلقات إحكام بمقاسات متعددة.",size:"مقاسات متعددة",price:45,image:"./Al-Zain%20Oil%20Seal/image/اورنجات.png",tag:""},
-  {id:3,name:"جوانات صناعية",category:"gaskets",categoryLabel:"جوانات تصنيع",description:"جوانات لتطبيقات الإحكام الصناعية.",size:"حسب المقاس",price:65,image:"./Al-Zain%20Oil%20Seal/image/جوانات تصنيع.png",tag:""},
-  {id:4,name:"ميكانيكال سيل",category:"mechanical",categoryLabel:"ميكانيكال سيل",description:"قطع إحكام ميكانيكية حسب المقاس والمواصفات.",size:"حسب المقاس",price:180,image:"./Al-Zain%20Oil%20Seal/image/ميكانيكال.png",tag:""},
-  {id:5,name:"سيلات هيدروليك",category:"Hydraulic-Seals",categoryLabel:"سيلات هيدروليك",description:"مكونات إحكام للأنظمة الهيدروليكية.",size:"مقاسات متعددة",price:95,image:"./Al-Zain%20Oil%20Seal/image/سيلات هيدروليك.png",tag:""},
-  {id:6,name:"خراطيم هيدروليك",category:"valves",categoryLabel:"خراطيم",description:"خراطيم للاستخدامات الصناعية والهيدروليكية.",size:"حسب الطول والمقاس",price:160,image:"./Al-Zain%20Oil%20Seal/image/خراطيم هيدروليك.png",tag:""},
-  {id:7,name:"سيور صناعية",category:"belts",categoryLabel:"سيور",description:"سيور نقل حركة لمجموعة متنوعة من التطبيقات.",size:"أطوال ومقاسات مختلفة",price:160,image:"./Al-Zain%20Oil%20Seal/image/سيور واحزمه.png",tag:""},
-  {id:8,name:"كبالنج",category:"couplings",categoryLabel:"كبالنج",description:"جزء ميكانيكي أساسي في نظام نقل الحركة.",size:"حسب المقاس",price:180,image:"./Al-Zain%20Oil%20Seal/image/كبالنج.png",tag:""},
-  {id:9,name:"أويل سيل سوستة حراري",category:"oil-seal",categoryLabel:"أويل سيل",description:"أويل سيل بسوستة مقاوم للحرارة العالية.",size:"حسب المقاس",price:null,image:"./Al-Zain%20Oil%20Seal/image/heat-oil-seal.jpg",tag:""},
-  {id:10,name:"ستائر هواء",category:"air-curtains",categoryLabel:"ستائر هواء",description:"ستائر هواء للأبواب والمداخل الصناعية والتجارية.",size:"حسب العرض",price:null,image:"./Al-Zain%20Oil%20Seal/image/air-curtain.jpg",tag:""},
-  {id:11,name:"سيلات هواء",category:"pneumatic-seals",categoryLabel:"سيلات هواء",description:"سيلات للأسطوانات والأنظمة الهوائية.",size:"مقاسات متعددة",price:null,image:"./Al-Zain%20Oil%20Seal/image/pneumatic-seals.jpg",tag:""},
-  {id:12,name:"لواصق لوكتايت",category:"adhesives",categoryLabel:"لواصق",description:"لواصق ومواد تثبيت وإحكام للاستخدامات الصناعية.",size:"أنواع وعبوات مختلفة",price:null,image:"./Al-Zain%20Oil%20Seal/image/loctite.jpg",tag:""},
-  {id:13,name:"ميكانيكال سيل حراري",category:"mechanical",categoryLabel:"ميكانيكال سيل",description:"ميكانيكال سيل يتحمل درجات الحرارة العالية للمضخات والمعدات.",size:"حسب المقاس",price:null,image:"./Al-Zain%20Oil%20Seal/image/mechanical-heat.jpg",tag:""},
-  {id:14,name:"ميكانيكالات سيل",category:"mechanical",categoryLabel:"ميكانيكال سيل",description:"تشكيلة ميكانيكال سيل بأنواع ومقاسات متعددة.",size:"مقاسات متعددة",price:null,image:"./Al-Zain%20Oil%20Seal/image/mechanical-seals.jpg",tag:""},
-  {id:15,name:"سيلات فيتون أويل TC",category:"oil-seal",categoryLabel:"أويل سيل",description:"أويل سيل فيتون TC مقاوم للحرارة والزيوت.",size:"مقاسات متعددة",price:null,image:"./Al-Zain%20Oil%20Seal/image/viton-oil-seal.jpg",tag:""},
-  {id:16,name:"سيليكون حراري",category:"adhesives",categoryLabel:"لواصق",description:"سيليكون RTV مقاوم للحرارة لتصنيع الجوانات والإحكام.",size:"عبوات مختلفة",price:null,image:"./Al-Zain%20Oil%20Seal/image/thermal-silicone.jpg",tag:""},
-  {id:17,name:"أطقم أورينجات",category:"O-rings",categoryLabel:"أورينجات",description:"علب أورينجات مطاطية بمقاسات متنوعة.",size:"أطقم بمقاسات متعددة",price:null,image:"./Al-Zain%20Oil%20Seal/image/oring-kits.jpg",tag:""},
-  {id:18,name:"مزيلات صدأ",category:"rust-removers",categoryLabel:"مزيلات صدأ",description:"بخاخات لإزالة الصدأ وتشحيم وحماية الأجزاء المعدنية.",size:"عبوات مختلفة",price:null,image:"./Al-Zain%20Oil%20Seal/image/rust-remover.jpg",tag:""}
+  {id:1,name:"أويل سيل",category:"oil-seal",categoryLabel:"أويل سيل",description:"مانع تسرب للاستخدامات الميكانيكية والصناعية.",size:"مقاسات متعددة",price:85,image:"image/اويل سيلات.png",tag:"الأكثر طلبًا"},
+  {id:2,name:"أورينج مطاطي",category:"O-rings",categoryLabel:"أورينجات",description:"حلقات إحكام بمقاسات متعددة.",size:"مقاسات متعددة",price:45,image:"image/اورنجات.png",tag:""},
+  {id:3,name:"جوانات صناعية",category:"gaskets",categoryLabel:"جوانات تصنيع",description:"جوانات لتطبيقات الإحكام الصناعية.",size:"حسب المقاس",price:65,image:"image/جوانات تصنيع.png",tag:""},
+  {id:4,name:"ميكانيكال سيل",category:"mechanical",categoryLabel:"ميكانيكال سيل",description:"قطع إحكام ميكانيكية حسب المقاس والمواصفات.",size:"حسب المقاس",price:180,image:"image/ميكانيكال.png",tag:""},
+  {id:5,name:"سيلات هيدروليك",category:"Hydraulic-Seals",categoryLabel:"سيلات هيدروليك",description:"مكونات إحكام للأنظمة الهيدروليكية.",size:"مقاسات متعددة",price:95,image:"image/سيلات هيدروليك.png",tag:""},
+  {id:6,name:"خراطيم هيدروليك",category:"valves",categoryLabel:"خراطيم",description:"خراطيم للاستخدامات الصناعية والهيدروليكية.",size:"حسب الطول والمقاس",price:160,image:"image/خراطيم هيدروليك.png",tag:""},
+  {id:7,name:"سيور صناعية",category:"belts",categoryLabel:"سيور",description:"سيور نقل حركة لمجموعة متنوعة من التطبيقات.",size:"أطوال ومقاسات مختلفة",price:160,image:"image/سيور واحزمه.png",tag:""},
+  {id:8,name:"كبالنج",category:"couplings",categoryLabel:"كبالنج",description:"جزء ميكانيكي أساسي في نظام نقل الحركة.",size:"حسب المقاس",price:180,image:"image/كبالنج.png",tag:""},
+  {id:9,name:"أويل سيل سوستة حراري",category:"oil-seal",categoryLabel:"أويل سيل",description:"أويل سيل بسوستة مقاوم للحرارة العالية.",size:"حسب المقاس",price:null,image:"image/heat-oil-seal.jpg",tag:""},
+  {id:10,name:"ستائر هواء",category:"air-curtains",categoryLabel:"ستائر هواء",description:"ستائر هواء للأبواب والمداخل الصناعية والتجارية.",size:"حسب العرض",price:null,image:"image/air-curtain.jpg",tag:""},
+  {id:11,name:"سيلات هواء",category:"pneumatic-seals",categoryLabel:"سيلات هواء",description:"سيلات للأسطوانات والأنظمة الهوائية.",size:"مقاسات متعددة",price:null,image:"image/pneumatic-seals.jpg",tag:""},
+  {id:12,name:"لواصق لوكتايت",category:"adhesives",categoryLabel:"لواصق",description:"لواصق ومواد تثبيت وإحكام للاستخدامات الصناعية.",size:"أنواع وعبوات مختلفة",price:null,image:"image/loctite.jpg",tag:""},
+  {id:13,name:"ميكانيكال سيل حراري",category:"mechanical",categoryLabel:"ميكانيكال سيل",description:"ميكانيكال سيل يتحمل درجات الحرارة العالية للمضخات والمعدات.",size:"حسب المقاس",price:null,image:"image/mechanical-heat.jpg",tag:""},
+  {id:14,name:"ميكانيكالات سيل",category:"mechanical",categoryLabel:"ميكانيكال سيل",description:"تشكيلة ميكانيكال سيل بأنواع ومقاسات متعددة.",size:"مقاسات متعددة",price:null,image:"image/mechanical-seals.jpg",tag:""},
+  {id:15,name:"سيلات فيتون أويل TC",category:"oil-seal",categoryLabel:"أويل سيل",description:"أويل سيل فيتون TC مقاوم للحرارة والزيوت.",size:"مقاسات متعددة",price:null,image:"image/viton-oil-seal.jpg",tag:""},
+  {id:16,name:"سيليكون حراري",category:"adhesives",categoryLabel:"لواصق",description:"سيليكون RTV مقاوم للحرارة لتصنيع الجوانات والإحكام.",size:"عبوات مختلفة",price:null,image:"image/thermal-silicone.jpg",tag:""},
+  {id:17,name:"أطقم أورينجات",category:"O-rings",categoryLabel:"أورينجات",description:"علب أورينجات مطاطية بمقاسات متنوعة.",size:"أطقم بمقاسات متعددة",price:null,image:"image/oring-kits.jpg",tag:""},
+  {id:18,name:"مزيلات صدأ",category:"rust-removers",categoryLabel:"مزيلات صدأ",description:"بخاخات لإزالة الصدأ وتشحيم وحماية الأجزاء المعدنية.",size:"عبوات مختلفة",price:null,image:"image/rust-remover.jpg",tag:""}
 ];
 
 
@@ -101,7 +101,7 @@ function renderProducts() {
     <article class="product-card" data-category="${escapeHtml(product.category)}">
       <div class="product-visual">
         ${product.tag ? `<span class="product-tag">${escapeHtml(product.tag)}</span>` : ""}
-        <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='./image/Logo.png'">
+        <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='image/Logo.png'">
       </div>
       <div class="product-info">
         <p class="product-category">${escapeHtml(product.categoryLabel)}</p>
@@ -199,6 +199,30 @@ function whatsappUrl(message) {
 function openWhatsApp(message) {
   const url = whatsappUrl(message);
   if (url) window.open(url, "_blank", "noopener,noreferrer");
+}
+
+async function saveRequestToDatabase(requestData) {
+  try {
+    const response = await fetch("/api/requests", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(requestData)
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      console.error("خطأ في حفظ الطلب:", result);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error("تعذر الاتصال بقاعدة البيانات:", error);
+    return false;
+  }
 }
 
 /* ===== طرق الدفع ===== */
@@ -351,7 +375,48 @@ $("#cartItems").addEventListener("click", event => {
 
 $("#paymentMethods").addEventListener("change", updatePaymentNote);
 
-$("#checkoutButton").addEventListener("click", () => {
+
+$("#checkoutButton").addEventListener("click", async () => {
+  if (!cart.length) {
+    return showToast("السلة فارغة، أضف المنتجات أولًا");
+  }
+
+  const items = cart.map(item => {
+    const product = products.find(row => row.id === item.id);
+
+    return {
+      productId: product.id,
+      product: product.name,
+      quantity: item.quantity,
+      price: product.price
+    };
+  });
+
+  const requestData = {
+    type: "order",
+    customer: "طلب من السلة",
+    phone: "",
+    product: items.map(item => item.product).join("، "),
+    specs: "",
+    quantity: items.reduce((sum, item) => sum + item.quantity, 0),
+    details: "طلب شراء من السلة",
+    items,
+    payment: getPayment().label,
+    status: "new",
+    timestamp: new Date().toISOString()
+  };
+
+  const saved = await saveRequestToDatabase(requestData);
+
+  if (!saved) {
+    showToast("تعذر حفظ الطلب، حاول مرة أخرى");
+    return;
+  }
+
+  showToast("تم حفظ الطلب بنجاح");
+  openWhatsApp(cartMessage(false));
+});
+
   if (!cart.length) return showToast("السلة فارغة، أضف المنتجات أولًا");
   openWhatsApp(cartMessage(false));
 });
@@ -363,7 +428,51 @@ $("#quoteCartButton").addEventListener("click", () => {
 
 $("#aiFillBtn").addEventListener("click", aiFillQuote);
 
-$("#quoteForm").addEventListener("submit", event => {
+$("#quoteForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const data = new FormData(form);
+
+  const customer = data.get("customer")?.toString().trim() || "";
+  const phone = data.get("phone")?.toString().trim() || "";
+  const product = data.get("product")?.toString().trim() || "";
+  const specs = data.get("specs")?.toString().trim() || "";
+  const quantity = data.get("quantity")?.toString().trim() || "";
+  const details = data.get("details")?.toString().trim() || "";
+
+  const requestData = {
+    type: "quote",
+    customer,
+    phone,
+    product,
+    specs,
+    quantity,
+    details,
+    status: "new",
+    timestamp: new Date().toISOString()
+  };
+
+  const saved = await saveRequestToDatabase(requestData);
+
+  if (!saved) {
+    showToast("تعذر حفظ الطلب، حاول مرة أخرى");
+    return;
+  }
+
+  const message = `مرحبًا AL ZAIN OIL SEAL، أريد طلب عرض سعر.
+الاسم/الشركة: ${customer}
+رقم الهاتف: ${phone}
+المنتج: ${product}
+المقاس/المواصفات: ${specs || "غير محدد"}
+الكمية: ${quantity}
+تفاصيل إضافية: ${details || "لا توجد"}
+برجاء تأكيد السعر والتوفر.`;
+
+  showToast("تم حفظ الطلب بنجاح");
+  openWhatsApp(message);
+});
+
   event.preventDefault();
   const data = new FormData(event.currentTarget);
 
