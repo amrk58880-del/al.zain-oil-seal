@@ -37,3 +37,7 @@
 .hero-products .hero-label{top:0;right:2%}
 .hero-products .hero-label-bottom{bottom:-3%;right:1%}
 @media(max-width:800px){.hero-art.hero-products{max-width:520px;margin-bottom:18px}}
+
+/* قائمة طريقة الدفع في فورم عرض السعر */
+.quote-form select{width:100%;border:1px solid #3d3a32;background:#131312;color:#fff;padding:11px 12px;outline:none;border-radius:2px;font-size:12px}
+.quote-form select:focus{border-color:var(--gold)}
