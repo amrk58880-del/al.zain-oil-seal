@@ -63,7 +63,7 @@ const cartBackdrop = $("#cartBackdrop");
 let toastTimeout;
 
 function money(value) {
-  return ${Number(value).toLocaleString("ar-EG")} ${CONFIG.currency};
+  return `${Number(value).toLocaleString("ar-EG")} ${CONFIG.currency}`;
 }
 
 function escapeHtml(value) {
@@ -74,11 +74,11 @@ function escapeHtml(value) {
 
 function setupCategories() {
   categoryFilter.innerHTML = categories.map(category =>
-    <option value="${escapeHtml(category.id)}">${escapeHtml(category.label)}</option>
+    `<option value="${escapeHtml(category.id)}">${escapeHtml(category.label)}</option>`
   ).join("");
 
   categoryChips.innerHTML = categories.map(category =>
-    <button class="chip${category.id === "all" ? " active" : ""}" type="button" data-category="${escapeHtml(category.id)}">${escapeHtml(category.label)}</button>
+    `<button class="chip${category.id === "all" ? " active" : ""}" type="button" data-category="${escapeHtml(category.id)}">${escapeHtml(category.label)}</button>`
   ).join("");
 }
 
@@ -91,7 +91,7 @@ function renderProducts() {
       category === "all" || product.category === category;
 
     const matchesQuery =
-      ${product.name} ${product.categoryLabel} ${product.description} ${product.size}
+      `${product.name} ${product.categoryLabel} ${product.description} ${product.size}`
         .toLowerCase().includes(query);
 
     return matchesCategory && matchesQuery;
@@ -100,7 +100,7 @@ function renderProducts() {
   productGrid.innerHTML = filtered.map(product => `
     <article class="product-card" data-category="${escapeHtml(product.category)}">
       <div class="product-visual">
-        ${product.tag ? <span class="product-tag">${escapeHtml(product.tag)}</span> : ""}
+        ${product.tag ? `<span class="product-tag">${escapeHtml(product.tag)}</span>` : ""}
         <img src="${escapeHtml(product.image)}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.onerror=null;this.src='./image/Logo.png'">
       </div>
       <div class="product-info">
@@ -136,7 +136,7 @@ function addToCart(id) {
   else cart.push({id, quantity:1});
 
   renderCart();
-  showToast(تمت إضافة «${product.name}» إلى السلة);
+  showToast(`تمت إضافة «${product.name}» إلى السلة`);
 }
 
 function changeQuantity(id, delta) {
@@ -193,7 +193,7 @@ function whatsappUrl(message) {
     return null;
   }
 
-  return https://wa.me/${number}?text=${encodeURIComponent(message)};
+  return `https://wa.me/${number}?text=${encodeURIComponent(message)}`;
 }
 
 function openWhatsApp(message) {
@@ -214,10 +214,10 @@ function updatePaymentNote() {
 function cartMessage(asQuote = false) {
   const rows = cart.map(item => {
     const product = products.find(row => row.id === item.id);
-    return - ${product.name} | الكمية: ${item.quantity};
+    return `- ${product.name} | الكمية: ${item.quantity}`;
   }).join("\n");
 
-  const payment = asQuote ? "" : طريقة الدفع: ${getPayment().label}\n;
+  const payment = asQuote ? "" : `طريقة الدفع: ${getPayment().label}\n`;
 
   return `مرحبًا AL ZAIN OIL SEAL،
 ${asQuote ? "أرغب في طلب عرض سعر للمنتجات التالية:" : "أرغب في تأكيد طلب المنتجات التالية:"}
