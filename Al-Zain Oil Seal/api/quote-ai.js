@@ -78,7 +78,39 @@ async function callGemini(apiKey, text, fast, signal) {
   return { response, data };
 }
 
+const VERSION = "v3-2026-11-01";
+
 module.exports = async function handler(req, res) {
+  // فحص سريع: افتح /api/quote-ai في المتصفح لمعرفة النسخة المنشورة والموديلات المتاحة
+  if (req.method === "GET") {
+    const info = { version: VERSION, model: MODEL, hasKey: Boolean(process.env.GEMINI_API_KEY) };
+
+    if (info.hasKey) {
+      const c = new AbortController();
+      const t = setTimeout(() => c.abort(), 8000);
+      const started = Date.now();
+      try {
+        const r = await fetch("https://generativelanguage.googleapis.com/v1beta/models?pageSize=200", {
+          headers: { "x-goog-api-key": process.env.GEMINI_API_KEY },
+          signal: c.signal
+        });
+        const d = await r.json().catch(() => ({}));
+        info.googleStatus = r.status;
+        info.googleMs = Date.now() - started;
+        info.flashModels = (d.models || [])
+          .map((m) => String(m.name || "").replace("models/", ""))
+          .filter((n) => /flash/i.test(n));
+        if (!r.ok) info.googleError = d?.error?.message;
+      } catch (e) {
+        info.googleError = e.name + ": " + e.message;
+      } finally {
+        clearTimeout(t);
+      }
+    }
+
+    return res.status(200).json(info);
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ error: "طريقة الطلب غير مسموح بها." });
   }
