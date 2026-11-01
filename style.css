@@ -841,3 +841,24 @@ section .product-grid,
     padding: 6px;
   }
 }
+
+.footer-admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.footer-admin p {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  color: #aaa;
+}
+
+@media (max-width: 600px) {
+  .footer-admin p {
+    font-size: 11px;
+  }
+}
