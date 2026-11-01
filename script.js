@@ -324,7 +324,20 @@ async function aiFillQuote() {
   }
 }
 
+/* خيارات طريقة الدفع في فورم عرض السعر (من نفس قائمة PAYMENT_METHODS) */
+function setupQuotePayment() {
+  const select = $("#quotePayment");
+  if (!select) return;
+  Object.entries(PAYMENT_METHODS).forEach(([key, method]) => {
+    const option = document.createElement("option");
+    option.value = key;
+    option.textContent = method.label;
+    select.appendChild(option);
+  });
+}
+
 /* تشغيل المتجر */
+setupQuotePayment();
 setupCategories();
 renderProducts();
 renderCart();
@@ -391,6 +404,7 @@ $("#aiFillBtn").addEventListener("click", aiFillQuote);
 $("#quoteForm").addEventListener("submit", event => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
+  const paymentLabel = PAYMENT_METHODS[data.get("payment")]?.label || "غير محددة";
 
   const message = `مرحبًا AL ZAIN OIL SEAL، أريد طلب عرض سعر.
 الاسم/الشركة: ${data.get("customer")}
@@ -398,6 +412,7 @@ $("#quoteForm").addEventListener("submit", event => {
 المنتج: ${data.get("product")}
 المقاس/المواصفات: ${data.get("specs") || "غير محدد"}
 الكمية: ${data.get("quantity")}
+طريقة الدفع المفضلة: ${paymentLabel}
 تفاصيل إضافية: ${data.get("details") || "لا توجد"}
 برجاء تأكيد السعر والتوفر.`;
 
@@ -409,6 +424,7 @@ $("#quoteForm").addEventListener("submit", event => {
     product: data.get("product"),
     specs: data.get("specs"),
     quantity: data.get("quantity"),
+    payment: paymentLabel,
     details: data.get("details")
   });
 
