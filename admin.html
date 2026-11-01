@@ -1,0 +1,675 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة تحكم | AL ZAIN OIL SEAL</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: #f7f3eb;
+      padding: 20px;
+    }
+
+    :root {
+      --gold: #d6ad57;
+      --panel: #191919;
+      --border: #333;
+      --text: #f7f3eb;
+      --muted: #aaa;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    h1 {
+      color: var(--gold);
+      font-size: 25px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 18px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .gold-btn {
+      background: var(--gold);
+      color: #111;
+    }
+
+    .gold-btn:hover {
+      background: #f0d48e;
+    }
+
+    .logout-btn {
+      background: #292929;
+      color: white;
+      border: 1px solid #444;
+    }
+
+    .login-box {
+      max-width: 400px;
+      margin: 70px auto;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 30px;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 13px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #101010;
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: var(--gold);
+    }
+
+    .login-box button {
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 28px;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .stat-card span {
+      color: var(--muted);
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .toolbar input {
+      flex: 1;
+      min-width: 200px;
+      margin: 0;
+    }
+
+    .orders {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .order-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .order-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-bottom: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .order-top h3 {
+      color: var(--gold);
+      font-size: 17px;
+    }
+
+    .badge {
+      background: #3b301c;
+      color: var(--gold);
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+    }
+
+    .badge.done {
+      background: #183624;
+      color: #8ce0a8;
+    }
+
+    .order-info {
+      line-height: 2;
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .order-info span {
+      color: var(--muted);
+    }
+
+    .order-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+
+    .status-btn {
+      background: #282828;
+      color: var(--gold);
+      border: 1px solid #444;
+    }
+
+    .delete-btn {
+      background: #3a1c1c;
+      color: #ff9999;
+      border: 1px solid #633333;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 50px 20px;
+      color: var(--muted);
+      background: var(--panel);
+      border-radius: 12px;
+    }
+
+    .message {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #ff9999;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 20px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .stat-card {
+        padding: 15px;
+      }
+
+      .orders {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- تسجيل الدخول -->
+  <section id="loginSection" class="login-box">
+    <h2>AL ZAIN OIL SEAL</h2>
+    <p class="subtitle">لوحة إدارة طلبات العملاء</p>
+
+    <input
+      type="password"
+      id="adminPassword"
+      placeholder="أدخل كلمة مرور الإدارة"
+      autocomplete="current-password"
+    >
+
+    <button class="gold-btn" id="loginBtn">
+      تسجيل الدخول
+    </button>
+
+    <p id="loginMessage" class="message"></p>
+  </section>
+
+  <!-- لوحة التحكم -->
+  <section id="dashboard" class="hidden">
+
+    <header>
+      <div>
+        <h1>AL ZAIN OIL SEAL</h1>
+        <p class="subtitle">لوحة إدارة طلبات العملاء</p>
+      </div>
+
+      <div class="toolbar">
+        <button class="gold-btn" id="refreshBtn">
+          تحديث الطلبات ↻
+        </button>
+
+        <button class="logout-btn" id="logoutBtn">
+          تسجيل خروج
+        </button>
+      </div>
+    </header>
+
+    <div class="stats">
+      <div class="stat-card">
+        <strong id="totalCount">0</strong>
+        <span>إجمالي الطلبات</span>
+      </div>
+
+      <div class="stat-card">
+        <strong id="newCount">0</strong>
+        <span>طلبات جديدة</span>
+      </div>
+
+      <div class="stat-card">
+        <strong id="doneCount">0</strong>
+        <span>طلبات تم تنفيذها</span>
+      </div>
+    </div>
+
+    <div class="toolbar">
+      <input
+        type="search"
+        id="searchInput"
+        placeholder="ابحث باسم العميل أو المنتج أو المقاس..."
+      >
+
+      <select id="filterStatus" style="max-width: 200px;">
+        <option value="all">كل الطلبات</option>
+        <option value="new">طلبات جديدة</option>
+        <option value="done">طلبات تم تنفيذها</option>
+      </select>
+    </div>
+
+    <div id="ordersList" class="orders">
+      <div class="empty">جاري تحميل الطلبات...</div>
+    </div>
+
+    <p id="dashboardMessage" class="message"></p>
+
+  </section>
+
+</div>
+
+<script>
+  const API_URL = "/api/admin";
+
+  let adminPassword = "";
+  let allOrders = [];
+
+  const $ = (selector) => document.querySelector(selector);
+
+  // تسجيل الدخول
+  $("#loginBtn").addEventListener("click", login);
+
+  $("#adminPassword").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") login();
+  });
+
+  async function login() {
+    const password = $("#adminPassword").value.trim();
+
+    if (!password) {
+      $("#loginMessage").textContent =
+        "من فضلك أدخل كلمة المرور.";
+      return;
+    }
+
+    adminPassword = password;
+
+    $("#loginBtn").disabled = true;
+    $("#loginBtn").textContent = "جاري التحقق...";
+
+    try {
+      const result = await apiRequest({
+        action: "list"
+      });
+
+      $("#loginSection").classList.add("hidden");
+      $("#dashboard").classList.remove("hidden");
+
+      renderOrders(result.requests || []);
+
+    } catch (error) {
+      adminPassword = "";
+      $("#loginMessage").textContent = error.message;
+
+    } finally {
+      $("#loginBtn").disabled = false;
+      $("#loginBtn").textContent = "تسجيل الدخول";
+    }
+  }
+
+  // إرسال طلب إلى السيرفر
+  async function apiRequest(body) {
+    const response = await fetch(API_URL, {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json",
+        "x-admin-password": adminPassword
+      },
+
+      body: JSON.stringify(body)
+    });
+
+    const data = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(
+        data.error || "حدث خطأ أثناء الاتصال بالسيرفر."
+      );
+    }
+
+    return data;
+  }
+
+  // تحديث الطلبات
+  $("#refreshBtn").addEventListener("click", loadOrders);
+
+  async function loadOrders() {
+    $("#dashboardMessage").textContent = "جاري تحديث الطلبات...";
+
+    try {
+      const result = await apiRequest({
+        action: "list"
+      });
+
+      renderOrders(result.requests || []);
+
+      $("#dashboardMessage").textContent =
+        "تم تحديث الطلبات بنجاح.";
+
+    } catch (error) {
+      $("#dashboardMessage").textContent = error.message;
+    }
+  }
+
+  // تسجيل الخروج
+  $("#logoutBtn").addEventListener("click", () => {
+    adminPassword = "";
+    allOrders = [];
+
+    $("#adminPassword").value = "";
+    $("#dashboard").classList.add("hidden");
+    $("#loginSection").classList.remove("hidden");
+    $("#loginMessage").textContent = "";
+  });
+
+  // تحديث الحالة
+  async function changeStatus(id, status) {
+    try {
+      await apiRequest({
+        action: "status",
+        id,
+        status
+      });
+
+      await loadOrders();
+
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  // حذف الطلب
+  async function deleteOrder(id) {
+    const confirmed = confirm(
+      "هل أنت متأكد من حذف هذا الطلب نهائيًا؟"
+    );
+
+    if (!confirmed) return;
+
+    try {
+      await apiRequest({
+        action: "delete",
+        id
+      });
+
+      await loadOrders();
+
+    } catch (error) {
+      alert(error.message);
+    }
+  }
+
+  // عرض الطلبات
+  function renderOrders(requests) {
+    allOrders = requests;
+
+    const newOrders = requests.filter(
+      (order) => order.status !== "done"
+    );
+
+    const doneOrders = requests.filter(
+      (order) => order.status === "done"
+    );
+
+    $("#totalCount").textContent = requests.length;
+    $("#newCount").textContent = newOrders.length;
+    $("#doneCount").textContent = doneOrders.length;
+
+    filterOrders();
+  }
+
+  // البحث والفلترة
+  $("#searchInput").addEventListener("input", filterOrders);
+  $("#filterStatus").addEventListener("change", filterOrders);
+
+  function filterOrders() {
+    const search = $("#searchInput").value.trim().toLowerCase();
+    const status = $("#filterStatus").value;
+
+    const filtered = allOrders.filter((order) => {
+      const text = [
+        order.customer,
+        order.phone,
+        order.product,
+        order.specs,
+        order.details,
+        order.items
+      ].join(" ").toLowerCase();
+
+      const matchesSearch = text.includes(search);
+
+      const matchesStatus =
+        status === "all" || order.status === status;
+
+      return matchesSearch && matchesStatus;
+    });
+
+    displayOrders(filtered);
+  }
+
+  // إنشاء بطاقة الطلب
+  function displayOrders(orders) {
+    const container = $("#ordersList");
+
+    if (!orders.length) {
+      container.innerHTML = `
+        <div class="empty">
+          لا توجد طلبات مطابقة.
+        </div>
+      `;
+      return;
+    }
+
+    container.innerHTML = orders.map((order) => {
+      const isDone = order.status === "done";
+
+      const date = order.createdAt
+        ? new Date(order.createdAt).toLocaleString("ar-EG")
+        : "غير محدد";
+
+      const typeLabels = {
+        quote: "طلب عرض سعر",
+        order: "طلب شراء",
+        "cart-quote": "طلب من السلة"
+      };
+
+      return `
+        <article class="order-card">
+
+          <div class="order-top">
+            <h3>${escapeHTML(typeLabels[order.type] || "طلب عميل")}</h3>
+
+            <span class="badge ${isDone ? "done" : ""}">
+              ${isDone ? "تم التنفيذ" : "طلب جديد"}
+            </span>
+          </div>
+
+          <div class="order-info">
+
+            <div>
+              <span>اسم العميل:</span>
+              ${escapeHTML(order.customer || "غير محدد")}
+            </div>
+
+            <div>
+              <span>رقم الهاتف:</span>
+              ${escapeHTML(order.phone || "غير محدد")}
+            </div>
+
+            <div>
+              <span>المنتج:</span>
+              ${escapeHTML(order.product || order.items || "غير محدد")}
+            </div>
+
+            <div>
+              <span>المقاس / المواصفات:</span>
+              ${escapeHTML(order.specs || "غير محدد")}
+            </div>
+
+            <div>
+              <span>الكمية:</span>
+              ${escapeHTML(order.quantity || 1)}
+            </div>
+
+            <div>
+              <span>تفاصيل إضافية:</span>
+              ${escapeHTML(order.details || "لا توجد")}
+            </div>
+
+            <div>
+              <span>طريقة الدفع:</span>
+              ${escapeHTML(order.payment || "غير محددة")}
+            </div>
+
+            <div>
+              <span>تاريخ الطلب:</span>
+              ${escapeHTML(date)}
+            </div>
+
+          </div>
+
+          <div class="order-actions">
+
+            <button
+              class="status-btn"
+              onclick="changeStatus(
+                '${escapeHTML(order.id)}',
+                '${isDone ? "new" : "done"}'
+              )"
+            >
+              ${isDone ? "إعادة الطلب إلى جديد" : "تحديد الطلب كمكتمل"}
+            </button>
+
+            <button
+              class="delete-btn"
+              onclick="deleteOrder('${escapeHTML(order.id)}')"
+            >
+              حذف الطلب
+            </button>
+
+          </div>
+
+        </article>
+      `;
+    }).join("");
+  }
+
+  // منع إدخال أكواد HTML ضارة
+  function escapeHTML(value) {
+    return String(value ?? "").replace(/[&<>"']/g, (char) => {
+      const map = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      };
+
+      return map[char];
+    });
+  }
+</script>
+
+</body>
+</html>
