@@ -201,29 +201,7 @@ function openWhatsApp(message) {
   if (url) window.open(url, "_blank", "noopener,noreferrer");
 }
 
-async function saveRequestToDatabase(requestData) {
-  try {
-    const response = await fetch("/api/requests", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(requestData)
-    });
 
-    const result = await response.json();
-
-    if (!response.ok || !result.success) {
-      console.error("خطأ في حفظ الطلب:", result);
-      return false;
-    }
-
-    return true;
-  } catch (error) {
-    console.error("تعذر الاتصال بقاعدة البيانات:", error);
-    return false;
-  }
-}
 
 /* ===== طرق الدفع ===== */
 function getPayment() {
@@ -376,46 +354,7 @@ $("#cartItems").addEventListener("click", event => {
 $("#paymentMethods").addEventListener("change", updatePaymentNote);
 
 
-$("#checkoutButton").addEventListener("click", async () => {
-  if (!cart.length) {
-    return showToast("السلة فارغة، أضف المنتجات أولًا");
-  }
-
-  const items = cart.map(item => {
-    const product = products.find(row => row.id === item.id);
-
-    return {
-      productId: product.id,
-      product: product.name,
-      quantity: item.quantity,
-      price: product.price
-    };
-  });
-
-  const requestData = {
-    type: "order",
-    customer: "طلب من السلة",
-    phone: "",
-    product: items.map(item => item.product).join("، "),
-    specs: "",
-    quantity: items.reduce((sum, item) => sum + item.quantity, 0),
-    details: "طلب شراء من السلة",
-    items,
-    payment: getPayment().label,
-    status: "new",
-    timestamp: new Date().toISOString()
-  };
-
-  const saved = await saveRequestToDatabase(requestData);
-
-  if (!saved) {
-    showToast("تعذر حفظ الطلب، حاول مرة أخرى");
-    return;
-  }
-
-  showToast("تم حفظ الطلب بنجاح");
-  openWhatsApp(cartMessage(false));
-});
+$("#checkoutButton").addEventListener("click", () => {
 
   if (!cart.length) return showToast("السلة فارغة، أضف المنتجات أولًا");
   openWhatsApp(cartMessage(false));
@@ -428,51 +367,7 @@ $("#quoteCartButton").addEventListener("click", () => {
 
 $("#aiFillBtn").addEventListener("click", aiFillQuote);
 
-$("#quoteForm").addEventListener("submit", async event => {
-  event.preventDefault();
-
-  const form = event.currentTarget;
-  const data = new FormData(form);
-
-  const customer = data.get("customer")?.toString().trim() || "";
-  const phone = data.get("phone")?.toString().trim() || "";
-  const product = data.get("product")?.toString().trim() || "";
-  const specs = data.get("specs")?.toString().trim() || "";
-  const quantity = data.get("quantity")?.toString().trim() || "";
-  const details = data.get("details")?.toString().trim() || "";
-
-  const requestData = {
-    type: "quote",
-    customer,
-    phone,
-    product,
-    specs,
-    quantity,
-    details,
-    status: "new",
-    timestamp: new Date().toISOString()
-  };
-
-  const saved = await saveRequestToDatabase(requestData);
-
-  if (!saved) {
-    showToast("تعذر حفظ الطلب، حاول مرة أخرى");
-    return;
-  }
-
-  const message = `مرحبًا AL ZAIN OIL SEAL، أريد طلب عرض سعر.
-الاسم/الشركة: ${customer}
-رقم الهاتف: ${phone}
-المنتج: ${product}
-المقاس/المواصفات: ${specs || "غير محدد"}
-الكمية: ${quantity}
-تفاصيل إضافية: ${details || "لا توجد"}
-برجاء تأكيد السعر والتوفر.`;
-
-  showToast("تم حفظ الطلب بنجاح");
-  openWhatsApp(message);
-});
-
+$("#quoteForm").addEventListener("submit", event => {
   event.preventDefault();
   const data = new FormData(event.currentTarget);
 
