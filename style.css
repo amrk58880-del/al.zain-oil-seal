@@ -709,3 +709,20 @@ section .product-grid,
   background: #d6ad57;
   color: #111;
 }
+
+.admin-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #d6ad57;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 10px;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.admin-link:hover {
+  color: #f0d48e;
+}
