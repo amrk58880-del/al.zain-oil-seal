@@ -692,3 +692,20 @@ section .product-grid,
     object-fit: contain;
     display: block;
 }
+
+.admin-link {
+  display: inline-block;
+  color: #d6ad57;
+  border: 1px solid #d6ad57;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: 'Cairo', sans-serif;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.admin-link:hover {
+  background: #d6ad57;
+  color: #111;
+}
