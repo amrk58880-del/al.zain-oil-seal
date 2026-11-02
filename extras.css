@@ -137,3 +137,195 @@
     opacity: 1 !important;
   }
 }
+
+/* =========================================
+   AL ZAIN — PREMIUM MOTION EFFECTS
+========================================= */
+
+/* 1. لمعة ذهبية للأزرار */
+.btn,
+.add-button,
+.quote-product,
+.cart-button {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+.btn:hover,
+.add-button:hover,
+.quote-product:hover,
+.cart-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(214, 173, 87, 0.2);
+}
+
+.btn-gold::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 70%;
+  height: 100%;
+  background: linear-gradient(
+    110deg,
+    transparent,
+    rgba(255, 255, 255, 0.35),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.btn-gold:hover::before {
+  left: 150%;
+}
+
+/* 2. حركة عائمة لصور البانر */
+.hero-product-main {
+  animation: alzainFloat 5s ease-in-out infinite;
+}
+
+.hero-product-small {
+  animation: alzainFloat 6s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.hero-product-hydraulic {
+  animation: alzainFloat 5.5s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+@keyframes alzainFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* 3. تأثير احترافي على صور المنتجات */
+.product-visual {
+  overflow: hidden;
+}
+
+.product-visual img {
+  transition:
+    transform 0.65s cubic-bezier(.2, .7, .2, 1),
+    filter 0.5s ease;
+}
+
+.product-card:hover .product-visual img {
+  transform: scale(1.07);
+  filter: brightness(1.08);
+}
+
+/* 4. تأثير ذهبي على كروت المنتجات */
+.product-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.product-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  pointer-events: none;
+  transition: border-color 0.35s ease;
+}
+
+.product-card:hover::after {
+  border-color: rgba(214, 173, 87, 0.45);
+}
+
+/* 5. حركة أيقونة السلة */
+.cart-button b {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.cart-button:hover b {
+  transform: scale(1.15);
+}
+
+/* 6. حركة الروابط في القائمة */
+.site-header nav a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.site-header nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  right: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.site-header nav a:hover::after {
+  width: 100%;
+}
+
+/* 7. حركة زر واتساب العائم */
+.wa-icon-link {
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.wa-icon-link:hover {
+  transform: translateY(-5px) scale(1.08);
+  filter: drop-shadow(0 5px 12px rgba(214, 173, 87, 0.3));
+}
+
+/* 8. ظهور تدريجي متتابع للمنتجات */
+.product-card.is-visible {
+  animation: alzainCardAppear 0.65s ease both;
+}
+
+@keyframes alzainCardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(25px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 9. حركة شعار الشركة */
+.brand-logo {
+  transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.brand:hover .brand-logo {
+  transform: rotate(-4deg) scale(1.05);
+  filter: drop-shadow(0 0 7px rgba(214, 173, 87, 0.25));
+}
+
+/* 10. إيقاف الحركات لمن يفضل تقليلها */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
