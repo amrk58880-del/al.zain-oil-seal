@@ -159,10 +159,24 @@
           <p class="section-subtitle">اختر المنتج وأضفه إلى السلة، أو اطلب عرض سعر للكمية والمقاس المطلوبين.</p>
         </div>
         <div class="product-tools">
-          <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="ابحث بالاسم أو المقاس..." aria-label="ابحث عن منتج"></label>
-          <select id="categoryFilter" aria-label="فلترة حسب التصنيف"><option value="all">كل التصنيفات</option></select>
-        </div>
-      </div>
+  <label class="search-box">
+    <span>⌕</span>
+    <input id="searchInput" type="search"
+      placeholder="ابحث بالاسم أو المقاس..."
+      aria-label="ابحث عن منتج">
+  </label>
+
+  <label class="search-box">
+    <span>📏</span>
+    <input id="sizeSearchInput" type="search"
+      placeholder="ابحث بالمقاس..."
+      aria-label="ابحث عن منتج بالمقاس">
+  </label>
+
+  <select id="categoryFilter" aria-label="فلترة حسب التصنيف">
+    <option value="all">كل التصنيفات</option>
+  </select>
+</div>
       
 <div class="category-chips" id="categoryChips">
   <button class="chip active" type="button" data-category="all">الكل</button>
