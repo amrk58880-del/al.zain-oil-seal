@@ -121,8 +121,9 @@ function renderProducts() {
   `).join("");
 
   $("#emptyState").hidden = filtered.length !== 0;
+  setupProductReveal();
 }
-
+  
 function showToast(message) {
   const toast = $("#toast");
   toast.textContent = message;
