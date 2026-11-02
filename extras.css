@@ -668,29 +668,36 @@
   }
 }
 
-/* Announcement Bar - Moving Text */
 
-.announcement-bar {
-  overflow: hidden !important;
-  white-space: nowrap !important;
+/* Moving Announcement */
+.announcement {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  direction: ltr;
 }
 
-.announcement-bar p,
-.announcement-bar span {
-  animation: announcementMove 15s linear infinite;
-  display: inline-block;
+.announcement-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  width: max-content;
+  animation: announcementScroll 18s linear infinite;
 }
 
-@keyframes announcementMove {
+.announcement-track span {
+  flex-shrink: 0;
+}
+
+.announcement:hover .announcement-track {
+  animation-play-state: paused;
+}
+
+@keyframes announcementScroll {
   from {
-    transform: translateX(-100%);
+    transform: translateX(0);
   }
   to {
-    transform: translateX(100%);
+    transform: translateX(-50%);
   }
-}
-
-.announcement-bar:hover p,
-.announcement-bar:hover span {
-  animation-play-state: paused;
 }
