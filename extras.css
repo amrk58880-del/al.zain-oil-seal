@@ -667,3 +667,30 @@
     max-width: 100% !important;
   }
 }
+
+/* Announcement Bar - Moving Text */
+
+.announcement-bar {
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+.announcement-bar p,
+.announcement-bar span {
+  animation: announcementMove 15s linear infinite;
+  display: inline-block;
+}
+
+@keyframes announcementMove {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.announcement-bar:hover p,
+.announcement-bar:hover span {
+  animation-play-state: paused;
+}
