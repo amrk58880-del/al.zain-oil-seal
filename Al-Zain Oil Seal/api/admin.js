@@ -17,7 +17,7 @@ module.exports = async function handler(req, res) {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const expected = process.env.ADMIN_PASSWORD || "Amr@12345";
+ const expected = process.env.ADMIN_PASSWORD;
   if (!expected) {
     return res.status(503).json({ error: "ADMIN_PASSWORD غير مضبوط في إعدادات Vercel" });
   }
