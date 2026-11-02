@@ -445,3 +445,42 @@
     opacity: 1 !important;
   }
 }
+
+/* حركة ظهور صور المنتجات */
+.product-card .product-visual img {
+  opacity: 0;
+  transform: translateY(25px) scale(.96);
+  transition:
+    opacity .7s ease,
+    transform .8s cubic-bezier(.2,.7,.2,1);
+}
+
+.product-card.is-visible .product-visual img {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* ظهور محتوى الكارت */
+.product-card .product-info {
+  opacity: 0;
+  transform: translateY(15px);
+  transition:
+    opacity .6s ease,
+    transform .6s ease;
+  transition-delay: .15s;
+}
+
+.product-card.is-visible .product-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* إلغاء الحركة عند تفضيل تقليلها */
+@media (prefers-reduced-motion: reduce) {
+  .product-card .product-visual img,
+  .product-card .product-info {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
