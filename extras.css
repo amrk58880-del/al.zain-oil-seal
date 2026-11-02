@@ -544,157 +544,126 @@
 }
 
 
-/* ==========================================
-   AL ZAIN — PRODUCTS SECTION FINAL FIX
-========================================== */
+
+/* AL ZAIN - PRODUCTS LAYOUT FINAL */
 
 .products-section {
-  width: 100%;
-  overflow: visible;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
 }
 
-/* العنوان يمين والبحث شمال */
+/* العنوان في سطر مستقل فوق الأدوات */
 .products-section .section-heading {
   display: flex !important;
-  flex-direction: row !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-  gap: 25px;
-  width: 100%;
-  margin-bottom: 25px;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 20px !important;
+  width: 100% !important;
+  margin-bottom: 25px !important;
 }
 
-/* عنوان اكتشف منتجاتنا */
+/* العنوان والوصف */
 .products-section .section-heading > div:first-child {
-  flex: 0 1 auto;
-  min-width: 0;
-  text-align: right;
+  width: 100% !important;
+  text-align: right !important;
 }
 
-/* خانات البحث */
+/* البحث والتصنيف في صف واحد */
 .products-section .product-tools {
   display: flex !important;
   flex-direction: row !important;
+  flex-wrap: nowrap !important;
   align-items: center !important;
-  justify-content: flex-start !important;
-  gap: 10px;
-  flex: 0 1 480px;
-  min-width: 0;
-  width: auto;
-  margin: 0;
+  gap: 10px !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: none !important;
 }
 
-/* البحث بالاسم والمقاس */
+/* خانات البحث */
 .products-section .product-tools .search-box {
-  display: flex;
-  align-items: center;
-  width: 190px;
-  min-width: 0;
-  height: 46px;
-  flex: 1;
-  padding: 0 10px;
+  flex: 1 1 0 !important;
+  width: 0 !important;
+  min-width: 0 !important;
+  height: 45px !important;
+  box-sizing: border-box !important;
 }
 
 .products-section .product-tools input {
-  width: 100%;
-  min-width: 0;
-  height: 100%;
-  font-size: 11px;
-  direction: rtl;
-  text-align: right;
+  width: 100% !important;
+  min-width: 0 !important;
+  text-align: right !important;
 }
 
-/* قائمة التصنيفات */
+/* التصنيف */
 .products-section .product-tools select {
-  width: 100px;
-  min-width: 90px;
-  max-width: 110px;
-  height: 46px;
+  flex: 0 0 130px !important;
+  width: 130px !important;
+  max-width: 130px !important;
+  height: 45px !important;
 }
 
-/* التصنيفات أسفل العنوان والبحث */
+/* شرائح الأقسام تحت الأدوات */
 .products-section .category-chips {
   display: flex !important;
-  flex-direction: row !important;
   justify-content: flex-start !important;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  width: 100%;
-  margin: 0 0 25px;
+  flex-wrap: wrap !important;
+  width: 100% !important;
+  margin: 0 0 25px !important;
+  gap: 8px !important;
 }
 
-/* شبكة المنتجات */
+/* المنتجات تملأ عرض القسم */
 .products-section .product-grid {
   display: grid !important;
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  align-items: stretch;
+  width: 100% !important;
+  max-width: 100% !important;
   gap: 17px !important;
-  width: 100%;
-  margin: 0;
+  margin: 0 !important;
 }
 
 .products-section .product-card {
-  width: 100%;
-  min-width: 0;
-  margin: 0;
+  width: 100% !important;
+  min-width: 0 !important;
+  box-sizing: border-box !important;
 }
 
-/* ==========================================
-   TABLET
-========================================== */
-
-@media (max-width: 1100px) {
+/* التابلت */
+@media (max-width: 900px) {
   .products-section .product-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
   }
-
-  .products-section .product-tools {
-    flex-basis: 420px;
-  }
 }
 
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 800px) {
-  .products-section .section-heading {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 20px;
-  }
-
-  .products-section .product-tools {
-    flex: 1 1 auto;
-    width: 100%;
-  }
-
-  .products-section .category-chips {
-    justify-content: flex-start !important;
-  }
-
+/* الموبايل */
+@media (max-width: 600px) {
   .products-section .product-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 12px !important;
   }
+
+  .products-section .product-tools select {
+    flex-basis: 100px !important;
+    width: 100px !important;
+  }
 }
 
-/* شاشات الموبايل الصغيرة */
-@media (max-width: 430px) {
+@media (max-width: 400px) {
   .products-section .product-tools {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    flex-wrap: wrap !important;
   }
 
   .products-section .product-tools .search-box {
-    width: 100%;
+    flex: 1 1 100% !important;
+    width: 100% !important;
   }
 
   .products-section .product-tools select {
-    width: 100%;
-    max-width: none;
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
 }
-
