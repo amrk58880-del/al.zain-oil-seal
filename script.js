@@ -124,6 +124,75 @@ function renderProducts() {
   setupProductReveal();
 }
   
+/* =================================
+   SCROLL REVEAL SYSTEM
+================================= */
+
+function setupProductReveal() {
+  const cards = document.querySelectorAll(".product-card");
+
+  if (!("IntersectionObserver" in window)) {
+    cards.forEach(card => {
+      card.classList.add("is-visible");
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.12,
+      rootMargin: "0px 0px -40px 0px"
+    }
+  );
+
+  cards.forEach((card, index) => {
+    card.classList.add("scroll-reveal");
+    card.style.transitionDelay = `${(index % 4) * 100}ms`;
+    observer.observe(card);
+  });
+}
+
+/* ظهور الأقسام تدريجيًا عند التمرير */
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll(
+    ".benefits, .quote-copy, .quote-form, .about-logo-block, .about-content, .contact-strip"
+  );
+
+  if (!("IntersectionObserver" in window)) {
+    sections.forEach(section => {
+      section.classList.add("is-visible");
+    });
+    return;
+  }
+
+  const sectionObserver = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          sectionObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.15
+    }
+  );
+
+  sections.forEach(section => {
+    section.classList.add("scroll-reveal");
+    sectionObserver.observe(section);
+  });
+});
+
 function showToast(message) {
   const toast = $("#toast");
   toast.textContent = message;
