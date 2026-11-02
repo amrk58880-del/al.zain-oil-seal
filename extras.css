@@ -1,96 +1,294 @@
-/* ===== طرق الدفع + الذكاء الاصطناعي (ملف إضافي - لا يغيّر style.css) ===== */
-.payment-methods{border:1px solid #39352b;border-radius:4px;padding:12px;margin:0 0 4px;display:grid;gap:6px;background:#131312}
-.payment-methods legend{font-weight:800;font-size:12px;color:var(--gold);padding:0 8px}
-.payment-methods label{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 10px;border:1px solid transparent;border-radius:3px;font-size:12px;color:#ddd8cc}
-.payment-methods label:hover{border-color:#4b4435}
-.payment-methods label:has(input:checked){background:#2a2417;border-color:var(--gold);color:#fff}
-.payment-methods input{accent-color:var(--gold)}
-#paymentNote{display:block;color:#b5b0a6;font-size:11px;line-height:1.8;min-height:0}
-#paymentNote:empty{display:none}
 
-.ai-box{border:1px dashed #5b4a2b;background:#17150f;padding:14px;margin-bottom:18px;border-radius:2px}
-.ai-box>label{margin-bottom:10px!important}
-.ai-box .btn{min-height:42px;margin-top:0}
-.ai-box .btn:disabled{opacity:.6;cursor:wait}
-.ai-missing{display:block;margin-top:10px;padding:9px 11px;background:#2a2417;border:1px solid #6b5630;color:#f0d48e;font-size:11px;line-height:1.9;border-radius:2px}
-.ai-missing[hidden]{display:none}
+/* ==========================================
+   AL ZAIN OIL SEAL — CLEAN PREMIUM MOTION
+========================================== */
 
-/* ===== أيقونة واتساب الثابتة (يسار الصفحة) ===== */
-.wa-icon-link{position:fixed;bottom:22px;left:22px;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;z-index:40;box-shadow:0 6px 20px #0008;transition:transform .2s,box-shadow .2s}
-.wa-icon-link:hover{transform:scale(1.08);box-shadow:0 8px 26px #25d36666,0 6px 20px #0008}
-.wa-icon-link::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:waPulse 2.2s infinite;pointer-events:none}
-@keyframes waPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
-.toast{left:96px}
-@media(max-width:600px){.wa-icon-link{width:52px;height:52px;bottom:16px;left:16px}.toast{left:80px;bottom:20px}}
-@media(prefers-reduced-motion:reduce){.wa-icon-link::before{animation:none}}
-
-/* زر طلب عرض السعر بجانب زر السلة */
-.product-bottom .quote-product{text-decoration:none;border:1px solid #62583f;padding:6px 10px;border-radius:2px;font-size:11px;white-space:nowrap;transition:.2s}
-.product-bottom .quote-product:hover{border-color:var(--gold);background:#2a2417}
-@media(max-width:430px){.product-bottom .quote-product{width:calc(100% - 44px)}}
-
-/* ===== تركيب صور الواجهة: نفس الشكل على كل المقاسات ===== */
-.hero-art.hero-products{height:auto;aspect-ratio:13/10;width:100%;max-width:680px;margin-inline:auto;position:relative;display:block;overflow:visible;direction:ltr;transform:none}
-.hero-products .hero-product-main{width:70%;aspect-ratio:1/1;height:auto;left:0;right:auto;top:50%;bottom:auto;transform:translateY(-50%);z-index:2}
-.hero-products .hero-product-small{display:flex;width:40%;aspect-ratio:1/1;height:auto;right:-3%;left:auto;top:8%;bottom:auto;z-index:3}
-.hero-products .hero-product-hydraulic{display:flex;width:42%;aspect-ratio:1/1;height:auto;right:0;left:auto;top:auto;bottom:3%;z-index:4}
-.hero-products .hero-label{top:0;right:2%}
-.hero-products .hero-label-bottom{bottom:-3%;right:1%}
-@media(max-width:800px){.hero-art.hero-products{max-width:520px;margin-bottom:18px}}
-
-/* قائمة طريقة الدفع في فورم عرض السعر */
-.quote-form select{width:100%;border:1px solid #3d3a32;background:#131312;color:#fff;padding:11px 12px;outline:none;border-radius:2px;font-size:12px}
-.quote-form select:focus{border-color:var(--gold)}
-
-/* ===============================
-   PREMIUM SCROLL REVEAL ANIMATION
-================================ */
-
-/* العناصر التي تظهر أثناء التمرير */
-.scroll-reveal {
-  opacity: 0;
-  transform: translateY(35px);
-  filter: blur(5px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s cubic-bezier(.2,.7,.2,1),
-    filter 0.8s ease;
-  will-change: opacity, transform;
+/* طرق الدفع */
+.payment-methods {
+  border: 1px solid #39352b;
+  border-radius: 4px;
+  padding: 12px;
+  margin: 0 0 4px;
+  display: grid;
+  gap: 6px;
+  background: #131312;
 }
 
-/* ظهور العنصر */
+.payment-methods legend {
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--gold);
+  padding: 0 8px;
+}
+
+.payment-methods label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #ddd8cc;
+}
+
+.payment-methods label:hover {
+  border-color: #4b4435;
+}
+
+.payment-methods label:has(input:checked) {
+  background: #2a2417;
+  border-color: var(--gold);
+  color: #fff;
+}
+
+.payment-methods input {
+  accent-color: var(--gold);
+}
+
+#paymentNote {
+  display: block;
+  color: #b5b0a6;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+#paymentNote:empty {
+  display: none;
+}
+
+/* الذكاء الاصطناعي */
+.ai-box {
+  border: 1px dashed #5b4a2b;
+  background: #17150f;
+  padding: 14px;
+  margin-bottom: 18px;
+  border-radius: 2px;
+}
+
+.ai-box > label {
+  margin-bottom: 10px !important;
+}
+
+.ai-box .btn {
+  min-height: 42px;
+  margin-top: 0;
+}
+
+.ai-box .btn:disabled {
+  opacity: .6;
+  cursor: wait;
+}
+
+.ai-missing {
+  display: block;
+  margin-top: 10px;
+  padding: 9px 11px;
+  background: #2a2417;
+  border: 1px solid #6b5630;
+  color: #f0d48e;
+  font-size: 11px;
+  line-height: 1.9;
+  border-radius: 2px;
+}
+
+.ai-missing[hidden] {
+  display: none;
+}
+
+/* زر واتساب */
+.wa-icon-link {
+  position: fixed;
+  bottom: 22px;
+  left: 22px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #25d366;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  z-index: 40;
+  box-shadow: 0 6px 20px #0008;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.wa-icon-link:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 8px 26px #25d36666, 0 6px 20px #0008;
+}
+
+.wa-icon-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  animation: waPulse 2.2s infinite;
+  pointer-events: none;
+}
+
+@keyframes waPulse {
+  0% {
+    transform: scale(1);
+    opacity: .7;
+  }
+
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.toast {
+  left: 96px;
+}
+
+@media (max-width: 600px) {
+  .wa-icon-link {
+    width: 52px;
+    height: 52px;
+    bottom: 16px;
+    left: 16px;
+  }
+
+  .toast {
+    left: 80px;
+    bottom: 20px;
+  }
+}
+
+/* زر عرض السعر */
+.product-bottom .quote-product {
+  text-decoration: none;
+  border: 1px solid #62583f;
+  padding: 6px 10px;
+  border-radius: 2px;
+  font-size: 11px;
+  white-space: nowrap;
+  transition: background .3s ease, border-color .3s ease;
+}
+
+.product-bottom .quote-product:hover {
+  border-color: var(--gold);
+  background: #2a2417;
+}
+
+@media (max-width: 430px) {
+  .product-bottom .quote-product {
+    width: calc(100% - 44px);
+  }
+}
+
+/* صور البانر */
+.hero-art.hero-products {
+  height: auto;
+  aspect-ratio: 13 / 10;
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+  position: relative;
+  display: block;
+  overflow: visible;
+  direction: ltr;
+}
+
+.hero-products .hero-product-main {
+  width: 70%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  left: 0;
+  right: auto;
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.hero-products .hero-product-small {
+  display: flex;
+  width: 40%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  right: -3%;
+  left: auto;
+  top: 8%;
+  bottom: auto;
+  z-index: 3;
+}
+
+.hero-products .hero-product-hydraulic {
+  display: flex;
+  width: 42%;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  right: 0;
+  left: auto;
+  top: auto;
+  bottom: 3%;
+  z-index: 4;
+}
+
+.hero-products .hero-label {
+  top: 0;
+  right: 2%;
+}
+
+.hero-products .hero-label-bottom {
+  bottom: -3%;
+  right: 1%;
+}
+
+@media (max-width: 800px) {
+  .hero-art.hero-products {
+    max-width: 520px;
+    margin-bottom: 18px;
+  }
+}
+
+/* قائمة الدفع في طلب عرض السعر */
+.quote-form select {
+  width: 100%;
+  border: 1px solid #3d3a32;
+  background: #131312;
+  color: #fff;
+  padding: 11px 12px;
+  outline: none;
+  border-radius: 2px;
+  font-size: 12px;
+}
+
+.quote-form select:focus {
+  border-color: var(--gold);
+}
+
+/* ==========================================
+   SCROLL REVEAL
+========================================== */
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity .7s ease,
+    transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+
 .scroll-reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
 }
 
-/* حركة البانر الرئيسي */
+/* البانر */
 .hero-content {
-  animation: heroContentReveal 1s ease both;
+  animation: heroContentReveal .9s ease both;
 }
 
-.hero-art {
-  animation: heroArtReveal 1.2s cubic-bezier(.2,.7,.2,1) both;
-  animation-delay: 0.2s;
-}
-
-.hero-product {
-  transition:
-    transform 0.5s ease,
-    filter 0.5s ease;
-}
-
-.hero-product:hover {
-  transform: translateY(-8px) scale(1.03);
-  filter: drop-shadow(0 12px 20px rgba(214,173,87,.2));
-}
-
-/* ظهور البانر */
 @keyframes heroContentReveal {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(25px);
   }
 
   to {
@@ -99,68 +297,90 @@
   }
 }
 
-@keyframes heroArtReveal {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(.96);
+/* حركة الصور العائمة — بدون تعارض مع تمركز البانر */
+.hero-products .hero-product-main {
+  animation: floatMain 5s ease-in-out infinite;
+}
+
+.hero-products .hero-product-small {
+  animation: floatSmall 6s ease-in-out infinite;
+}
+
+.hero-products .hero-product-hydraulic {
+  animation: floatHydraulic 5.5s ease-in-out infinite;
+}
+
+@keyframes floatMain {
+  0%, 100% {
+    transform: translateY(-50%);
   }
 
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  50% {
+    transform: translateY(calc(-50% - 8px));
   }
 }
 
-/* حركة ناعمة لكروت المنتجات */
+@keyframes floatSmall {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatHydraulic {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* المنتجات */
 .product-card {
-  transition:
-    transform 0.35s ease,
-    box-shadow 0.35s ease;
+  transition: box-shadow .35s ease, border-color .35s ease;
 }
 
 .product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 15px 35px rgba(214,173,87,.10);
+  box-shadow: 0 12px 30px rgba(214, 173, 87, .12);
 }
 
-/* احترام إعداد تقليل الحركة */
-@media (prefers-reduced-motion: reduce) {
-  .scroll-reveal,
-  .hero-content,
-  .hero-art,
-  .product-card,
-  .hero-product {
-    animation: none !important;
-    transition: none !important;
-    transform: none !important;
-    filter: none !important;
-    opacity: 1 !important;
-  }
+.product-visual {
+  overflow: hidden;
 }
 
-/* =========================================
-   AL ZAIN — PREMIUM MOTION EFFECTS
-========================================= */
+.product-visual img {
+  transition: transform .6s cubic-bezier(.2, .7, .2, 1), filter .4s ease;
+}
 
-/* 1. لمعة ذهبية للأزرار */
+.product-card:hover .product-visual img {
+  transform: scale(1.06);
+  filter: brightness(1.05);
+}
+
+/* الأزرار */
 .btn,
 .add-button,
 .quote-product,
 .cart-button {
-  position: relative;
-  overflow: hidden;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    background 0.3s ease;
+  transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
 }
 
 .btn:hover,
 .add-button:hover,
-.quote-product:hover,
 .cart-button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 22px rgba(214, 173, 87, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(214, 173, 87, .15);
+}
+
+/* لمعة الزر الذهبي */
+.btn-gold {
+  position: relative;
+  overflow: hidden;
 }
 
 .btn-gold::before {
@@ -168,16 +388,11 @@
   position: absolute;
   top: 0;
   left: -120%;
-  width: 70%;
+  width: 65%;
   height: 100%;
-  background: linear-gradient(
-    110deg,
-    transparent,
-    rgba(255, 255, 255, 0.35),
-    transparent
-  );
+  background: linear-gradient(110deg, transparent, #ffffff55, transparent);
   transform: skewX(-25deg);
-  transition: left 0.7s ease;
+  transition: left .7s ease;
   pointer-events: none;
 }
 
@@ -185,83 +400,10 @@
   left: 150%;
 }
 
-/* 2. حركة عائمة لصور البانر */
-.hero-product-main {
-  animation: alzainFloat 5s ease-in-out infinite;
-}
-
-.hero-product-small {
-  animation: alzainFloat 6s ease-in-out infinite;
-  animation-delay: 0.5s;
-}
-
-.hero-product-hydraulic {
-  animation: alzainFloat 5.5s ease-in-out infinite;
-  animation-delay: 1s;
-}
-
-@keyframes alzainFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-12px);
-  }
-}
-
-/* 3. تأثير احترافي على صور المنتجات */
-.product-visual {
-  overflow: hidden;
-}
-
-.product-visual img {
-  transition:
-    transform 0.65s cubic-bezier(.2, .7, .2, 1),
-    filter 0.5s ease;
-}
-
-.product-card:hover .product-visual img {
-  transform: scale(1.07);
-  filter: brightness(1.08);
-}
-
-/* 4. تأثير ذهبي على كروت المنتجات */
-.product-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.product-card::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border: 1px solid transparent;
-  border-radius: inherit;
-  pointer-events: none;
-  transition: border-color 0.35s ease;
-}
-
-.product-card:hover::after {
-  border-color: rgba(214, 173, 87, 0.45);
-}
-
-/* 5. حركة أيقونة السلة */
-.cart-button b {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
-}
-
-.cart-button:hover b {
-  transform: scale(1.15);
-}
-
-/* 6. حركة الروابط في القائمة */
+/* روابط القائمة */
 .site-header nav a {
   position: relative;
-  transition: color 0.3s ease;
+  transition: color .3s ease;
 }
 
 .site-header nav a::after {
@@ -272,60 +414,34 @@
   width: 0;
   height: 2px;
   background: var(--gold);
-  transition: width 0.3s ease;
+  transition: width .3s ease;
 }
 
 .site-header nav a:hover::after {
   width: 100%;
 }
 
-/* 7. حركة زر واتساب العائم */
-.wa-icon-link {
-  transition:
-    transform 0.3s ease,
-    filter 0.3s ease;
-}
-
-.wa-icon-link:hover {
-  transform: translateY(-5px) scale(1.08);
-  filter: drop-shadow(0 5px 12px rgba(214, 173, 87, 0.3));
-}
-
-/* 8. ظهور تدريجي متتابع للمنتجات */
-.product-card.is-visible {
-  animation: alzainCardAppear 0.65s ease both;
-}
-
-@keyframes alzainCardAppear {
-  from {
-    opacity: 0;
-    transform: translateY(25px) scale(0.98);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* 9. حركة شعار الشركة */
+/* الشعار */
 .brand-logo {
-  transition: transform 0.4s ease, filter 0.4s ease;
+  transition: transform .35s ease, filter .35s ease;
 }
 
 .brand:hover .brand-logo {
-  transform: rotate(-4deg) scale(1.05);
-  filter: drop-shadow(0 0 7px rgba(214, 173, 87, 0.25));
+  transform: scale(1.04);
+  filter: drop-shadow(0 0 6px #d6ad5733);
 }
 
-/* 10. إيقاف الحركات لمن يفضل تقليلها */
+/* تقليل الحركة حسب إعداد الجهاز */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .scroll-reveal,
+  .hero-content,
+  .hero-products .hero-product-main,
+  .hero-products .hero-product-small,
+  .hero-products .hero-product-hydraulic,
+  .wa-icon-link::before {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
   }
 }
