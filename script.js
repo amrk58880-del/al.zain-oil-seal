@@ -128,6 +128,7 @@ function renderProducts() {
    SCROLL REVEAL SYSTEM
 ================================= */
 
+
 function setupProductReveal() {
   const cards = document.querySelectorAll(".product-card");
 
@@ -148,14 +149,14 @@ function setupProductReveal() {
       });
     },
     {
-      threshold: 0.12,
-      rootMargin: "0px 0px -40px 0px"
+      threshold: 0.1
     }
   );
 
   cards.forEach((card, index) => {
+    card.classList.remove("is-visible");
     card.classList.add("scroll-reveal");
-    card.style.transitionDelay = `${(index % 4) * 100}ms`;
+    card.style.transitionDelay = `${(index % 4) * 120}ms`;
     observer.observe(card);
   });
 }
