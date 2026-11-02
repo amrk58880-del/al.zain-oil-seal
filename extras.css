@@ -41,3 +41,99 @@
 /* قائمة طريقة الدفع في فورم عرض السعر */
 .quote-form select{width:100%;border:1px solid #3d3a32;background:#131312;color:#fff;padding:11px 12px;outline:none;border-radius:2px;font-size:12px}
 .quote-form select:focus{border-color:var(--gold)}
+
+/* ===============================
+   PREMIUM SCROLL REVEAL ANIMATION
+================================ */
+
+/* العناصر التي تظهر أثناء التمرير */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(35px);
+  filter: blur(5px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(.2,.7,.2,1),
+    filter 0.8s ease;
+  will-change: opacity, transform;
+}
+
+/* ظهور العنصر */
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* حركة البانر الرئيسي */
+.hero-content {
+  animation: heroContentReveal 1s ease both;
+}
+
+.hero-art {
+  animation: heroArtReveal 1.2s cubic-bezier(.2,.7,.2,1) both;
+  animation-delay: 0.2s;
+}
+
+.hero-product {
+  transition:
+    transform 0.5s ease,
+    filter 0.5s ease;
+}
+
+.hero-product:hover {
+  transform: translateY(-8px) scale(1.03);
+  filter: drop-shadow(0 12px 20px rgba(214,173,87,.2));
+}
+
+/* ظهور البانر */
+@keyframes heroContentReveal {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroArtReveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* حركة ناعمة لكروت المنتجات */
+.product-card {
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(214,173,87,.10);
+}
+
+/* احترام إعداد تقليل الحركة */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal,
+  .hero-content,
+  .hero-art,
+  .product-card,
+  .hero-product {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}
