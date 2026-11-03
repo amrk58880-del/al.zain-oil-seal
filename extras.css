@@ -681,7 +681,7 @@
   display: flex;
   width: max-content;
   direction: ltr;
-  animation: announcementScroll 20s linear infinite;
+  animation: announcementScroll 40s linear infinite;
 }
 
 .announcement-group {
