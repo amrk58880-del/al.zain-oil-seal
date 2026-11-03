@@ -612,6 +612,7 @@ document.addEventListener("error", event => {
     video.currentTime = 0;
     video.loop = video.muted;   // لما الصوت يشتغل، يخلص مرة واحدة بدل ما يكرر
     video.play().catch(() => {});
-    btn.textContent = video.muted ? "🔇 اضغط لتشغيل الصوت" : "🔊 إيقاف الصوت";
+    btn.textContent = video.muted ? "🔇" : "🔊";
+btn.setAttribute("aria-label", video.muted ? "تشغيل الصوت" : "إيقاف الصوت");
   });
 })();
