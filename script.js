@@ -555,3 +555,39 @@ document.addEventListener("error", event => {
     img.src = options[tried];
   }
 }, true);
+/* ===== الشريط المتحرك ===== */
+(function () {
+  const track = document.querySelector(".announcement-track");
+  if (!track) return;
+  const original = track.querySelector(".announcement-group");
+  if (!original) return;
+
+  // أول جملة (حلول موثوقة) تبقى في أقصى اليمين
+  Array.from(original.children).reverse().forEach(el => original.appendChild(el));
+
+  function build() {
+    track.querySelectorAll(".announcement-group:not(:first-child)").forEach(g => g.remove());
+
+    const groupWidth = original.getBoundingClientRect().width;
+    const screenWidth = track.parentElement.getBoundingClientRect().width;
+    if (!groupWidth) return;
+
+    // تكرار كفاية لتغطية الشاشة
+    const copies = Math.ceil((screenWidth * 2) / groupWidth) + 1;
+    for (let i = 0; i < copies; i++) {
+      const clone = original.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    }
+
+    const speed = 60; // بكسل/ثانية (أكبر = أسرع)
+    track.style.setProperty("--shift", groupWidth + "px");
+    track.style.animation = "none";
+    void track.offsetWidth;
+    track.style.animation = `announcementScroll ${groupWidth / speed}s linear infinite`;
+  }
+
+  window.addEventListener("load", build);
+  let t;
+  window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(build, 200); });
+})();
