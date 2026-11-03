@@ -591,3 +591,27 @@ document.addEventListener("error", event => {
   let t;
   window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(build, 200); });
 })();
+/* ===== الفيديو: تشغيل تلقائي + زر الصوت ===== */
+(function () {
+  const video = document.getElementById("introVideo");
+  const btn = document.getElementById("soundBtn");
+  if (!video || !btn) return;
+
+  // يشتغل لما يظهر في الشاشة ويقف لما يخرج منها
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) video.play().catch(() => {});
+        else video.pause();
+      });
+    }, { threshold: 0.4 }).observe(video);
+  }
+
+  btn.addEventListener("click", () => {
+    video.muted = !video.muted;
+    video.currentTime = 0;
+    video.loop = video.muted;   // لما الصوت يشتغل، يخلص مرة واحدة بدل ما يكرر
+    video.play().catch(() => {});
+    btn.textContent = video.muted ? "🔇 اضغط لتشغيل الصوت" : "🔊 إيقاف الصوت";
+  });
+})();
