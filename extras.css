@@ -678,15 +678,25 @@
 }
 
 .announcement-track {
-  display: inline-flex;
-  align-items: center;
-  gap: 18px;
+  display: flex;
   width: max-content;
-  animation: announcementScroll 18s linear infinite;
+  animation: announcementScroll 20s linear infinite;
 }
 
-.announcement-track span {
+.announcement-group {
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
+}
+
+.announcement-group span {
+  flex-shrink: 0;
+  padding: 0 18px;
+}
+
+.msg {
+  direction: rtl;
+  unicode-bidi: isolate;
 }
 
 .announcement:hover .announcement-track {
@@ -694,10 +704,6 @@
 }
 
 @keyframes announcementScroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
