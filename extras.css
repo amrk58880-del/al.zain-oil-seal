@@ -669,6 +669,7 @@
 }
 
 
+/* ===== الشريط المتحرك ===== */
 .announcement {
   width: 100%;
   overflow: hidden;
@@ -679,6 +680,7 @@
 .announcement-track {
   display: flex;
   width: max-content;
+  direction: ltr;
   will-change: transform;
 }
 
@@ -700,4 +702,10 @@
 
 .announcement:hover .announcement-track {
   animation-play-state: paused;
+}
+
+/* يمين → شمال */
+@keyframes announcementScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(var(--shift) * -1)); }
 }
