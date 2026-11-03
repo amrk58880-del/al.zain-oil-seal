@@ -674,22 +674,22 @@
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  direction: rtl;               /* الشريط نفسه rtl عشان يبدأ من اليمين */
+  direction: ltr;
 }
 
 .announcement-track {
   display: flex;
-  flex-direction: row;
   width: max-content;
-  direction: rtl;
-  animation: announcementScroll 10s linear infinite;
+  direction: ltr;
+  animation: announcementScroll 40s linear infinite;
 }
 
 .announcement-group {
   display: flex;
+  flex-direction: row-reverse;   /* أول جملة تبقى ناحية اليمين */
   align-items: center;
   flex-shrink: 0;
-  direction: rtl;
+  min-width: 100vw;
 }
 
 .announcement-group span {
@@ -698,6 +698,7 @@
 }
 
 .msg {
+  direction: rtl;
   unicode-bidi: isolate;
 }
 
@@ -707,5 +708,5 @@
 
 @keyframes announcementScroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(50%); }
+  to   { transform: translateX(-50%); }
 }
