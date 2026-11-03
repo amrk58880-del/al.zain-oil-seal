@@ -669,7 +669,6 @@
 }
 
 
-/* Moving Announcement */
 .announcement {
   width: 100%;
   overflow: hidden;
@@ -680,16 +679,13 @@
 .announcement-track {
   display: flex;
   width: max-content;
-  direction: ltr;
-  animation: announcementScroll 40s linear infinite;
+  will-change: transform;
 }
 
 .announcement-group {
   display: flex;
-  flex-direction: row-reverse;   /* أول جملة تبقى ناحية اليمين */
   align-items: center;
   flex-shrink: 0;
-  min-width: 100vw;
 }
 
 .announcement-group span {
@@ -704,9 +700,4 @@
 
 .announcement:hover .announcement-track {
   animation-play-state: paused;
-}
-
-@keyframes announcementScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
 }
