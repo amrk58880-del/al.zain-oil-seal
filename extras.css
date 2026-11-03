@@ -674,7 +674,7 @@
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  direction: ltr;
+  direction: rtl;
 }
 
 .announcement-track {
@@ -695,7 +695,6 @@
 }
 
 .msg {
-  direction: rtl;
   unicode-bidi: isolate;
 }
 
@@ -705,5 +704,5 @@
 
 @keyframes announcementScroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(50%); }
 }
