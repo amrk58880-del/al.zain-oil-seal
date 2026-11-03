@@ -674,12 +674,13 @@
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  direction: rtl;
+  direction: ltr;
 }
 
 .announcement-track {
   display: flex;
   width: max-content;
+  direction: ltr;
   animation: announcementScroll 20s linear infinite;
 }
 
@@ -687,6 +688,8 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
+  min-width: 100vw;      /* كل مجموعة تملا عرض الشاشة */
+  direction: rtl;        /* الكلام يبدأ من اليمين */
 }
 
 .announcement-group span {
@@ -704,5 +707,5 @@
 
 @keyframes announcementScroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(50%); }
+  to   { transform: translateX(-50%); }
 }
