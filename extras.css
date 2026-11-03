@@ -674,13 +674,14 @@
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
-  direction: ltr;
+  direction: rtl;               /* الشريط نفسه rtl عشان يبدأ من اليمين */
 }
 
 .announcement-track {
   display: flex;
+  flex-direction: row;
   width: max-content;
-  direction: ltr;
+  direction: rtl;
   animation: announcementScroll 10s linear infinite;
 }
 
@@ -688,8 +689,7 @@
   display: flex;
   align-items: center;
   flex-shrink: 0;
-  min-width: 100vw;      /* كل مجموعة تملا عرض الشاشة */
-  direction: rtl;        /* الكلام يبدأ من اليمين */
+  direction: rtl;
 }
 
 .announcement-group span {
@@ -707,5 +707,5 @@
 
 @keyframes announcementScroll {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to   { transform: translateX(50%); }
 }
