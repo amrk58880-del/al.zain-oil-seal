@@ -731,18 +731,22 @@
   position: absolute;
   bottom: 14px;
   right: 14px;
-  padding: 9px 14px;
+  width: 46px;
+  height: 46px;
+  padding: 0;
+  display: grid;
+  place-items: center;
   border: 1px solid var(--gold);
   background: #000c;
   color: #fff;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
   cursor: pointer;
-  border-radius: 2px;
-  transition: background .3s ease;
+  border-radius: 50%;
+  transition: background .3s ease, transform .3s ease;
 }
 
 .sound-btn:hover {
   background: #2a2417;
+  transform: scale(1.08);
 }
