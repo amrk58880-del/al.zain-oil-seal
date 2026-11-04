@@ -780,41 +780,93 @@
   opacity: .75;
   text-decoration: underline;
 }
-/* بطاقة مدير الشركة */
-.manager-card {
-  display: flex;
+/* ===== كلمة المدير ===== */
+.manager-message {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 40px;
   align-items: center;
-  gap: 16px;
-  margin-top: 24px;
-  padding: 14px 18px;
-  max-width: 380px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px;
   border: 1px solid #39352b;
   border-right: 3px solid var(--gold);
   border-radius: 4px;
   background: #131312;
 }
 
-.manager-photo {
-  width: 100px;
-  height: 100px;
-  border-radius: 4px;
-  object-fit: cover;
+.manager-portrait {
+  aspect-ratio: 1 / 1;
   border: 2px solid var(--gold);
-  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #111;
 }
 
-.manager-info {
+.manager-portrait img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.manager-text h2 {
+  margin: 8px 0 18px;
+}
+
+.manager-text blockquote {
+  position: relative;
+  margin: 0 0 22px;
+  padding: 0 0 0 4px;
+  color: #ddd8cc;
+  font-size: 15px;
+  line-height: 2;
+}
+
+.manager-text blockquote::before {
+  content: "”";
+  position: absolute;
+  top: -34px;
+  left: 0;
+  font-size: 70px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: .35;
+}
+
+.manager-signature {
   display: grid;
   gap: 4px;
+  padding-top: 14px;
+  border-top: 1px solid #39352b;
 }
 
-.manager-info strong {
+.manager-signature strong {
   color: #fff;
-  font-size: 16px;
+  font-size: 17px;
 }
 
-.manager-info small {
+.manager-signature small {
   color: var(--gold);
   font-size: 12px;
   font-weight: 700;
+}
+
+@media (max-width: 700px) {
+  .manager-message {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 22px;
+    text-align: center;
+  }
+
+  .manager-portrait {
+    width: 200px;
+    margin: 0 auto;
+    border-radius: 50%;
+  }
+
+  .manager-signature {
+    justify-items: center;
+  }
 }
