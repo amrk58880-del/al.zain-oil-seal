@@ -863,3 +863,13 @@
     justify-items: center;
   }
 }
+/* الشريط العلوي: بترولي مع نص أبيض */
+.announcement {
+  background: #123B46;
+  color: #F5F5F5;
+  border-bottom: 1px solid #C58B54;
+}
+
+.announcement .sep {
+  color: #C58B54;
+}
