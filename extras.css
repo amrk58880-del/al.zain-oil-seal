@@ -1,17 +1,16 @@
-
 /* ==========================================
    AL ZAIN OIL SEAL — CLEAN PREMIUM MOTION
 ========================================== */
 
 /* طرق الدفع */
 .payment-methods {
-  border: 1px solid #39352b;
+  border: 1px solid #24444E;
   border-radius: 4px;
   padding: 12px;
   margin: 0 0 4px;
   display: grid;
   gap: 6px;
-  background: #131312;
+  background: #0B2229;
 }
 
 .payment-methods legend {
@@ -34,11 +33,11 @@
 }
 
 .payment-methods label:hover {
-  border-color: #4b4435;
+  border-color: #2B4F5A;
 }
 
 .payment-methods label:has(input:checked) {
-  background: #2a2417;
+  background: #123B46;
   border-color: var(--gold);
   color: #fff;
 }
@@ -60,8 +59,8 @@
 
 /* الذكاء الاصطناعي */
 .ai-box {
-  border: 1px dashed #5b4a2b;
-  background: #17150f;
+  border: 1px dashed #7A5634;
+  background: #0F2A32;
   padding: 14px;
   margin-bottom: 18px;
   border-radius: 2px;
@@ -85,9 +84,9 @@
   display: block;
   margin-top: 10px;
   padding: 9px 11px;
-  background: #2a2417;
-  border: 1px solid #6b5630;
-  color: #f0d48e;
+  background: #123B46;
+  border: 1px solid #7A5634;
+  color: #E0A877;
   font-size: 11px;
   line-height: 1.9;
   border-radius: 2px;
@@ -162,7 +161,7 @@
 /* زر عرض السعر */
 .product-bottom .quote-product {
   text-decoration: none;
-  border: 1px solid #62583f;
+  border: 1px solid #7A5634;
   padding: 6px 10px;
   border-radius: 2px;
   font-size: 11px;
@@ -172,7 +171,7 @@
 
 .product-bottom .quote-product:hover {
   border-color: var(--gold);
-  background: #2a2417;
+  background: #123B46;
 }
 
 @media (max-width: 430px) {
@@ -250,8 +249,8 @@
 /* قائمة الدفع في طلب عرض السعر */
 .quote-form select {
   width: 100%;
-  border: 1px solid #3d3a32;
-  background: #131312;
+  border: 1px solid #2B4F5A;
+  background: #0B2229;
   color: #fff;
   padding: 11px 12px;
   outline: none;
@@ -346,7 +345,7 @@
 }
 
 .product-card:hover {
-  box-shadow: 0 12px 30px rgba(214, 173, 87, .12);
+  box-shadow: 0 12px 30px rgba(197, 139, 84, .12);
 }
 
 .product-visual {
@@ -374,10 +373,10 @@
 .add-button:hover,
 .cart-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(214, 173, 87, .15);
+  box-shadow: 0 6px 18px rgba(197, 139, 84, .15);
 }
 
-/* لمعة الزر الذهبي */
+/* لمعة الزر النحاسي */
 .btn-gold {
   position: relative;
   overflow: hidden;
@@ -428,7 +427,7 @@
 
 .brand:hover .brand-logo {
   transform: scale(1.04);
-  filter: drop-shadow(0 0 6px #d6ad5733);
+  filter: drop-shadow(0 0 6px #C58B5433);
 }
 
 /* تقليل الحركة حسب إعداد الجهاز */
@@ -512,15 +511,6 @@
   }
 }
 
-/* إلغاء الحركة عند تفضيل تقليلها */
-@media (prefers-reduced-motion: reduce) {
-  .product-card .product-visual img,
-  .product-card .product-info {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
 /* البحث بالمقاس */
 #sizeSearchInput {
   direction: rtl;
@@ -709,15 +699,16 @@
   from { transform: translateX(0); }
   to   { transform: translateX(calc(var(--shift) * -1)); }
 }
+
 /* ===== الفيديو ===== */
 .media-frame {
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
-  border: 1px solid #39352b;
+  border: 1px solid #24444E;
   border-radius: 4px;
   overflow: hidden;
-  background: #111;
+  background: #0B2229;
 }
 
 .media-frame video {
@@ -747,9 +738,10 @@
 }
 
 .sound-btn:hover {
-  background: #2a2417;
+  background: #123B46;
   transform: scale(1.08);
 }
+
 /* اسم المصمم */
 .designer-credit {
   display: flex;
@@ -780,6 +772,7 @@
   opacity: .75;
   text-decoration: underline;
 }
+
 /* ===== كلمة المدير ===== */
 .manager-message {
   display: grid;
@@ -789,10 +782,10 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 32px;
-  border: 1px solid #39352b;
+  border: 1px solid #24444E;
   border-right: 3px solid var(--gold);
   border-radius: 4px;
-  background: #131312;
+  background: #16313A;
 }
 
 .manager-portrait {
@@ -800,7 +793,7 @@
   border: 2px solid var(--gold);
   border-radius: 4px;
   overflow: hidden;
-  background: #111;
+  background: #0B2229;
 }
 
 .manager-portrait img {
@@ -838,7 +831,7 @@
   display: grid;
   gap: 4px;
   padding-top: 14px;
-  border-top: 1px solid #39352b;
+  border-top: 1px solid #24444E;
 }
 
 .manager-signature strong {
