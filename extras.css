@@ -780,3 +780,41 @@
   opacity: .75;
   text-decoration: underline;
 }
+/* بطاقة مدير الشركة */
+.manager-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 14px 18px;
+  max-width: 380px;
+  border: 1px solid #39352b;
+  border-right: 3px solid var(--gold);
+  border-radius: 4px;
+  background: #131312;
+}
+
+.manager-photo {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+  flex-shrink: 0;
+}
+
+.manager-info {
+  display: grid;
+  gap: 4px;
+}
+
+.manager-info strong {
+  color: #fff;
+  font-size: 16px;
+}
+
+.manager-info small {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 700;
+}
