@@ -164,7 +164,6 @@ function setupProductReveal() {
 /* ظهور الأقسام تدريجيًا عند التمرير */
 document.addEventListener("DOMContentLoaded", () => {
   const sections = document.querySelectorAll(
-    ".benefits, .quote-copy, .quote-form, .about-logo-block, .about-content, .contact-strip"
     ".benefits, .quote-copy, .quote-form, .about-logo-block, .about-content, .contact-strip, .media-frame, .manager-message"
   );
 
