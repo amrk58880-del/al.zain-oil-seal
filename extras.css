@@ -750,3 +750,33 @@
   background: #2a2417;
   transform: scale(1.08);
 }
+/* اسم المصمم */
+.designer-credit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #b5b0a6;
+}
+
+.designer-photo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--gold);
+  flex-shrink: 0;
+}
+
+.designer-credit a {
+  color: var(--gold);
+  font-weight: 700;
+  text-decoration: none;
+  transition: opacity .3s ease;
+}
+
+.designer-credit a:hover {
+  opacity: .75;
+  text-decoration: underline;
+}
