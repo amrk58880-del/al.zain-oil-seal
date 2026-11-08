@@ -4,13 +4,13 @@
 
 /* طرق الدفع */
 .payment-methods {
-  border: 1px solid #24444E;
+  border: 1px solid #39352b;
   border-radius: 4px;
   padding: 12px;
   margin: 0 0 4px;
   display: grid;
   gap: 6px;
-  background: #0B2229;
+  background: #131312;
 }
 
 .payment-methods legend {
@@ -33,11 +33,11 @@
 }
 
 .payment-methods label:hover {
-  border-color: #2B4F5A;
+  border-color: #4b4435;
 }
 
 .payment-methods label:has(input:checked) {
-  background: #123B46;
+  background: #2a2417;
   border-color: var(--gold);
   color: #fff;
 }
@@ -59,8 +59,8 @@
 
 /* الذكاء الاصطناعي */
 .ai-box {
-  border: 1px dashed #2E6F7A;
-  background: #0F2A32;
+  border: 1px dashed #5b4a2b;
+  background: #17150f;
   padding: 14px;
   margin-bottom: 18px;
   border-radius: 2px;
@@ -84,9 +84,9 @@
   display: block;
   margin-top: 10px;
   padding: 9px 11px;
-  background: #123B46;
-  border: 1px solid #2E6F7A;
-  color: #A5DDE5;
+  background: #2a2417;
+  border: 1px solid #6b5630;
+  color: #f0d48e;
   font-size: 11px;
   line-height: 1.9;
   border-radius: 2px;
@@ -161,7 +161,7 @@
 /* زر عرض السعر */
 .product-bottom .quote-product {
   text-decoration: none;
-  border: 1px solid #2E6F7A;
+  border: 1px solid #62583f;
   padding: 6px 10px;
   border-radius: 2px;
   font-size: 11px;
@@ -171,7 +171,7 @@
 
 .product-bottom .quote-product:hover {
   border-color: var(--gold);
-  background: #123B46;
+  background: #2a2417;
 }
 
 @media (max-width: 430px) {
@@ -249,8 +249,8 @@
 /* قائمة الدفع في طلب عرض السعر */
 .quote-form select {
   width: 100%;
-  border: 1px solid #2B4F5A;
-  background: #0B2229;
+  border: 1px solid #3d3a32;
+  background: #131312;
   color: #fff;
   padding: 11px 12px;
   outline: none;
@@ -345,7 +345,7 @@
 }
 
 .product-card:hover {
-  box-shadow: 0 12px 30px rgba(111, 195, 207, .12);
+  box-shadow: 0 12px 30px rgba(214, 173, 87, .12);
 }
 
 .product-visual {
@@ -373,10 +373,10 @@
 .add-button:hover,
 .cart-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(111, 195, 207, .15);
+  box-shadow: 0 6px 18px rgba(214, 173, 87, .15);
 }
 
-/* لمعة الزر النحاسي */
+/* لمعة الزر الذهبي */
 .btn-gold {
   position: relative;
   overflow: hidden;
@@ -427,7 +427,7 @@
 
 .brand:hover .brand-logo {
   transform: scale(1.04);
-  filter: drop-shadow(0 0 6px #6FC3CF33);
+  filter: drop-shadow(0 0 6px #d6ad5733);
 }
 
 /* تقليل الحركة حسب إعداد الجهاز */
@@ -705,10 +705,10 @@
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
-  border: 1px solid #24444E;
+  border: 1px solid #39352b;
   border-radius: 4px;
   overflow: hidden;
-  background: #0B2229;
+  background: #111;
 }
 
 .media-frame video {
@@ -738,7 +738,7 @@
 }
 
 .sound-btn:hover {
-  background: #123B46;
+  background: #2a2417;
   transform: scale(1.08);
 }
 
@@ -782,10 +782,10 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 32px;
-  border: 1px solid #24444E;
+  border: 1px solid #39352b;
   border-right: 3px solid var(--gold);
   border-radius: 4px;
-  background: #16313A;
+  background: #131312;
 }
 
 .manager-portrait {
@@ -793,7 +793,7 @@
   border: 2px solid var(--gold);
   border-radius: 4px;
   overflow: hidden;
-  background: #0B2229;
+  background: #111;
 }
 
 .manager-portrait img {
@@ -831,7 +831,7 @@
   display: grid;
   gap: 4px;
   padding-top: 14px;
-  border-top: 1px solid #24444E;
+  border-top: 1px solid #39352b;
 }
 
 .manager-signature strong {
@@ -862,15 +862,4 @@
   .manager-signature {
     justify-items: center;
   }
-}
-
-/* الشريط العلوي: بترولي مع نص أبيض */
-.announcement {
-  background: #123B46;
-  color: #F5F5F5;
-  border-bottom: 1px solid #6FC3CF;
-}
-
-.announcement .sep {
-  color: #6FC3CF;
 }
