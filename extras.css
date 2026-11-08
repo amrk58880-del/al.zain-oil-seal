@@ -966,3 +966,9 @@ section {
 .product-bottom .quote-product:hover {
   background: #FFF6DF;
 }
+
+/* هيدر بلونين: كحلي + بترولي */
+.site-header {
+  background: linear-gradient(90deg, #101C2C 0%, #101C2C 40%, #0B3B4A 100%) !important;
+  border-bottom: 1px solid rgba(214, 173, 87, .5);
+}
