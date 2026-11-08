@@ -4,13 +4,13 @@
 
 /* طرق الدفع */
 .payment-methods {
-  border: 1px solid #39352b;
+  border: 1px solid #263B50;
   border-radius: 4px;
   padding: 12px;
   margin: 0 0 4px;
   display: grid;
   gap: 6px;
-  background: #131312;
+  background: #0D1724;
 }
 
 .payment-methods legend {
@@ -33,11 +33,11 @@
 }
 
 .payment-methods label:hover {
-  border-color: #4b4435;
+  border-color: #33495F;
 }
 
 .payment-methods label:has(input:checked) {
-  background: #2a2417;
+  background: #1E3249;
   border-color: var(--gold);
   color: #fff;
 }
@@ -60,7 +60,7 @@
 /* الذكاء الاصطناعي */
 .ai-box {
   border: 1px dashed #5b4a2b;
-  background: #17150f;
+  background: #13202F;
   padding: 14px;
   margin-bottom: 18px;
   border-radius: 2px;
@@ -84,7 +84,7 @@
   display: block;
   margin-top: 10px;
   padding: 9px 11px;
-  background: #2a2417;
+  background: #1E3249;
   border: 1px solid #6b5630;
   color: #f0d48e;
   font-size: 11px;
@@ -171,7 +171,7 @@
 
 .product-bottom .quote-product:hover {
   border-color: var(--gold);
-  background: #2a2417;
+  background: #1E3249;
 }
 
 @media (max-width: 430px) {
@@ -249,8 +249,8 @@
 /* قائمة الدفع في طلب عرض السعر */
 .quote-form select {
   width: 100%;
-  border: 1px solid #3d3a32;
-  background: #131312;
+  border: 1px solid #33495F;
+  background: #0D1724;
   color: #fff;
   padding: 11px 12px;
   outline: none;
@@ -705,10 +705,10 @@
   position: relative;
   max-width: 1000px;
   margin: 0 auto;
-  border: 1px solid #39352b;
+  border: 1px solid #263B50;
   border-radius: 4px;
   overflow: hidden;
-  background: #111;
+  background: #101C2C;
 }
 
 .media-frame video {
@@ -738,7 +738,7 @@
 }
 
 .sound-btn:hover {
-  background: #2a2417;
+  background: #1E3249;
   transform: scale(1.08);
 }
 
@@ -782,10 +782,10 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 32px;
-  border: 1px solid #39352b;
+  border: 1px solid #263B50;
   border-right: 3px solid var(--gold);
   border-radius: 4px;
-  background: #131312;
+  background: #0D1724;
 }
 
 .manager-portrait {
@@ -793,7 +793,7 @@
   border: 2px solid var(--gold);
   border-radius: 4px;
   overflow: hidden;
-  background: #111;
+  background: #101C2C;
 }
 
 .manager-portrait img {
@@ -831,7 +831,7 @@
   display: grid;
   gap: 4px;
   padding-top: 14px;
-  border-top: 1px solid #39352b;
+  border-top: 1px solid #263B50;
 }
 
 .manager-signature strong {
@@ -862,4 +862,107 @@
   .manager-signature {
     justify-items: center;
   }
+}
+
+/* ===== ثيم كحلي + ذهبي ===== */
+
+.site-header {
+  background: #101C2C !important;
+  border-bottom: 1px solid rgba(214, 173, 87, .5);
+}
+
+.site-header nav a {
+  color: #FFFFFF;
+  transition: .3s ease;
+}
+
+.site-header nav a:hover {
+  color: #D6AD57;
+}
+
+.site-header button,
+.site-header .btn {
+  border: 1px solid #D6AD57;
+  background: transparent;
+  color: #D6AD57;
+  transition: .3s ease;
+}
+
+.site-header button:hover,
+.site-header .btn:hover {
+  background: #D6AD57;
+  color: #101C2C;
+}
+
+.btn-gold {
+  background: #D6AD57;
+  color: #101C2C;
+  border: 1px solid #D6AD57;
+  font-weight: 700;
+}
+
+.btn-gold:hover {
+  background: #F0D48E;
+}
+
+.btn-outline {
+  background: transparent;
+  color: #D6AD57;
+  border: 1px solid #D6AD57;
+}
+
+.btn-outline:hover {
+  background: #D6AD57;
+  color: #101C2C;
+}
+
+section {
+  border-color: rgba(214, 173, 87, .2);
+}
+
+/* كروت المنتجات (بيضاء) */
+.product-card {
+  background: #FFFFFF;
+  border: 1px solid #E3E8EF;
+  border-radius: 12px;
+  transition: .3s ease;
+}
+
+.product-card:hover {
+  border-color: #D6AD57;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(16, 28, 44, .12);
+}
+
+.product-visual {
+  background: #F5F7FA;
+}
+
+.product-visual:before {
+  border-color: #E3E8EF;
+}
+
+.product-info h3 {
+  color: #101C2C;
+}
+
+.product-info > p:not(.product-category) {
+  color: #5B6B7C;
+}
+
+.product-category {
+  color: #A8812F;
+}
+
+.product-bottom {
+  border-top-color: #E3E8EF;
+}
+
+.product-bottom .quote-product {
+  color: #101C2C;
+  border-color: #D6AD57;
+}
+
+.product-bottom .quote-product:hover {
+  background: #FFF6DF;
 }
