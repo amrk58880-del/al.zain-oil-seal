@@ -972,3 +972,30 @@ section {
   background: linear-gradient(90deg, #101C2C 0%, #101C2C 40%, #0B3B4A 100%) !important;
   border-bottom: 1px solid rgba(214, 173, 87, .5);
 }
+.header-credit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.header-credit-photo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #d4a017;
+}
+.header-credit a {
+  font-weight: 700;
+  text-decoration: none;
+}
+.header-credit a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .header-credit span {
+    display: none;
+  }
+}
