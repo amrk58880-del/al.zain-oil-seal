@@ -1130,3 +1130,31 @@ section {
     height: 24px !important;
   }
 }
+.site-header {
+  height: auto !important;
+  min-height: 0 !important;
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+.site-header nav a {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+  font-size: 14px !important;
+}
+
+.brand-logo {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+@media (max-width: 768px) {
+  .brand-logo {
+    width: 30px !important;
+    height: 30px !important;
+  }
+  .site-header {
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+}
