@@ -972,3 +972,29 @@ section {
   background: linear-gradient(90deg, #101C2C 0%, #101C2C 40%, #0B3B4A 100%) !important;
   border-bottom: 1px solid rgba(214, 173, 87, .5);
 }
+.top-credit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 6px 12px;
+  background: #101C2C;
+  color: #fff;
+  font-family: "Cairo", sans-serif;
+  font-size: 13px;
+}
+.top-credit-photo {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #d4a017;
+}
+.top-credit a {
+  color: #f5c542;
+  font-weight: 700;
+  text-decoration: none;
+}
+.top-credit a:hover {
+  text-decoration: underline;
+}
