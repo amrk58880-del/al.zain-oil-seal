@@ -999,3 +999,33 @@ section {
     display: none;
   }
 }
+/* شاشات متوسطة: خلّي الصورة بس واخفي الكلام */
+@media (max-width: 1280px) {
+  .header-credit span {
+    display: none;
+  }
+  .header-credit-photo {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* قلّل المسافات والحجم في الهيدر */
+@media (max-width: 1100px) {
+  .header-actions {
+    gap: 8px;
+  }
+  .header-actions .admin-link,
+  .header-actions .cart-button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* الموبايل */
+@media (max-width: 768px) {
+  .header-credit-photo {
+    width: 28px;
+    height: 28px;
+  }
+}
