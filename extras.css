@@ -972,6 +972,7 @@ section {
   background: linear-gradient(90deg, #101C2C 0%, #101C2C 40%, #0B3B4A 100%) !important;
   border-bottom: 1px solid rgba(214, 173, 87, .5);
 }
+
 .header-credit {
   display: flex;
   align-items: center;
@@ -979,182 +980,55 @@ section {
   font-size: 12px;
   white-space: nowrap;
 }
+.header-credit a { font-weight: 700; text-decoration: none; }
+.header-credit a:hover { text-decoration: underline; }
 .header-credit-photo {
-  width: 30px;
-  height: 30px;
   border-radius: 50%;
   object-fit: cover;
   border: 1.5px solid #d4a017;
 }
-.header-credit a {
-  font-weight: 700;
-  text-decoration: none;
-}
-.header-credit a:hover {
-  text-decoration: underline;
-}
 
-@media (max-width: 768px) {
-  .header-credit span {
-    display: none;
-  }
-}
-/* شاشات متوسطة: خلّي الصورة بس واخفي الكلام */
-@media (max-width: 1400px) {
-  .header-credit span {
-    display: none;
-  }
-  .header-credit-photo {
-    width: 34px;
-    height: 34px;
-  }
-}
-
-/* قلّل المسافات والحجم في الهيدر */
-@media (max-width: 1100px) {
-  .header-actions {
-    gap: 8px;
-  }
-  .header-actions .admin-link,
-  .header-actions .cart-button {
-    padding: 8px 12px;
-    font-size: 13px;
-  }
-}
-
-/* الموبايل */
-@media (max-width: 768px) {
-  .header-credit-photo {
-    width: 28px;
-    height: 28px;
-  }
-}
-@media (max-width: 768px) {
-  .site-header {
-    height: auto !important;
-    min-height: 0 !important;
-    flex-wrap: wrap;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    row-gap: 8px;
-  }
-
-  .brand-logo {
-    width: 44px;
-    height: 44px;
-  }
-
-  .menu-toggle {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-  }
-
-  .header-actions {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: nowrap;
-    gap: 8px;
-  }
-
-  .header-actions .cart-button,
-  .header-actions .admin-link {
-    padding: 6px 10px !important;
-    font-size: 12px !important;
-    border-radius: 10px;
-    white-space: nowrap;
-  }
-
-  .header-credit-photo {
-    width: 30px;
-    height: 30px;
-  }
-}
-/* الشاشات الكبيرة */
-.site-header {
-  padding-top: 6px !important;
-  padding-bottom: 6px !important;
-}
-.brand-logo {
-  width: 40px !important;
-  height: 40px !important;
-}
-.brand-copy strong {
-  font-size: 18px !important;
-}
-.brand-copy small {
-  font-size: 9px !important;
-}
-.header-actions .cart-button,
-.header-actions .admin-link {
-  padding: 6px 12px !important;
-  font-size: 13px !important;
-}
-.header-credit-photo {
-  width: 28px !important;
-  height: 28px !important;
-}
-
-/* الموبايل */
-@media (max-width: 768px) {
-  .site-header {
-    padding-top: 6px !important;
-    padding-bottom: 6px !important;
-    row-gap: 4px !important;
-  }
-  .brand-logo {
-    width: 34px !important;
-    height: 34px !important;
-  }
-  .brand-copy strong {
-    font-size: 15px !important;
-  }
-  .brand-copy small {
-    font-size: 8px !important;
-    letter-spacing: 0.5px;
-  }
-  .menu-toggle {
-    width: 34px !important;
-    height: 34px !important;
-    font-size: 18px !important;
-  }
-  .header-actions .cart-button,
-  .header-actions .admin-link {
-    padding: 4px 8px !important;
-    font-size: 11px !important;
-  }
-  .header-credit-photo {
-    width: 24px !important;
-    height: 24px !important;
-  }
-}
-.site-header {
+/* ===== الهيدر النهائي ===== */
+header.site-header {
   height: auto !important;
   min-height: 0 !important;
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
+  padding: 4px 4% !important;
+  gap: 10px !important;
+  flex-wrap: nowrap !important;
+}
+header.site-header .brand-logo { width: 36px !important; height: 36px !important; }
+header.site-header .brand-copy strong { font-size: 16px !important; }
+header.site-header .brand-copy small { font-size: 8px !important; margin-top: 2px !important; }
+header.site-header nav { gap: 18px !important; }
+header.site-header nav a { padding: 2px 0 !important; font-size: 13px !important; }
+header.site-header .header-actions { gap: 8px !important; flex-wrap: nowrap !important; }
+header.site-header .cart-button,
+header.site-header .admin-link {
+  padding: 4px 10px !important;
+  font-size: 12px !important;
+  border-radius: 8px !important;
+}
+header.site-header .header-credit-photo { width: 26px !important; height: 26px !important; }
+
+@media (max-width: 1400px) {
+  .header-credit span { display: none; }
 }
 
-.site-header nav a {
-  padding-top: 4px !important;
-  padding-bottom: 4px !important;
-  font-size: 14px !important;
+@media (max-width: 1000px) {
+  header.site-header { flex-wrap: wrap !important; row-gap: 4px !important; }
 }
 
-.brand-logo {
-  width: 36px !important;
-  height: 36px !important;
-}
-
-@media (max-width: 768px) {
-  .brand-logo {
-    width: 30px !important;
-    height: 30px !important;
+@media (max-width: 800px) {
+  header.site-header { padding: 4px 3% !important; }
+  header.site-header .menu-toggle {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 18px !important;
   }
-  .site-header {
-    padding-top: 4px !important;
-    padding-bottom: 4px !important;
+  header.site-header .header-actions {
+    width: 100% !important;
+    justify-content: center !important;
   }
+  header.site-header nav { top: 100% !important; }
+  header.site-header .header-credit-photo { width: 24px !important; height: 24px !important; }
 }
