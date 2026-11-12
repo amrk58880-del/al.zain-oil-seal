@@ -49,7 +49,9 @@ const products = [
   {id:15,name:"سيلات فيتون أويل TC",category:"oil-seal",categoryLabel:"أويل سيل",description:"أويل سيل فيتون TC مقاوم للحرارة والزيوت.",size:"مقاسات متعددة",price:null,image:"./Al-Zain%20Oil%20Seal/image/viton-oil-seal.jpg",tag:""},
   {id:16,name:"سيليكون حراري",category:"adhesives",categoryLabel:"لواصق",description:"سيليكون RTV مقاوم للحرارة لتصنيع الجوانات والإحكام.",size:"عبوات مختلفة",price:null,image:"./Al-Zain%20Oil%20Seal/image/thermal-silicone.jpg",tag:""},
   {id:17,name:"أطقم أورينجات",category:"O-rings",categoryLabel:"أورينجات",description:"علب أورينجات مطاطية بمقاسات متنوعة.",size:"أطقم بمقاسات متعددة",price:null,image:"./Al-Zain%20Oil%20Seal/image/oring-kits.jpg",tag:""},
-  {id:18,name:"مزيلات صدأ",category:"rust-removers",categoryLabel:"مزيلات صدأ",description:"بخاخات لإزالة الصدأ وتشحيم وحماية الأجزاء المعدنية.",size:"عبوات مختلفة",price:null,image:"./Al-Zain%20Oil%20Seal/image/rust-remover.jpg",tag:""}
+  {id:18,name:"مزيلات صدأ",category:"rust-removers",categoryLabel:"مزيلات صدأ",description:"بخاخات لإزالة الصدأ وتشحيم وحماية الأجزاء المعدنية.",size:"عبوات مختلفة",price:null,image:"./Al-Zain%20Oil%20Seal/image/rust-remover.jpg",tag:""},
+  {id:19,name:"كاوتشة كوبلن رابر",category:"couplings",categoryLabel:"كبالنج",description:"كاوتشة كوبلن رابر لامتصاص الاهتزاز ونقل الحركة بين العمود والموتور.",size:"حسب مقاس الكوبلن",price:null,image:"./Al-Zain%20Oil%20Seal/image/coupling-rubber.jpg",tag:""},
+  {id:20,name:"كاوتشة كوبلن GR",category:"couplings",categoryLabel:"كبالنج",description:"كاوتشة كوبلن GR (Coupling Rubber GR) بمقاسات متعددة.",size:"حسب مقاس الكوبلن",price:null,image:"./Al-Zain%20Oil%20Seal/image/coupling-rubber-gr.jpg",tag:""}
 ];
 
 
@@ -121,78 +123,7 @@ function renderProducts() {
   `).join("");
 
   $("#emptyState").hidden = filtered.length !== 0;
-  setupProductReveal();
 }
-  
-/* =================================
-   SCROLL REVEAL SYSTEM
-================================= */
-
-
-function setupProductReveal() {
-  const cards = document.querySelectorAll(".product-card");
-
-  if (!("IntersectionObserver" in window)) {
-    cards.forEach(card => {
-      card.classList.add("is-visible");
-    });
-    return;
-  }
-
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.1
-    }
-  );
-
-  cards.forEach((card, index) => {
-    card.classList.remove("is-visible");
-    card.classList.add("scroll-reveal");
-    card.style.transitionDelay = `${(index % 4) * 120}ms`;
-    observer.observe(card);
-  });
-}
-
-/* ظهور الأقسام تدريجيًا عند التمرير */
-document.addEventListener("DOMContentLoaded", () => {
-  const sections = document.querySelectorAll(
-    ".benefits, .quote-copy, .quote-form, .about-logo-block, .about-content, .contact-strip, .media-frame, .manager-message"
-  );
-
-  if (!("IntersectionObserver" in window)) {
-    sections.forEach(section => {
-      section.classList.add("is-visible");
-    });
-    return;
-  }
-
-  const sectionObserver = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          sectionObserver.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold: 0.15
-    }
-  );
-
-  sections.forEach(section => {
-    section.classList.add("scroll-reveal");
-    sectionObserver.observe(section);
-  });
-});
 
 function showToast(message) {
   const toast = $("#toast");
@@ -395,6 +326,124 @@ async function aiFillQuote() {
   }
 }
 
+/* ===== البحث بالمقاس ===== */
+function parseNumbers(value) {
+  const latin = String(value)
+    .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d))
+    .replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+    .replace(/٫/g, ".");
+  return (latin.match(/\d+(?:\.\d+)?/g) || []).map(Number);
+}
+
+const SIZE_LIST = (typeof SIZES !== "undefined" && Array.isArray(SIZES) ? SIZES : [])
+  .map(item => ({ type: item.t || "", note: item.n || "", nums: parseNumbers(item.s || "") }))
+  .filter(item => item.nums.length);
+
+function sizeText(nums) {
+  return nums.join(" × ") + " مم";
+}
+
+function categoryLabel(id) {
+  return (categories.find(category => category.id === id) || {}).label || "";
+}
+
+function searchSizes(nums, type) {
+  const pool = SIZE_LIST.filter(item => type === "all" || item.type === type);
+  const same = (a, b) => a.length === b.length && a.every((v, i) => v === b[i]);
+  const key = a => [...a].sort((x, y) => x - y).join("|");
+
+  const exact = pool.filter(item => same(item.nums, nums));
+  const prefix = pool.filter(item =>
+    item.nums.length > nums.length && nums.every((v, i) => item.nums[i] === v));
+  const reordered = pool.filter(item =>
+    !exact.includes(item) && item.nums.length === nums.length && key(item.nums) === key(nums));
+
+  return { exact, partial: [...prefix, ...reordered].slice(0, 30) };
+}
+
+function makeEl(tag, className, text) {
+  const node = document.createElement(tag);
+  if (className) node.className = className;
+  if (text != null) node.textContent = text;
+  return node;
+}
+
+function quoteButton(label, type, nums, className) {
+  const button = makeEl("button", className, label);
+  button.type = "button";
+  button.dataset.sizeQuote = "1";
+  button.dataset.type = type;
+  button.dataset.size = sizeText(nums);
+  return button;
+}
+
+function renderSizeResults(nums, type) {
+  const box = $("#sizeResults");
+  const { exact, partial } = searchSizes(nums, type);
+  box.replaceChildren();
+
+  box.appendChild(makeEl("p", "size-title", "نتيجة البحث عن: " + sizeText(nums)));
+
+  const addRows = (items, heading) => {
+    if (!items.length) return;
+    box.appendChild(makeEl("p", "size-sub", heading));
+    items.forEach(item => {
+      const row = makeEl("div", "size-row");
+      row.appendChild(makeEl("span", "size-type", categoryLabel(item.type) || "منتج"));
+      row.appendChild(makeEl("strong", "size-value", sizeText(item.nums)));
+      if (item.note) row.appendChild(makeEl("span", "size-note", item.note));
+      row.appendChild(quoteButton("اطلب عرض سعر", item.type, item.nums, "btn btn-outline size-btn"));
+      box.appendChild(row);
+    });
+  };
+
+  addRows(exact, "✓ مقاس مطابق");
+  addRows(partial, "مقاسات قريبة");
+
+  if (!exact.length) {
+    box.appendChild(makeEl("p", "size-empty",
+      "لم نجد هذا المقاس في القائمة المعروضة على الموقع، وده لا يعني إنه غير متوفر. اطلب عرض سعر ونرد عليك بالتوفر والسعر."));
+  }
+
+  box.appendChild(quoteButton("لم تجد مقاسك؟ اطلب عرض سعر بهذا المقاس", type === "all" ? "" : type, nums, "btn btn-gold size-btn size-cta"));
+}
+
+function setupSizeFinder() {
+  const select = $("#sizeType");
+  if (!select) return;
+
+  const all = document.createElement("option");
+  all.value = "all";
+  all.textContent = "كل الأنواع";
+  select.appendChild(all);
+
+  categories.filter(category => category.id !== "all").forEach(category => {
+    const option = document.createElement("option");
+    option.value = category.id;
+    option.textContent = category.label;
+    select.appendChild(option);
+  });
+
+  $("#sizeForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const nums = parseNumbers($("#sizeInput").value);
+    if (!nums.length) return showToast("اكتب المقاس بالأرقام، مثال: 25×40×7");
+    renderSizeResults(nums, select.value);
+  });
+
+  $("#sizeResults").addEventListener("click", event => {
+    const button = event.target.closest("[data-size-quote]");
+    if (!button) return;
+
+    const form = $("#quoteForm");
+    const label = categoryLabel(button.dataset.type);
+    if (label) form.elements.product.value = label;
+    form.elements.specs.value = button.dataset.size;
+    form.scrollIntoView({ behavior: "smooth", block: "center" });
+    form.elements.customer.focus({ preventScroll: true });
+  });
+}
+
 /* خيارات طريقة الدفع في فورم عرض السعر (من نفس قائمة PAYMENT_METHODS) */
 function setupQuotePayment() {
   const select = $("#quotePayment");
@@ -409,6 +458,7 @@ function setupQuotePayment() {
 
 /* تشغيل المتجر */
 setupQuotePayment();
+setupSizeFinder();
 setupCategories();
 renderProducts();
 renderCart();
@@ -555,85 +605,3 @@ document.addEventListener("error", event => {
     img.src = options[tried];
   }
 }, true);
-/* ===== الشريط المتحرك ===== */
-(function () {
-  const track = document.querySelector(".announcement-track");
-  if (!track) return;
-  const original = track.querySelector(".announcement-group");
-  if (!original) return;
-
-  // أول جملة (حلول موثوقة) تبقى في أقصى اليمين
-  Array.from(original.children).reverse().forEach(el => original.appendChild(el));
-
-  function build() {
-    track.querySelectorAll(".announcement-group:not(:first-child)").forEach(g => g.remove());
-
-    const groupWidth = original.getBoundingClientRect().width;
-    const screenWidth = track.parentElement.getBoundingClientRect().width;
-    if (!groupWidth) return;
-
-    // تكرار كفاية لتغطية الشاشة
-    const copies = Math.ceil((screenWidth * 2) / groupWidth) + 1;
-    for (let i = 0; i < copies; i++) {
-      const clone = original.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      track.appendChild(clone);
-    }
-
-    const speed = 60; // بكسل/ثانية (أكبر = أسرع)
-    track.style.setProperty("--shift", groupWidth + "px");
-    track.style.animation = "none";
-    void track.offsetWidth;
-    track.style.animation = `announcementScroll ${groupWidth / speed}s linear infinite`;
-  }
-
-  window.addEventListener("load", build);
-  let t;
-  window.addEventListener("resize", () => { clearTimeout(t); t = setTimeout(build, 200); });
-})();
-/* ===== الفيديوهات: تشغيل تلقائي + زر الصوت ===== */
-(function () {
-  const frames = document.querySelectorAll(".media-frame");
-  const videos = [];
-
-  frames.forEach(frame => {
-    const video = frame.querySelector("video");
-    const btn = frame.querySelector(".sound-btn");
-    if (!video) return;
-    videos.push({ video, btn });
-
-    // يشتغل لما يظهر في الشاشة ويقف لما يخرج منها
-    if ("IntersectionObserver" in window) {
-      new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) video.play().catch(() => {});
-          else video.pause();
-        });
-      }, { threshold: 0.4 }).observe(video);
-    }
-
-    if (!btn) return;
-    btn.addEventListener("click", () => {
-      const turningOn = video.muted;
-
-      // اقفل صوت أي فيديو تاني الأول
-      videos.forEach(other => {
-        if (other.video !== video) {
-          other.video.muted = true;
-          other.video.loop = true;
-          if (other.btn) {
-            other.btn.textContent = "🔇";
-            other.btn.setAttribute("aria-label", "تشغيل الصوت");
-          }
-        }
-      });
-
-      video.muted = !turningOn;
-      video.loop = video.muted;
-      if (turningOn) video.currentTime = 0;
-      video.play().catch(() => {});
-      btn.textContent = video.muted ? "🔇" : "🔊";
-      btn.setAttribute("aria-label", video.muted ? "تشغيل الصوت" : "إيقاف الصوت");
-    });
-  });
-})();
