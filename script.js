@@ -55,6 +55,299 @@ const products = [
 ];
 
 
+/* كتالوج الميكانيكال سيل: أسماء الأصناف من العمود الأول في ملف PDF. لا يتضمن أرقام رمق الصنف. */
+const mechanicalCatalog = [
+  { id: 1, name: "MS-155-12" },
+  { id: 2, name: "MS-155-14" },
+  { id: 3, name: "MS-155-15" },
+  { id: 4, name: "MS-155-16" },
+  { id: 5, name: "MS-155-18" },
+  { id: 6, name: "MS-155-20" },
+  { id: 7, name: "MS-155-22" },
+  { id: 8, name: "MS-155-25" },
+  { id: 9, name: "MS-155-28" },
+  { id: 10, name: "MS-155-30" },
+  { id: 11, name: "MS-155-32" },
+  { id: 12, name: "MS-155-35" },
+  { id: 13, name: "MS-155-40" },
+  { id: 14, name: "MS-301-12" },
+  { id: 15, name: "MS-301-13" },
+  { id: 16, name: "MS-301-14" },
+  { id: 17, name: "MS-301-17" },
+  { id: 18, name: "MS-301-20" },
+  { id: 19, name: "MS-301-24" },
+  { id: 20, name: "MS-301-25" },
+  { id: 21, name: "MS-301-28" },
+  { id: 22, name: "MS-301-30" },
+  { id: 23, name: "MS-301-35" },
+  { id: 24, name: "MS-301-40" },
+  { id: 25, name: "MS-301-45" },
+  { id: 26, name: "MS-301-50" },
+  { id: 27, name: "MS-551C-18" },
+  { id: 28, name: "MS-551C-22" },
+  { id: 29, name: "MS-551C-28" },
+  { id: 30, name: "MS-551C-32" },
+  { id: 31, name: "MS-551C-45" },
+  { id: 32, name: "MS-58U-30" },
+  { id: 33, name: "MS-58U-35" },
+  { id: 34, name: "MS-58U-38" },
+  { id: 35, name: "MS-58U-40" },
+  { id: 36, name: "MS-58U-45" },
+  { id: 37, name: "MS-58U-50" },
+  { id: 38, name: "MS-960-14" },
+  { id: 39, name: "MS-960-20" },
+  { id: 40, name: "MS-960-22" },
+  { id: 41, name: "MS-960-25" },
+  { id: 42, name: "MS-960-28" },
+  { id: 43, name: "MS-960-30" },
+  { id: 44, name: "MS-960-32" },
+  { id: 45, name: "MS-960-35" },
+  { id: 46, name: "MS-960-40" },
+  { id: 47, name: "MS-960-43" },
+  { id: 48, name: "MS-960-50" },
+  { id: 49, name: "MS-960-55" },
+  { id: 50, name: "MS-960-60" },
+  { id: 51, name: "MS-960-70" },
+  { id: 52, name: "MS-CR-12" },
+  { id: 53, name: "MS-CR-16" },
+  { id: 54, name: "MS-CR-22" },
+  { id: 55, name: "MS-M7N-30" },
+  { id: 56, name: "MS-M7N-33" },
+  { id: 57, name: "MS-M7N-35" },
+  { id: 58, name: "MS-M7N-40" },
+  { id: 59, name: "MS-M7N-43" },
+  { id: 60, name: "MS-M7N-45" },
+  { id: 61, name: "MS-M7N-50" },
+  { id: 62, name: "MS-M7N-55" },
+  { id: 63, name: "MS-M7N-60" },
+  { id: 64, name: "MS-M7N-65" },
+  { id: 65, name: "MS-MG1-12" },
+  { id: 66, name: "MS-MG1-14" },
+  { id: 67, name: "MS-MG1-16" },
+  { id: 68, name: "MS-MG1-18" },
+  { id: 69, name: "MS-MG12-12" },
+  { id: 70, name: "MS-MG1-22" },
+  { id: 71, name: "MS-MG12-22" },
+  { id: 72, name: "MS-MG12-28" },
+  { id: 73, name: "MS-MG12-30" },
+  { id: 74, name: "MS-MG12-40" },
+  { id: 75, name: "MS-MG12-48" },
+  { id: 76, name: "MS-MG1-25" },
+  { id: 77, name: "MS-MG1-28" },
+  { id: 78, name: "MS-MG1-30" },
+  { id: 79, name: "MS-MG1-32" },
+  { id: 80, name: "MS-MG13-28" },
+  { id: 81, name: "MS-MG13-38" },
+  { id: 82, name: "MS-MG1-35" },
+  { id: 83, name: "MS-MG1-40" },
+  { id: 84, name: "MS-MG1-45" },
+  { id: 85, name: "MS-MG1-50" },
+  { id: 86, name: "ميكانيكال سيل FG-20" },
+  { id: 87, name: "ميكانيكال سيل FG-25" },
+  { id: 88, name: "ميكانيكال سيل FG-28" },
+  { id: 89, name: "ميكانيكال سيل FG-30" },
+  { id: 90, name: "ميكانيكال سيل FG-35" },
+  { id: 91, name: "ميكانيكال سيل FG-40" },
+  { id: 92, name: "ميكانيكال سيل FG-45" },
+  { id: 93, name: "ميكانيكال سيل FG-55" },
+  { id: 94, name: "ميكانيكال سيل هريم12" },
+  { id: 95, name: "ميكانيكال سيل هريم14" },
+  { id: 96, name: "ميكانيكال سيل هريم15" },
+  { id: 97, name: "ميكانيكال سيل هريم16" },
+  { id: 98, name: "ميكانيكال سيل هريم18" },
+  { id: 99, name: "ميكانيكال سيل هريم20" },
+  { id: 100, name: "ميكانيكال سيل هريم22" },
+  { id: 101, name: "ميكانيكال سيل هريم24" },
+  { id: 102, name: "ميكانيكال سيل هريم25" },
+  { id: 103, name: "ميكانيكال سيل هريم28" },
+  { id: 104, name: "ميكانيكال سيل هريم30" },
+  { id: 105, name: "ميكانيكال سيل هريم32" },
+  { id: 106, name: "ميكانيكال سيل هريم35" },
+  { id: 107, name: "ميكانيكال سيل هريم38" },
+  { id: 108, name: "ميكانيكال سيل هريم40" },
+  { id: 109, name: "ميكانيكال سيل هريم قاعدة عالية 22" },
+  { id: 110, name: "ميكانيكال سيل مضغوط12" },
+  { id: 111, name: "ميكانيكال سيل مضغوط13" },
+  { id: 112, name: "ميكانيكال سيل مضغوط14" },
+  { id: 113, name: "ميكانيكال سيل مضغوط15" },
+  { id: 114, name: "ميكانيكال سيل مضغوط16" },
+  { id: 115, name: "ميكانيكال سيل مضغوط17" },
+  { id: 116, name: "ميكانيكال سيل مضغوط18" },
+  { id: 117, name: "ميكانيكال سيل مضغوط20" },
+  { id: 118, name: "ميكانيكال سيل مضغوط22" },
+  { id: 119, name: "ميكانيكال سيل مضغوط24" },
+  { id: 120, name: "ميكانيكال سيل مضغوط25" },
+  { id: 121, name: "ميكانيكال سيل مضغوط28" },
+  { id: 122, name: "ميكانيكال سيل مضغوط30" },
+  { id: 123, name: "ميكانيكال سيل مضغوط32" },
+  { id: 124, name: "ميكانيكال سيل مضغوط35" },
+  { id: 125, name: "ميكانيكال سيل مضغوط38" },
+  { id: 126, name: "ميكانيكال سيل مضغوط40" },
+  { id: 127, name: "ميكانيكال سيل مضغوط45" },
+  { id: 128, name: "ميكانيكال سيل مضغوط50" },
+  { id: 129, name: "ميكانيكال سيل عدل16" },
+  { id: 130, name: "ميكانيكال سيل عدل18" },
+  { id: 131, name: "ميكانيكال سيل عدل20" },
+  { id: 132, name: "ميكانيكال سيل عدل22" },
+  { id: 133, name: "ميكانيكال سيل عدل24" },
+  { id: 134, name: "ميكانيكال سيل عدل25" },
+  { id: 135, name: "ميكانيكال سيل عدل28" },
+  { id: 136, name: "ميكانيكال سيل عدل30" },
+  { id: 137, name: "ميكانيكال سيل عدل32" },
+  { id: 138, name: "ميكانيكال سيل عدل35" },
+  { id: 139, name: "ميكانيكال سيل عدل38" },
+  { id: 140, name: "ميكانيكال سيل عدل40" },
+  { id: 141, name: "ميكانيكال سيل عدل50" },
+  { id: 142, name: "ميكانيكال سيل عدل55" },
+  { id: 143, name: "ميكانيكال سيل FG-50" },
+  { id: 144, name: "ميكانيكال سيل FG-38" },
+  { id: 145, name: "MS-960-45" },
+  { id: 146, name: "MS-M7N-22" },
+  { id: 147, name: "ميكانيكال سيل زراعي14" },
+  { id: 148, name: "MS-MG13-32" },
+  { id: 149, name: "MS-551C-20" },
+  { id: 150, name: "ميكانيكال سيل FG-32" },
+  { id: 151, name: "MS-MG13-30" },
+  { id: 152, name: "MS-551B-19" },
+  { id: 153, name: "MS-MG1-55" },
+  { id: 154, name: "ميكانيكال سيل FG-22" },
+  { id: 155, name: "ميكانيكال سيل FG-24" },
+  { id: 156, name: "ميكانيكال سيل FG-18" },
+  { id: 157, name: "MS-551C-15" },
+  { id: 158, name: "ميكانيكال سيل FG-16" },
+  { id: 159, name: "ميكانيكال سيل عدل14" },
+  { id: 160, name: "ميكانيكال سيل كونكورد19" },
+  { id: 161, name: "MS-M7N-48" },
+  { id: 162, name: "ميكانيكال سيل FG-15" },
+  { id: 163, name: "ميكانيكال سيل FG-14" },
+  { id: 164, name: "ميكانيكال سيل FG-60" },
+  { id: 165, name: "ميكانيكال سيل زراعي12" },
+  { id: 166, name: "ميكانيكال سيل هريم قاعدة عالية 30" },
+  { id: 167, name: "ميكانيكال سيل FG-75" },
+  { id: 168, name: "MS-MG1-60" },
+  { id: 169, name: "MS-MG1-33" },
+  { id: 170, name: "MS-960-42" },
+  { id: 171, name: "ميكانيكال سيل عدل12" },
+  { id: 172, name: "ميكانيكال سيل هريم17" },
+  { id: 173, name: "ميكانيكال سيل هريم قاعدة عالية 24" },
+  { id: 174, name: "ميكانيكال سيل هريم قاعدة عالية 28" },
+  { id: 175, name: "ميكانيكال سيل هريم قاعدة عالية 32" },
+  { id: 176, name: "ميكانيكال سيل عدل 20 بروحيني" },
+  { id: 177, name: "ميكانيكال سيل عدل 25 بروحيني" },
+  { id: 178, name: "ميكانيكال سيل عدل 30 بروحيني" },
+  { id: 179, name: "ميكانيكال سيل مضغوط55" },
+  { id: 180, name: "MS-551B-22" },
+  { id: 181, name: "MS-551B-24" },
+  { id: 182, name: "MS-551B-25" },
+  { id: 183, name: "MS-551B-28" },
+  { id: 184, name: "MS-551B-30" },
+  { id: 185, name: "MS-551B-35" },
+  { id: 186, name: "MS-551B-40" },
+  { id: 187, name: "MS-551B-50" },
+  { id: 188, name: "قاعدة عالية MS-155-22" },
+  { id: 189, name: "MS-58U-55" },
+  { id: 190, name: "MS-551B-32" },
+  { id: 191, name: "ميكانيكال سيل زراعي17" },
+  { id: 192, name: "MS-551B-33" },
+  { id: 193, name: "MS-551B-38" },
+  { id: 194, name: "MS-551B-20" },
+  { id: 195, name: "MS-551B-12" },
+  { id: 196, name: "فالنشة MS-CR-12" },
+  { id: 197, name: "فالنشة MS-CR-16" },
+  { id: 198, name: "ميكانيكال سيل زراعي18" },
+  { id: 199, name: "MS-551B-16" },
+  { id: 200, name: "MS-551B-18" },
+  { id: 201, name: "MS-551B-14" },
+  { id: 202, name: "ميكانيكال سيل هريم19" },
+  { id: 203, name: "ميكانيكال سيل هريم33" },
+  { id: 204, name: "MS-960-75" },
+  { id: 205, name: "MS-58U-22" },
+  { id: 206, name: "MS-58U-24" },
+  { id: 207, name: "MS-58U-65" },
+  { id: 208, name: "قاعدة عالية سيليكون G9-65" },
+  { id: 209, name: "MS-MG1-90" },
+  { id: 210, name: "MS-MG1-100" },
+  { id: 211, name: "MS-MG1-95" },
+  { id: 212, name: "MS-MG13-45" },
+  { id: 213, name: "MS-MG13-25" },
+  { id: 214, name: "MS-MG13-24" },
+  { id: 215, name: "MS-MG13-48" },
+  { id: 216, name: "MS-MG13-20" },
+  { id: 217, name: "MS-MG12-65" },
+  { id: 218, name: "MS-MG13-40" },
+  { id: 219, name: "MS-MG13-12" },
+  { id: 220, name: "ميكانيكال سيل عدل 35 بروحيني" },
+  { id: 221, name: "ميكانيكال سيل عدل17" },
+  { id: 222, name: "ميكانيكال سيل 25-1527 مم" },
+  { id: 223, name: "ميكانيكال سيل عدل 12 بروحيني" },
+  { id: 224, name: "ميكانيكال سيل عدل 14 بروحيني" },
+  { id: 225, name: "ميكانيكال سيل عدل 16 بروحيني" },
+  { id: 226, name: "ميكانيكال سيل عدل 17 بروحيني" },
+  { id: 227, name: "ميكانيكال سيل عدل 18 بروحيني" },
+  { id: 228, name: "ميكانيكال سيل عدل 40 بروحيني" },
+  { id: 229, name: "ميكانيكال سيل زراعي16" },
+  { id: 230, name: "ميكانيكال سيل هوندا 30م F12" },
+  { id: 231, name: "ميكانيكال سيل هوندا 36م F16" },
+  { id: 232, name: "ميكانيكال سيل هوندا 40م F20" },
+  { id: 233, name: "MS-960-15" },
+  { id: 234, name: "ميكانيكال سيل كونكورد25" },
+  { id: 235, name: "ميكانيكال سيل هوندا 20م" },
+  { id: 236, name: "قاعدة طبق G60-22" },
+  { id: 237, name: "ميكانيكال سيل طبق 40 مم" },
+  { id: 238, name: "ميكانيكال سيل طبق 36 مم" },
+  { id: 239, name: "ميكانيكال سيل طبق 30 مم" },
+  { id: 240, name: "ميكانيكال سيل طبق 28 مم" },
+  { id: 241, name: "MS-MG13-16" },
+  { id: 242, name: "ZX-50" },
+  { id: 243, name: "قاعدة مياكنياكل T3BO-50" },
+  { id: 244, name: "قاعدة مياكنياكل G9-40" },
+  { id: 245, name: "قاعدة مياكنياكل T3BO-33" },
+  { id: 246, name: "قاعدة مياكنياكل T3BO-38 SS" },
+  { id: 247, name: "قاعدة مياكنياكل G9-32" },
+  { id: 248, name: "قاعدة مياكنياكل T3BO-55 SS" },
+  { id: 249, name: "قاعدة مياكنياكل T3BO-22" },
+  { id: 250, name: "قاعدة مياكنياكل T3BO-18 SS" },
+  { id: 251, name: "قاعدة مياكنياكل G60-43" },
+  { id: 252, name: "قاعدة مياكنياكل G60-40" },
+  { id: 253, name: "قاعدة مياكنياكل G60-18" },
+  { id: 254, name: "قاعدة مياكنياكل G60-60" },
+  { id: 255, name: "قاعدة ميكانيكال سيل فلات SS 5.5-46-25" },
+  { id: 256, name: "MS-960-2.500" },
+  { id: 257, name: "مروحة MS-CR-16" },
+  { id: 258, name: "ميكانيكال سيل عدل 35 بروحيني حراري" },
+  { id: 259, name: "ميكانيكال سيل عدل 1.000" },
+  { id: 260, name: "ميكانيكال سيل عدل 40 بروحيني حراري" },
+  { id: 261, name: "MS-J9N-40" },
+  { id: 262, name: "MS-FL158-30" },
+  { id: 263, name: "MS-FL1527-30" },
+  { id: 264, name: "MS-MG2100-28" },
+  { id: 265, name: "MS-58U-100" },
+  { id: 266, name: "ميكانيكال سيل عدل 1.500" },
+  { id: 267, name: "ميكانيكال سيل عدل 45 بروحيني" },
+  { id: 268, name: "ميكانيكال سيل هريم قاعدة عالية 17" },
+  { id: 269, name: "ميكانيكال سيل عدل15" },
+  { id: 270, name: "MS-FG13-40" },
+  { id: 271, name: "MS-FG13-32" },
+  { id: 272, name: "MS-MG13-55" },
+  { id: 273, name: "ميكانيكال سيل عدل 13" },
+  { id: 274, name: "قاعدة ميكانيكال سيل T7G9-16 MM VITON" },
+  { id: 275, name: "MS-FG12-38" },
+  { id: 276, name: "MS-58U-18" },
+  { id: 277, name: "ميكانيكال سيل تيفلون 35 مم" },
+  { id: 278, name: "MS-155-13" },
+  { id: 279, name: "MS-M7N-100" },
+  { id: 280, name: "MS-FG13-38" },
+  { id: 281, name: "ميكانيكال سيل عدل 25 بروحيني حراري" },
+  { id: 282, name: "ميكانيكال سيل حراري فليجيت 35 مم" },
+  { id: 283, name: "MS-MG-2100-32" },
+  { id: 284, name: "MS-FG13-55" },
+  { id: 285, name: "ميكانيكال سيل عدل 30 بروحيني حراري" },
+  { id: 286, name: "MS-MG2100-42" },
+  { id: 287, name: "قاعدة خابور 40" },
+  { id: 288, name: "ميكانيكال سيل كارتريدج 35" },
+  { id: 289, name: "MS-551B-17" }
+];
+
 /* مكان الصور: داخل فولدر Al-Zain Oil Seal (أو على الجهاز) = image/ ، ومن جذر الموقع = Al-Zain%20Oil%20Seal/image/ */
 const IMG_BASE = decodeURIComponent(location.pathname).includes("/Al-Zain Oil Seal/") ? "image/" : "Al-Zain%20Oil%20Seal/image/";
 const imgSrc = path => String(path).replace(/^(\.\/)?image\//, IMG_BASE);
@@ -89,13 +382,29 @@ function setupCategories() {
   ).join("");
 }
 
-function renderProducts() {
-  const query = searchInput.value.trim().toLowerCase();
-  const category = categoryFilter.value;
+function normalizeSearchText(value) {
+  return String(value || "")
+    .toLowerCase()
+    .normalize("NFKC")
+    .replace(/[\u064B-\u065F\u0670]/g, "")
+    .replace(/[أإآ]/g, "ا")
+    .replace(/ى/g, "ي")
+    .replace(/[ؤئ]/g, "ء")
+    .replace(/[ـ]/g, "")
+    .replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d))
+    .replace(/[۰-۹]/g, d => "۰۱۲۳۴۵۶۷۸۹".indexOf(d))
+    .replace(/[×*]/g, " ")
+    .replace(/[-_/]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
-  // البحث بالمقاس: لو المقاس موجود في sizes.js نعرض تصنيفاته، وإلا نبحث في نص المقاس والوصف
+function renderProducts() {
+  const query = normalizeSearchText(searchInput.value);
+  const category = categoryFilter.value;
   const sizeQuery = sizeSearchInput ? sizeSearchInput.value.trim() : "";
   let sizeCategories = null;
+
   if (sizeQuery) {
     const nums = parseNumbers(sizeQuery);
     if (nums.length && SIZE_LIST.length) {
@@ -104,22 +413,38 @@ function renderProducts() {
       if (types.size) sizeCategories = types;
     }
   }
+
   const matchesSize = product => !sizeQuery || (sizeCategories
     ? sizeCategories.has(product.category)
-    : `${product.name} ${product.description} ${product.size}`.toLowerCase().includes(sizeQuery.toLowerCase()));
+    : `${product.name} ${product.size}`.toLowerCase().includes(sizeQuery.toLowerCase()));
 
+  // البحث في المنتجات الظاهرة يكون باسم الصنف/التصنيف فقط، وليس الوصف أو رقم الصنف.
   const filtered = products.filter(product => {
-    const matchesCategory =
-      category === "all" || product.category === category;
-
-    const matchesQuery =
-      `${product.name} ${product.categoryLabel} ${product.description} ${product.size}`
-        .toLowerCase().includes(query);
-
+    const matchesCategory = category === "all" || product.category === category;
+    const searchableName = normalizeSearchText(`${product.name} ${product.categoryLabel}`);
+    const matchesQuery = !query || searchableName.includes(query);
     return matchesCategory && matchesQuery && matchesSize(product);
   });
 
-  productGrid.innerHTML = filtered.map(product => `
+  // كتالوج الميكانيكال: البحث في اسم الصنف بالعمود الأول من PDF فقط.
+  let catalogMatches = [];
+  if (category === "all" || category === "mechanical") {
+    catalogMatches = mechanicalCatalog.filter(item => {
+      const searchableName = normalizeSearchText(`ميكانيكال سيل ${item.name}`);
+      const matchesName = !query || searchableName.includes(query);
+      if (!matchesName) return false;
+      if (!sizeQuery) return true;
+      const sizeNumbers = parseNumbers(sizeQuery);
+      if (!sizeNumbers.length) return normalizeSearchText(item.name).includes(normalizeSearchText(sizeQuery));
+      if (sizeCategories && !sizeCategories.has("mechanical")) return false;
+      const itemNumbers = parseNumbers(item.name);
+      return sizeNumbers.every(number => itemNumbers.includes(number));
+    });
+  }
+
+  // نعرض كل النتائج المطابقة حتى لا تختفي أصناف من الكتالوج عن العميل.
+  const shownCatalogMatches = catalogMatches;
+  const productCards = filtered.map(product => `
     <article class="product-card" data-category="${escapeHtml(product.category)}">
       <div class="product-visual">
         ${product.tag ? `<span class="product-tag">${escapeHtml(product.tag)}</span>` : ""}
@@ -138,15 +463,38 @@ function renderProducts() {
     </article>
   `).join("");
 
+  const catalogCards = shownCatalogMatches.map(item => `
+    <article class="product-card mechanical-catalog-card" data-category="mechanical">
+      <div class="product-info">
+        <p class="product-category">ميكانيكال سيل - من الكتالوج</p>
+        <h3>${escapeHtml(item.name)}</h3>
+        <p>صنف من كتالوج الميكانيكال سيل. اطلب عرض سعر للتأكد من التوفر والمواصفات.</p>
+        <div class="product-bottom">
+          <span class="price" hidden></span>
+          <button class="quote-product" data-catalog-quote="${item.id}">طلب عرض سعر ↗</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  const catalogNotice = catalogMatches.length && query
+    ? `<p class="catalog-results-note" style="grid-column:1/-1">نتائج كتالوج الميكانيكال سيل: ${catalogMatches.length} صنف</p>`
+    : "";
+
+  productGrid.innerHTML = productCards + catalogNotice + catalogCards;
+
   const empty = $("#emptyState");
-  empty.hidden = filtered.length !== 0;
-  if (!filtered.length) {
+  const hasResults = filtered.length > 0 || catalogMatches.length > 0;
+  empty.hidden = hasResults;
+  if (!hasResults) {
     if (sizeQuery) {
       empty.replaceChildren(document.createTextNode("لم نجد منتجات بهذا المقاس في القائمة، وده لا يعني إنه غير متوفر. "));
       const button = makeEl("button", "quote-product", "اطلب عرض سعر بهذا المقاس ↗");
       button.type = "button";
       button.dataset.sizeEmptyQuote = "1";
       empty.appendChild(button);
+    } else if (query) {
+      empty.textContent = "لم نجد صنفًا بهذا الاسم في المنتجات أو كتالوج الميكانيكال سيل.";
     } else {
       empty.textContent = "لا توجد منتجات في هذا التصنيف.";
     }
@@ -154,7 +502,6 @@ function renderProducts() {
 
   revealOnScroll(productGrid.querySelectorAll(".product-card"));
 }
-
 function showToast(message) {
   const toast = $("#toast");
   toast.textContent = message;
@@ -622,8 +969,20 @@ categoryChips.addEventListener("click", event => {
 productGrid.addEventListener("click", event => {
   const add = event.target.closest("[data-add]");
   const quote = event.target.closest("[data-quote]");
+  const catalogQuote = event.target.closest("[data-catalog-quote]");
 
   if (add) addToCart(Number(add.dataset.add));
+
+  if (catalogQuote) {
+    const item = mechanicalCatalog.find(row => row.id === Number(catalogQuote.dataset.catalogQuote));
+    if (item) {
+      const form = $("#quoteForm");
+      form.elements.product.value = `ميكانيكال سيل - ${item.name}`;
+      form.elements.specs.value = "";
+      form.scrollIntoView({ behavior: "smooth", block: "center" });
+      form.elements.specs.focus({ preventScroll: true });
+    }
+  }
 
   if (quote) {
     const product = products.find(row => row.id === Number(quote.dataset.quote));
