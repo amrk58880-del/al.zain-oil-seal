@@ -64,6 +64,7 @@ const $ = selector => document.querySelector(selector);
 const productGrid = $("#productGrid");
 const categoryFilter = $("#categoryFilter");
 const searchInput = $("#searchInput");
+const sizeSearchInput = $("#sizeSearchInput");
 const categoryChips = $("#categoryChips");
 const cartBackdrop = $("#cartBackdrop");
 let toastTimeout;
@@ -92,6 +93,21 @@ function renderProducts() {
   const query = searchInput.value.trim().toLowerCase();
   const category = categoryFilter.value;
 
+  // البحث بالمقاس: لو المقاس موجود في sizes.js نعرض تصنيفاته، وإلا نبحث في نص المقاس والوصف
+  const sizeQuery = sizeSearchInput ? sizeSearchInput.value.trim() : "";
+  let sizeCategories = null;
+  if (sizeQuery) {
+    const nums = parseNumbers(sizeQuery);
+    if (nums.length && SIZE_LIST.length) {
+      const found = searchSizes(nums, "all");
+      const types = new Set([...found.exact, ...found.partial].map(item => item.type));
+      if (types.size) sizeCategories = types;
+    }
+  }
+  const matchesSize = product => !sizeQuery || (sizeCategories
+    ? sizeCategories.has(product.category)
+    : `${product.name} ${product.description} ${product.size}`.toLowerCase().includes(sizeQuery.toLowerCase()));
+
   const filtered = products.filter(product => {
     const matchesCategory =
       category === "all" || product.category === category;
@@ -100,7 +116,7 @@ function renderProducts() {
       `${product.name} ${product.categoryLabel} ${product.description} ${product.size}`
         .toLowerCase().includes(query);
 
-    return matchesCategory && matchesQuery;
+    return matchesCategory && matchesQuery && matchesSize(product);
   });
 
   productGrid.innerHTML = filtered.map(product => `
@@ -122,7 +138,21 @@ function renderProducts() {
     </article>
   `).join("");
 
-  $("#emptyState").hidden = filtered.length !== 0;
+  const empty = $("#emptyState");
+  empty.hidden = filtered.length !== 0;
+  if (!filtered.length) {
+    if (sizeQuery) {
+      empty.replaceChildren(document.createTextNode("لم نجد منتجات بهذا المقاس في القائمة، وده لا يعني إنه غير متوفر. "));
+      const button = makeEl("button", "quote-product", "اطلب عرض سعر بهذا المقاس ↗");
+      button.type = "button";
+      button.dataset.sizeEmptyQuote = "1";
+      empty.appendChild(button);
+    } else {
+      empty.textContent = "لا توجد منتجات في هذا التصنيف.";
+    }
+  }
+
+  revealOnScroll(productGrid.querySelectorAll(".product-card"));
 }
 
 function showToast(message) {
@@ -444,6 +474,99 @@ function setupSizeFinder() {
   });
 }
 
+/* ===== ظهور العناصر عند التمرير (مطلوب لتنسيقات .scroll-reveal و .is-visible في extras.css) ===== */
+const revealObserver = ("IntersectionObserver" in window)
+  ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        revealObserver.unobserve(entry.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -4% 0px" })
+  : null;
+
+function revealOnScroll(elements) {
+  elements.forEach(element => {
+    if (element.classList.contains("is-visible")) return;
+    element.classList.add("scroll-reveal");
+    if (revealObserver) revealObserver.observe(element);
+    else element.classList.add("is-visible");
+  });
+}
+
+/* ===== الشريط المتحرك أعلى الصفحة ===== */
+function setupAnnouncement() {
+  const bar = document.querySelector(".announcement");
+  const track = bar && bar.querySelector(".announcement-track");
+  const first = track && track.querySelector(".announcement-group");
+  if (!first) return;
+
+  track.querySelectorAll("[data-clone]").forEach(node => node.remove());
+  track.style.animation = "none";
+  bar.style.justifyContent = "flex-start";
+
+  const width = first.getBoundingClientRect().width;
+  if (!width) return;
+
+  const copies = Math.ceil(bar.clientWidth / width) + 1;
+  for (let i = 0; i < copies; i++) {
+    const clone = first.cloneNode(true);
+    clone.dataset.clone = "1";
+    clone.setAttribute("aria-hidden", "true");
+    track.appendChild(clone);
+  }
+
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  track.style.setProperty("--shift", width + "px");
+  track.style.animation = `announcementScroll ${Math.max(12, width / 60)}s linear infinite`;
+}
+
+/* ===== الفيديو: زر الصوت + تشغيل الفيديو وهو ظاهر فقط ===== */
+function setupVideos() {
+  const frames = document.querySelectorAll(".media-frame");
+
+  const syncButtons = () => {
+    frames.forEach(frame => {
+      const video = frame.querySelector("video");
+      const button = frame.querySelector(".sound-btn");
+      if (!video || !button) return;
+      button.textContent = video.muted ? "🔇" : "🔊";
+      button.setAttribute("aria-label", video.muted ? "تشغيل الصوت" : "كتم الصوت");
+    });
+  };
+
+  frames.forEach(frame => {
+    const video = frame.querySelector("video");
+    const button = frame.querySelector(".sound-btn");
+    if (!video) return;
+
+    if (button) {
+      button.addEventListener("click", () => {
+        video.muted = !video.muted;
+        if (!video.muted) {
+          frames.forEach(other => {
+            const otherVideo = other.querySelector("video");
+            if (otherVideo && otherVideo !== video) otherVideo.muted = true;
+          });
+          video.play().catch(() => {});
+        }
+        syncButtons();
+      });
+    }
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) video.play().catch(() => {});
+          else video.pause();
+        });
+      }, { threshold: 0.25 }).observe(video);
+    }
+  });
+
+  syncButtons();
+}
+
 /* خيارات طريقة الدفع في فورم عرض السعر (من نفس قائمة PAYMENT_METHODS) */
 function setupQuotePayment() {
   const select = $("#quotePayment");
@@ -464,8 +587,31 @@ renderProducts();
 renderCart();
 updatePaymentNote();
 $("#year").textContent = new Date().getFullYear();
+revealOnScroll(document.querySelectorAll(".benefits, .media-section, .quote-section, .about-section, .manager-section, .contact-strip"));
+setupAnnouncement();
+setupVideos();
 
 searchInput.addEventListener("input", renderProducts);
+if (sizeSearchInput) sizeSearchInput.addEventListener("input", renderProducts);
+
+$("#emptyState").addEventListener("click", event => {
+  if (!event.target.closest("[data-size-empty-quote]")) return;
+  const form = $("#quoteForm");
+  const nums = parseNumbers(sizeSearchInput ? sizeSearchInput.value : "");
+  form.elements.specs.value = nums.length ? sizeText(nums) : (sizeSearchInput ? sizeSearchInput.value.trim() : "");
+  const label = categoryFilter.value !== "all" ? categoryLabel(categoryFilter.value) : "";
+  if (label) form.elements.product.value = label;
+  form.scrollIntoView({ behavior: "smooth", block: "center" });
+  form.elements.customer.focus({ preventScroll: true });
+});
+
+window.addEventListener("load", setupAnnouncement);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(setupAnnouncement);
+let announcementTimer;
+window.addEventListener("resize", () => {
+  clearTimeout(announcementTimer);
+  announcementTimer = setTimeout(setupAnnouncement, 250);
+});
 categoryFilter.addEventListener("change", () => selectCategory(categoryFilter.value));
 
 categoryChips.addEventListener("click", event => {
