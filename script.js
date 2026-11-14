@@ -358,9 +358,6 @@ const productGrid = $("#productGrid");
 const categoryFilter = $("#categoryFilter");
 const searchInput = $("#searchInput");
 const sizeSearchInput = $("#sizeSearchInput");
-sizeSearchInput.on("input", function () {
-  this.value = this.value.replace(/[^0-9٠-٩]/g, "");
-});
 const categoryChips = $("#categoryChips");
 const cartBackdrop = $("#cartBackdrop");
 let toastTimeout;
