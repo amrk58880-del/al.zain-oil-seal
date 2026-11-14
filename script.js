@@ -429,7 +429,7 @@ function renderProducts() {
   // كتالوج الميكانيكال: البحث في اسم الصنف بالعمود الأول من PDF فقط.
   let catalogMatches = [];
   // لا نعرض أصناف الكتالوج عند فتح الصفحة؛ تظهر فقط بعد كتابة بحث في خانة اسم الصنف.
-  if (query && (category === "all" || category === "mechanical")) {
+ if ((query || sizeQuery) && (category === "all" || category === "mechanical")) {
     catalogMatches = mechanicalCatalog.filter(item => {
       const searchableName = normalizeSearchText(`ميكانيكال سيل ${item.name}`);
       const matchesName = !query || searchableName.includes(query);
