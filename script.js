@@ -7301,7 +7301,14 @@ setupAnnouncement();
 setupVideos();
 
 searchInput.addEventListener("input", renderProducts);
-if (sizeSearchInput) sizeSearchInput.addEventListener("input", renderProducts);
+if (sizeSearchInput) {
+  // السماح بالأرقام الإنجليزية والعربية فقط في البحث بالمقاس
+  sizeSearchInput.addEventListener("input", function () {
+    const cleanValue = this.value.replace(/[^0-9٠-٩]/g, "");
+    if (this.value !== cleanValue) this.value = cleanValue;
+    renderProducts();
+  });
+}
 
 $("#emptyState").addEventListener("click", event => {
   if (!event.target.closest("[data-size-empty-quote]")) return;
