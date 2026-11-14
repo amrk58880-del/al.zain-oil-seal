@@ -6724,9 +6724,13 @@ function renderProducts() {
   const query = normalizeSearchText(searchInput.value);
   const category = categoryFilter.value;
   const sizeQuery = sizeSearchInput ? sizeSearchInput.value.trim() : "";
+  const sizeQueryText = normalizeSearchText(sizeQuery);
+  const sizeHasLetters = /[a-zA-Z\u0600-\u06FF]/.test(sizeQuery);
   let sizeCategories = null;
 
-  if (sizeQuery) {
+  // لو العميل كتب اسم موديل أو حروف مع أرقام، نبحث بالنص كما هو.
+  // لو كتب أرقام ومقاسات فقط، نستخدم قائمة المقاسات الموجودة في sizes.js.
+  if (sizeQuery && !sizeHasLetters) {
     const nums = parseNumbers(sizeQuery);
     if (nums.length && SIZE_LIST.length) {
       const found = searchSizes(nums, "all");
@@ -6735,9 +6739,12 @@ function renderProducts() {
     }
   }
 
-  const matchesSize = product => !sizeQuery || (sizeCategories
-    ? sizeCategories.has(product.category)
-    : `${product.name} ${product.size}`.toLowerCase().includes(sizeQuery.toLowerCase()));
+  const matchesSize = product => {
+    if (!sizeQuery) return true;
+    const productText = normalizeSearchText(`${product.name} ${product.size || ""}`);
+    if (sizeHasLetters) return productText.includes(sizeQueryText);
+    return sizeCategories ? sizeCategories.has(product.category) : productText.includes(sizeQueryText);
+  };
 
   // البحث في المنتجات الظاهرة يكون باسم الصنف/التصنيف فقط، وليس الوصف أو رقم الصنف.
   const filtered = products.filter(product => {
@@ -6755,7 +6762,8 @@ function renderProducts() {
       if (query && !searchableName.includes(query)) return false;
       if (!sizeQuery) return true;
       const nums = parseNumbers(sizeQuery);
-      if (!nums.length) return normalizeSearchText(item.name).includes(normalizeSearchText(sizeQuery));
+      if (sizeHasLetters) return searchableName.includes(sizeQueryText);
+      if (!nums.length) return searchableName.includes(sizeQueryText);
       if (sizeCategories && !sizeCategories.has("mechanical")) return false;
       return nums.every(n => parseNumbers(item.name).includes(n));
     }).map(item => ({...item, catalogType:"mechanical", label:"ميكانيكال سيل"})) : [];
@@ -6765,7 +6773,8 @@ function renderProducts() {
       if (query && !searchableName.includes(query)) return false;
       if (!sizeQuery) return true;
       const nums = parseNumbers(sizeQuery);
-      if (!nums.length) return searchableName.includes(normalizeSearchText(sizeQuery));
+      if (sizeHasLetters) return searchableName.includes(sizeQueryText);
+      if (!nums.length) return searchableName.includes(sizeQueryText);
       if (sizeCategories && !sizeCategories.has("oil-seal")) return false;
       const itemNums = parseNumbers(item.name);
       return nums.every(n => itemNums.includes(n));
@@ -6776,7 +6785,8 @@ function renderProducts() {
       if (query && !searchableName.includes(query)) return false;
       if (!sizeQuery) return true;
       const nums = parseNumbers(sizeQuery);
-      if (!nums.length) return searchableName.includes(normalizeSearchText(sizeQuery));
+      if (sizeHasLetters) return searchableName.includes(sizeQueryText);
+      if (!nums.length) return searchableName.includes(sizeQueryText);
       if (sizeCategories && !sizeCategories.has("oil-seal")) return false;
       const itemNums = parseNumbers(item.name);
       return nums.every(n => itemNums.includes(n));
@@ -6786,7 +6796,8 @@ function renderProducts() {
       if (query && !searchableName.includes(query)) return false;
       if (!sizeQuery) return true;
       const nums = parseNumbers(sizeQuery);
-      if (!nums.length) return searchableName.includes(normalizeSearchText(sizeQuery));
+      if (sizeHasLetters) return searchableName.includes(sizeQueryText);
+      if (!nums.length) return searchableName.includes(sizeQueryText);
       if (sizeCategories && !sizeCategories.has("oil-seal")) return false;
       const itemNums = parseNumbers(item.name);
       return nums.every(n => itemNums.includes(n));
@@ -6797,7 +6808,8 @@ function renderProducts() {
       if (query && !searchableName.includes(query)) return false;
       if (!sizeQuery) return true;
       const nums = parseNumbers(sizeQuery);
-      if (!nums.length) return searchableName.includes(normalizeSearchText(sizeQuery));
+      if (sizeHasLetters) return searchableName.includes(sizeQueryText);
+      if (!nums.length) return searchableName.includes(sizeQueryText);
       return nums.every(n => parseNumbers(item.name).includes(n));
     }).map(item => ({...item, catalogType:"coupling", label:"كبالن"})) : [];
 
@@ -7301,14 +7313,7 @@ setupAnnouncement();
 setupVideos();
 
 searchInput.addEventListener("input", renderProducts);
-if (sizeSearchInput) {
-  // السماح بالأرقام الإنجليزية والعربية فقط في البحث بالمقاس
-  sizeSearchInput.addEventListener("input", function () {
-    const cleanValue = this.value.replace(/[^0-9٠-٩]/g, "");
-    if (this.value !== cleanValue) this.value = cleanValue;
-    renderProducts();
-  });
-}
+if (sizeSearchInput) sizeSearchInput.addEventListener("input", renderProducts);
 
 $("#emptyState").addEventListener("click", event => {
   if (!event.target.closest("[data-size-empty-quote]")) return;
