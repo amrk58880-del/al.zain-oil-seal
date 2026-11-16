@@ -31,7 +31,7 @@ const categories = [
   { id: "rust-removers", label: "مزيلات صدأ" },
   { id: "Air-Seals", label: "كاوتشات بستم هواء" },
   { id: "Chains", label: "سلاسل نقل الحركة" },
-  { id: "Gears", label: "تروس" }
+  { id: "Gears", label: "تروس" },
 ];
 
 
