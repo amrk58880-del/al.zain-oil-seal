@@ -57,6 +57,7 @@ const products = [
   {id:23,name:"تروس",category:"Gears",categoryLabel:"تروس",description:"تروس معدنية صناعية بأحجام وأسنان مختلفة.",size:"مقاسات متعددة",price:null,image:"./Al-Zain%20Oil%20Seal/image/gears.jpg",tag:""},
   {id:24,name:"سلاسل نقل الحركة",category:"Chains",categoryLabel:"سلاسل",description:"سلاسل معدنية صناعية لنقل الحركة.",size:"مقاسات متعددة",price:null,image:"./Al-Zain%20Oil%20Seal/image/industrial-chains.jpg",tag:""},
   {id:25,name:"تروس",category:"Gears",categoryLabel:"تروس",description:"تروس مسننة لنقل الحركة والاستخدامات الصناعية.",size:"مقاسات متعددة",price:null,image:"./Al-Zain%20Oil%20Seal/image/sprockets.jpg",tag:""},
+  {id:26,name:"1/2 عقلة",category:"Chains",categoryLabel:"سلاسل",description:"نصف عقلة جنزير 1/2 Offset Link لتوصيل وضبط أطوال سلاسل نقل الحركة.",size:"مقاس 1/2 بوصة",price:null,image:"./Al-Zain%20Oil%20Seal/image/offset-link.jpg",tag:""},
 ];
 
 
