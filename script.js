@@ -14,6 +14,7 @@ const PAYMENT_METHODS = {
   bank:     { label: "تحويل بنكي",   note: "رقم الحساب البنكي: 1740001000020202 - بعد التحويل أرسل صورة الإيصال على واتساب." }
 };
 
+c
 const categories = [
   { id: "all", label: "الكل" },
   { id: "oil-seal", label: "أويل سيل" },
@@ -27,8 +28,12 @@ const categories = [
   { id: "air-curtains", label: "ستائر هواء" },
   { id: "pneumatic-seals", label: "سيلات هواء" },
   { id: "adhesives", label: "لواصق" },
-  { id: "rust-removers", label: "مزيلات صدأ" }
+  { id: "rust-removers", label: "مزيلات صدأ" },
+  { id: "Air-Seals", label: "كاوتشات بستم هواء" },
+  { id: "Chains", label: "سلاسل نقل الحركة" },
+  { id: "Gears", label: "تروس" }
 ];
+
 
 
 const products = [
