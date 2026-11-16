@@ -52,6 +52,7 @@ const products = [
   {id:18,name:"مزيلات صدأ",category:"rust-removers",categoryLabel:"مزيلات صدأ",description:"بخاخات لإزالة الصدأ وتشحيم وحماية الأجزاء المعدنية.",size:"عبوات مختلفة",price:null,image:"./Al-Zain%20Oil%20Seal/image/rust-remover.jpg",tag:""},
   {id:19,name:"كاوتشة كوبلن رابر",category:"couplings",categoryLabel:"كبالنج",description:"كاوتشة كوبلن رابر لامتصاص الاهتزاز ونقل الحركة بين العمود والموتور.",size:"حسب مقاس الكوبلن",price:null,image:"./Al-Zain%20Oil%20Seal/image/coupling-rubber.jpg",tag:""},
   {id:20,name:"كاوتشة كوبلن GR",category:"couplings",categoryLabel:"كبالنج",description:"كاوتشة كوبلن GR (Coupling Rubber GR) بمقاسات متعددة.",size:"حسب مقاس الكوبلن",price:null,image:"./Al-Zain%20Oil%20Seal/image/coupling-rubber-gr.jpg",tag:""}
+  {id:21,name:"كاوتشة كوبلن GR",category:"couplings",categoryLabel:"كبالنج",description:"كاوتشة كوبلن GR (Coupling Rubber GR) بمقاسات متعددة.",size:"حسب مقاس الكوبلن",price:null,image:"./Al-Zain%20Oil%20Seal/image/coupling-rubber-gr.jpg",tag:""}
  ];
 
 
