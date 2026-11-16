@@ -14,7 +14,6 @@ const PAYMENT_METHODS = {
   bank:     { label: "تحويل بنكي",   note: "رقم الحساب البنكي: 1740001000020202 - بعد التحويل أرسل صورة الإيصال على واتساب." }
 };
 
-c
 const categories = [
   { id: "all", label: "الكل" },
   { id: "oil-seal", label: "أويل سيل" },
