@@ -1041,3 +1041,73 @@ header.site-header .header-credit-photo { width: 26px !important; height: 26px !
   transform: scale(1.1);
   box-shadow: 0 0 10px rgba(214, 173, 87, .6);
 }
+
+/* =================================
+   AL ZAIN - Header Enhancement
+================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(120deg, #071a2c, #102f45);
+  border-bottom: 1px solid rgba(214, 173, 87, 0.35);
+  box-shadow: 0 5px 24px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+.site-header .brand {
+  gap: 12px;
+  transition: transform 0.25s ease;
+}
+
+.site-header .brand:hover {
+  transform: translateY(-2px);
+}
+
+.site-header .brand-logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  border-radius: 50%;
+  border: 2px solid #d6ad57;
+  padding: 3px;
+  background: #fff;
+  box-shadow: 0 0 14px rgba(214, 173, 87, 0.2);
+}
+
+.site-header .brand-copy strong {
+  color: #f0d48e;
+  letter-spacing: 1px;
+}
+
+.site-header .brand-copy small {
+  color: #e2e8ee;
+}
+
+.site-header nav a {
+  transition: color 0.25s ease;
+}
+
+.site-header nav a:hover {
+  color: #f0d48e;
+}
+
+.site-header .cart-button {
+  border: 1px solid #d6ad57;
+  transition: all 0.25s ease;
+}
+
+.site-header .cart-button:hover {
+  background: #d6ad57;
+  color: #071a2c;
+  transform: translateY(-2px);
+}
+
+/* Mobile */
+@media (max-width: 800px) {
+  .site-header .brand-logo {
+    width: 44px;
+    height: 44px;
+  }
+}
