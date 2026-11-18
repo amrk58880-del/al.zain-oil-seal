@@ -1111,3 +1111,57 @@ header.site-header .header-credit-photo { width: 26px !important; height: 26px !
     height: 44px;
   }
 }
+
+/* =================================
+   AL ZAIN - Hero Enhancement
+================================= */
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-block: 30px;
+}
+
+.hero-content h1 {
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+  text-wrap: balance;
+}
+
+.hero-content p {
+  line-height: 2;
+  max-width: 600px;
+  color: #e1e6eb;
+  font-size: 16px;
+}
+
+.hero-art {
+  transition: transform 0.4s ease;
+}
+
+.hero-product-main,
+.hero-product-small,
+.hero-product-hydraulic {
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.22));
+}
+
+.hero-label {
+  border: 1px solid rgba(214, 173, 87, 0.55);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(8px);
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    padding-block: 18px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(27px, 7vw, 38px);
+  }
+
+  .hero-content p {
+    font-size: 14px;
+    line-height: 1.9;
+  }
+}
