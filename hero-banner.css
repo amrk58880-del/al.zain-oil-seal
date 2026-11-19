@@ -127,3 +127,20 @@
   .benefits{grid-template-columns:1fr !important}
   .benefits>div{border-left:0 !important}
 }
+
+/* =========================================================
+   FIX v2
+========================================================= */
+.hero::before{display:none !important}                 /* الهلال الزيادة */
+.hero-art.hero-products{max-width:none !important;margin:0 !important;width:56vw !important}
+.hero-art.hero-products::after{
+  background:linear-gradient(90deg,transparent 62%,rgba(10,23,48,.75) 88%,#0A1730 100%) !important}
+.hero-content{max-width:720px !important}
+.hero h1{font-size:clamp(36px,4.3vw,64px) !important;line-height:1.4 !important}
+.hero h1 em{                                           /* لون ذهبي ثابت بدل التدرّج */
+  background:none !important;-webkit-background-clip:border-box !important;
+  background-clip:border-box !important;color:#F2C94C !important;
+  -webkit-text-fill-color:#F2C94C !important;white-space:nowrap}
+.benefit-icon{border:1px solid rgba(232,184,48,.5) !important;border-radius:14px !important;
+  padding:10px !important;background:#0d1b33 !important}
+@media(max-width:800px){.hero h1{font-size:34px !important}}
