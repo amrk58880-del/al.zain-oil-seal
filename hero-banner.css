@@ -170,3 +170,17 @@
     background:linear-gradient(180deg,rgba(10,23,48,.35),rgba(10,23,48,.92) 70%) !important}
   .hero{min-height:620px !important;align-items:end}
 }
+
+/* =========================================================
+   FIX v4 - هيرو أطول (الصورة تنزل أكتر والمميزات تتزحزح تحت)
+========================================================= */
+.hero{
+  min-height:clamp(700px,48vw,880px) !important;   /* ← زوّد/قلّل الرقم لو عايز أطول/أقصر */
+  padding-top:70px !important;
+  padding-bottom:90px !important;
+  align-items:center !important;
+}
+.hero-banner-image{object-position:left center !important}
+@media(max-width:800px){
+  .hero{min-height:640px !important;padding-bottom:40px !important}
+}
