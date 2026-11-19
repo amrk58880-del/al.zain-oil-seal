@@ -144,3 +144,29 @@
 .benefit-icon{border:1px solid rgba(232,184,48,.5) !important;border-radius:14px !important;
   padding:10px !important;background:#0d1b33 !important}
 @media(max-width:800px){.hero h1{font-size:34px !important}}
+
+/* =========================================================
+   FIX v3 - الصورة بعرض الشاشة كلها
+========================================================= */
+.hero-art.hero-products{
+  left:0 !important; right:0 !important; width:100% !important;
+  max-width:none !important; height:100% !important;
+}
+.hero-banner-image{
+  width:100% !important; height:100% !important;
+  object-fit:cover !important; object-position:left center !important;
+}
+/* تدرّج من ناحية النص (يمين) عشان الكتابة تبان */
+.hero-art.hero-products::after{
+  background:linear-gradient(90deg,
+    rgba(10,23,48,0) 0%,
+    rgba(10,23,48,0) 38%,
+    rgba(10,23,48,.78) 62%,
+    rgba(10,23,48,.94) 100%) !important;
+}
+@media(max-width:800px){
+  .hero-art.hero-products{position:absolute !important;inset:0 !important;height:100% !important}
+  .hero-art.hero-products::after{
+    background:linear-gradient(180deg,rgba(10,23,48,.35),rgba(10,23,48,.92) 70%) !important}
+  .hero{min-height:620px !important;align-items:end}
+}
