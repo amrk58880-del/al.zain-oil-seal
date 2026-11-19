@@ -184,3 +184,10 @@
 @media(max-width:800px){
   .hero{min-height:640px !important;padding-bottom:40px !important}
 }
+/* صور الأيقونات */
+.benefit-icon{padding:0 !important;overflow:hidden !important}
+.benefit-icon img{
+  display:block !important;width:100% !important;height:100% !important;
+  object-fit:cover !important;border-radius:13px !important;
+}
+.benefit-icon svg{padding:10px}
