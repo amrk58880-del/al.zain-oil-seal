@@ -193,3 +193,41 @@
   .footer-admin .designer-credit{justify-content:center;font-size:13px !important;margin-top:0}
   .designer-photo{width:36px !important;height:36px !important}
 }
+
+/* =========================================================
+   الفوتر على الفون - تصميم مدمج (شبكة)
+========================================================= */
+@media(max-width:800px){
+  .site-footer{
+    display:grid !important;grid-template-columns:1fr 1fr !important;
+    gap:16px 10px !important;align-items:center !important;text-align:center;
+    padding:30px 6% 96px !important;
+  }
+  .footer-admin{display:contents !important}
+
+  /* 1) اللوجو */
+  .site-footer .brand{grid-column:1/-1;grid-row:1;justify-self:center}
+
+  /* 2) زرارين جنب بعض */
+  .footer-admin .admin-link,
+  .site-footer>a:last-child{
+    grid-row:2;display:flex !important;align-items:center;justify-content:center;
+    margin:0 !important;padding:11px 8px !important;border-radius:10px !important;
+    font-size:13px !important;font-weight:800;min-height:44px;
+  }
+  .footer-admin .admin-link{grid-column:1}
+  .site-footer>a:last-child{grid-column:2}
+
+  /* 3) حقوق النشر بخط ذهبي رفيع فوقها */
+  .footer-admin p:not(.designer-credit){
+    grid-column:1/-1;grid-row:3;width:auto !important;order:0 !important;
+    margin:2px 0 0 !important;padding-top:16px;font-size:12px !important;
+    border-top:1px solid rgba(232,184,48,.28);
+  }
+
+  /* 4) المصمم */
+  .footer-admin .designer-credit{
+    grid-column:1/-1;grid-row:4;justify-self:center;justify-content:center;
+    margin:0 !important;font-size:13px !important;
+  }
+}
