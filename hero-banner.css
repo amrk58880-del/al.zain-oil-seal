@@ -215,3 +215,29 @@
     flex:1 1 0 !important;min-width:0;padding:10px 8px !important;
     font-size:15px !important;min-height:48px !important;gap:8px !important;white-space:nowrap}
 }
+
+/* =========================================================
+   FIX v6 - شريط المميزات أصغر ومتناسق (كمبيوتر + فون)
+========================================================= */
+/* كمبيوتر */
+.benefits{padding:16px 4% !important}
+.benefit-icon{width:40px !important;height:40px !important;flex:0 0 40px !important;border-radius:10px !important}
+.benefit-icon img{border-radius:9px !important}
+.benefit-icon svg{padding:7px}
+.benefits strong{font-size:14px !important}
+.benefits small{font-size:10.5px !important}
+.benefits>div{gap:12px !important;padding:8px 14px !important}
+
+/* فون: شبكة 2×2 */
+@media(max-width:800px){
+  .benefits{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:0 !important;padding:6px 0 !important}
+  .benefits>div{
+    flex-direction:column !important;justify-content:flex-start !important;
+    text-align:center;gap:8px !important;padding:18px 8px !important;border:0 !important}
+  .benefits>div:nth-child(odd){border-left:1px solid #2a3d63 !important}
+  .benefits>div:nth-child(-n+2){border-bottom:1px solid #2a3d63 !important}
+  .benefits p{align-items:center;text-align:center}
+  .benefit-icon{width:42px !important;height:42px !important;flex:0 0 42px !important}
+  .benefits strong{font-size:13px !important}
+  .benefits small{font-size:10px !important;line-height:1.5}
+}
