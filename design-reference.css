@@ -1,0 +1,527 @@
+/* AL ZAIN OIL SEAL — واجهة التصميم المرجعي */
+:root {
+  --bg: #06182b;
+  --primary: #06182b;
+  --secondary: #102943;
+  --surface: #0b2036;
+  --gold: #e8b84f;
+  --gold-light: #f4d27d;
+  --text: #f8f8f5;
+  --muted: #c2cbd5;
+  --border: rgba(232,184,79,.34);
+}
+
+html { scroll-padding-top: 112px; }
+body {
+  background: #06182b;
+  color: var(--text);
+  font-family: 'Cairo', Arial, sans-serif;
+}
+
+/* الشريط الذهبي العلوي */
+.announcement {
+  min-height: 42px !important;
+  padding: 5px 3% !important;
+  background: linear-gradient(90deg,#dca83e,#f3cf76,#dca83e) !important;
+  color: #111b27 !important;
+  font-size: 13px !important;
+  font-weight: 900 !important;
+  border: 0 !important;
+}
+.announcement-track { width: 100%; }
+.announcement-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 22px;
+}
+.announcement .sep { color: #101b27; }
+
+/* الهيدر */
+.site-header {
+  min-height: 118px !important;
+  height: auto !important;
+  padding: 12px 3.8% !important;
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 22px !important;
+  background: rgba(3,17,32,.98) !important;
+  border-bottom: 1px solid rgba(232,184,79,.18) !important;
+  box-shadow: 0 8px 28px #0003;
+}
+.site-header .brand {
+  order: 1;
+  flex: 0 0 auto;
+  gap: 13px;
+  direction: ltr;
+}
+.site-header .brand-logo {
+  width: 94px !important;
+  height: 94px !important;
+  object-fit: contain !important;
+  border: 0;
+  border-radius: 50%;
+}
+.site-header .brand-copy { direction: ltr; text-align: left; }
+.site-header .brand-copy strong {
+  display: block;
+  color: #fff;
+  font-size: 34px;
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+.site-header .brand-copy small {
+  display: block;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .4px;
+}
+.site-header nav {
+  order: 2;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  gap: clamp(12px,1.6vw,27px) !important;
+  white-space: nowrap;
+}
+.site-header nav a {
+  position: relative;
+  padding: 12px 0;
+  color: #f4f5f7;
+  font-size: 15px;
+  font-weight: 800;
+  transition: color .2s ease;
+}
+.site-header nav a:hover,
+.site-header nav a:first-child { color: var(--gold); }
+.site-header nav a:first-child::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--gold);
+}
+.header-actions {
+  order: 3;
+  display: flex !important;
+  align-items: center;
+  gap: 10px !important;
+  flex: 0 0 auto;
+}
+.cart-button {
+  min-height: 52px;
+  padding: 8px 14px !important;
+  border: 2px solid var(--gold) !important;
+  border-radius: 13px !important;
+  background: transparent !important;
+  color: #fff !important;
+  font-size: 15px !important;
+  font-weight: 800;
+}
+.cart-button span { color: var(--gold); }
+.admin-link {
+  min-height: 52px;
+  padding: 8px 15px !important;
+  border: 1px solid var(--gold) !important;
+  border-radius: 13px !important;
+  background: linear-gradient(135deg,#f2c65e,#dca83e) !important;
+  color: #111b27 !important;
+  font-weight: 900 !important;
+}
+.admin-link:hover { background: #ffe09a !important; color: #111b27 !important; }
+.header-credit {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  direction: ltr;
+  color: #f5f5f5;
+  font-size: 11px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.header-credit > span { direction: rtl; text-align: right; }
+.header-credit-photo {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255,255,255,.55);
+}
+
+/* الواجهة الرئيسية: النص يسار والصورة يمين */
+.hero {
+  position: relative;
+  isolation: isolate;
+  min-height: 610px;
+  padding: 58px 5.5% 42px !important;
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) minmax(0,1.08fr) !important;
+  align-items: center !important;
+  gap: 22px !important;
+  overflow: hidden;
+  direction: ltr;
+  background:
+    radial-gradient(ellipse at 78% 42%,rgba(94,125,153,.42),transparent 42%),
+    linear-gradient(105deg,#031629 0%,#09223b 48%,#102b45 100%) !important;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg,rgba(2,16,30,.95),rgba(3,19,35,.66) 47%,rgba(3,19,35,.1)),
+    repeating-linear-gradient(0deg,transparent 0 72px,rgba(255,255,255,.025) 73px 74px);
+}
+.hero-grid { display: none !important; }
+.hero-content {
+  grid-column: 1;
+  grid-row: 1;
+  direction: rtl;
+  text-align: right;
+  max-width: 690px;
+  position: relative;
+  z-index: 2;
+}
+.hero .eyebrow {
+  color: #f8f8f5;
+  font-size: 19px;
+  font-weight: 700;
+  margin: 0 0 12px;
+}
+.hero .eyebrow span {
+  display: inline-block;
+  width: 34px;
+  height: 4px;
+  margin-left: 15px;
+  vertical-align: middle;
+  background: var(--gold);
+  box-shadow: 0 0 12px var(--gold);
+}
+.hero h1 {
+  margin: 0 0 22px;
+  color: #fff;
+  font-size: clamp(42px,5.2vw,76px) !important;
+  line-height: 1.28;
+  font-weight: 900;
+  letter-spacing: -1.5px;
+}
+.hero h1 em {
+  color: var(--gold);
+  font-style: normal;
+}
+.hero-description {
+  max-width: 650px;
+  margin: 0 0 27px;
+  color: #e0e6ed;
+  font-size: clamp(16px,1.5vw,22px) !important;
+  line-height: 1.9;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0 0 30px;
+}
+.hero-actions .btn {
+  min-width: 205px;
+  min-height: 58px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 24px !important;
+  font-size: 18px;
+  font-weight: 900;
+}
+.btn-gold {
+  background: linear-gradient(135deg,#f4cc69,#dca83e) !important;
+  color: #111b27 !important;
+  border: 1px solid var(--gold) !important;
+}
+.btn-outline {
+  color: #fff !important;
+  border: 2px solid var(--gold) !important;
+  background: rgba(2,17,31,.45) !important;
+}
+.hero-trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 !important;
+  align-items: center;
+}
+.hero-trust > div {
+  min-width: 150px;
+  padding: 0 22px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  border-left: 1px solid rgba(255,255,255,.65);
+}
+.hero-trust > div:first-child { padding-right: 0; }
+.hero-trust > div:last-child { border-left: 0; }
+.hero-trust strong {
+  color: var(--gold);
+  font-size: 27px;
+  font-weight: 900;
+}
+.hero-trust span {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+/* مجموعة صور المنتجات */
+.hero-art.hero-products {
+  grid-column: 2;
+  grid-row: 1;
+  position: relative !important;
+  width: 100% !important;
+  height: 500px !important;
+  min-width: 0;
+  display: block !important;
+  overflow: visible !important;
+  direction: ltr;
+  transform: none !important;
+  align-self: center;
+}
+.hero-products .hero-product {
+  position: absolute !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.hero-products .hero-product img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: 0 !important;
+  filter: drop-shadow(0 18px 22px #000b);
+}
+.hero-products .hero-product-main {
+  z-index: 2;
+  width: 88% !important;
+  height: 90% !important;
+  left: 6%;
+  top: 5%;
+}
+.hero-products .hero-product-small {
+  display: flex !important;
+  z-index: 1;
+  width: 34% !important;
+  height: 35% !important;
+  left: 0;
+  bottom: 2%;
+}
+.hero-products .hero-product-hydraulic {
+  display: flex !important;
+  z-index: 1;
+  width: 34% !important;
+  height: 34% !important;
+  right: 0;
+  bottom: 1%;
+}
+.hero-products .hero-label,
+.hero-products .hero-label-bottom { display: none !important; }
+.hero-bottom-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(232,184,79,.65);
+}
+
+/* شريط المميزات أسفل الواجهة */
+.benefits {
+  min-height: 122px;
+  padding: 18px 5% !important;
+  display: grid !important;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+  align-items: center;
+  gap: 0 !important;
+  background: #04172a !important;
+  border-top: 1px solid rgba(232,184,79,.55);
+  border-bottom: 1px solid rgba(232,184,79,.55);
+}
+.benefits > div {
+  min-height: 72px;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: center;
+  gap: 18px !important;
+  padding: 0 20px !important;
+  border-left: 1px solid rgba(255,255,255,.6);
+}
+.benefits > div:last-child { border-left: 0; }
+.benefit-icon {
+  width: 58px !important;
+  height: 58px !important;
+  flex: 0 0 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.benefit-icon img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: none;
+}
+.benefits p { margin: 0; text-align: center; }
+.benefits strong {
+  display: block;
+  color: #fff;
+  font-size: 17px !important;
+  font-weight: 900;
+}
+.benefits small {
+  display: block;
+  color: #d4dce5;
+  font-size: 13px !important;
+}
+
+/* باقي أقسام الموقع بنفس الهوية */
+.section-wrap { background: transparent; }
+.products-section, .quote-section, .about-section, .manager-section {
+  background: #071b30;
+}
+.section-heading h2, .quote-copy h2, .about-content h2, .manager-text h2 {
+  color: #fff;
+}
+.section-heading h2 em, .quote-copy h2 em, .about-content h2 em,
+.manager-text h2 em { color: var(--gold); font-style: normal; }
+.product-card, .quote-form, .cart-drawer {
+  background: #102943 !important;
+  border-color: rgba(232,184,79,.28) !important;
+}
+.product-card { border-radius: 16px !important; }
+.search-box, .product-tools select, .quote-form input,
+.quote-form select, .quote-form textarea {
+  border-color: rgba(232,184,79,.4) !important;
+}
+.contact-strip { background: #04172a !important; }
+.site-footer { background: #031426 !important; }
+
+/* الشاشات المتوسطة */
+@media (max-width: 1250px) {
+  .site-header { gap: 13px !important; padding-inline: 2.5% !important; }
+  .site-header .brand-logo { width: 76px !important; height: 76px !important; }
+  .site-header .brand-copy strong { font-size: 27px; }
+  .site-header .brand-copy small { font-size: 10px; }
+  .site-header nav { gap: 12px !important; }
+  .site-header nav a { font-size: 13px; }
+  .header-credit { display: none; }
+  .hero { min-height: 560px; padding-inline: 4% !important; }
+}
+@media (max-width: 900px) {
+  .site-header {
+    min-height: 78px !important;
+    flex-wrap: wrap !important;
+    padding: 9px 4% !important;
+  }
+  .site-header .brand-logo { width: 58px !important; height: 58px !important; }
+  .site-header .brand-copy strong { font-size: 21px; }
+  .site-header .brand-copy small { font-size: 8px; }
+  .site-header nav {
+    order: 4;
+    flex: 0 0 100%;
+    display: none !important;
+    padding: 12px 0;
+    flex-direction: column;
+    align-items: stretch;
+    background: #071b30;
+  }
+  .site-header nav.open { display: flex !important; }
+  .menu-toggle {
+    display: block !important;
+    order: 2;
+    color: var(--gold);
+    background: transparent;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    padding: 7px 12px;
+  }
+  .header-actions { order: 3; margin-right: auto; }
+  .hero {
+    min-height: auto;
+    grid-template-columns: 1fr !important;
+    padding: 38px 6% 30px !important;
+    gap: 12px !important;
+  }
+  .hero-art.hero-products {
+    grid-column: 1;
+    grid-row: 1;
+    height: 330px !important;
+    max-width: 580px;
+    margin: 0 auto;
+  }
+  .hero-content {
+    grid-column: 1;
+    grid-row: 2;
+    max-width: 100%;
+  }
+  .hero h1 { font-size: clamp(38px,7vw,56px) !important; }
+  .hero-description { font-size: 16px !important; }
+  .hero-trust > div { min-width: 0; padding: 0 12px; }
+}
+@media (max-width: 560px) {
+  .announcement { min-height: 34px !important; font-size: 10px !important; }
+  .announcement-group { gap: 8px; }
+  .announcement-group .msg:nth-of-type(n+4),
+  .announcement-group .sep:nth-of-type(n+7) { display: none; }
+  .site-header { gap: 8px !important; }
+  .site-header .brand { gap: 7px; }
+  .site-header .brand-logo { width: 43px !important; height: 43px !important; }
+  .site-header .brand-copy strong { font-size: 16px; }
+  .site-header .brand-copy small { font-size: 6px; }
+  .header-actions { gap: 5px !important; }
+  .cart-button { min-height: 40px; padding: 5px 8px !important; font-size: 0 !important; }
+  .cart-button span { font-size: 17px; }
+  .cart-button b { font-size: 11px; }
+  .admin-link { min-height: 40px; padding: 5px 8px !important; font-size: 10px !important; }
+  .hero { padding: 25px 5% 28px !important; }
+  .hero-art.hero-products { height: 250px !important; }
+  .hero-products .hero-product-main { width: 94% !important; height: 92% !important; left: 3%; top: 0; }
+  .hero-products .hero-product-small,
+  .hero-products .hero-product-hydraulic { width: 29% !important; height: 28% !important; }
+  .hero .eyebrow { font-size: 14px; }
+  .hero h1 { font-size: 37px !important; line-height: 1.35; }
+  .hero-description { font-size: 14px !important; }
+  .hero-actions { gap: 9px; }
+  .hero-actions .btn { min-width: 0; flex: 1 1 145px; min-height: 48px; font-size: 14px; }
+  .hero-trust { justify-content: space-between; gap: 5px !important; }
+  .hero-trust > div { flex: 1; padding: 0 5px; gap: 5px; }
+  .hero-trust strong { font-size: 18px; }
+  .hero-trust span { font-size: 9px; }
+  .benefits {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 15px 7% !important;
+  }
+  .benefits > div {
+    min-height: 58px;
+    justify-content: flex-start;
+    border-left: 0;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+  }
+  .benefits > div:last-child { border-bottom: 0; }
+  .benefit-icon { width: 42px !important; height: 42px !important; flex-basis: 42px; }
+  .benefits strong { font-size: 13px !important; }
+  .benefits small { font-size: 10px !important; }
+}
