@@ -258,3 +258,21 @@
     flex:0 0 56px !important;
   }
 }
+/* الصورة تملأ المربع الذهبي بالكامل */
+.benefit-icon{
+  padding:0 !important;
+  overflow:hidden !important;
+  background:transparent !important;
+  box-sizing:border-box !important;
+}
+.benefit-icon img{
+  display:block !important;
+  width:100% !important;
+  height:100% !important;
+  max-width:none !important;
+  padding:0 !important;
+  margin:0 !important;
+  object-fit:cover !important;
+  border-radius:inherit !important;
+}
+.benefit-icon svg{padding:10px !important}
