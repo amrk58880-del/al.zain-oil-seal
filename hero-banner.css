@@ -184,11 +184,34 @@
 @media(max-width:800px){
   .hero{min-height:640px !important;padding-bottom:40px !important}
 }
-/* صور الأيقونات */
-.benefit-icon{padding:0 !important;overflow:hidden !important}
-.benefit-icon img{
-  display:block !important;width:100% !important;height:100% !important;
-  object-fit:cover !important;border-radius:13px !important;
+
+/* =========================================================
+   FIX v5 - الموبايل: الصورة فوق والنص تحتها
+========================================================= */
+@media(max-width:800px){
+  .hero{
+    display:flex !important;flex-direction:column !important;
+    min-height:0 !important;padding:0 !important;align-items:stretch !important;
+  }
+  .hero::after{display:none !important}
+
+  .hero-art.hero-products{
+    position:relative !important;inset:auto !important;order:-1;
+    width:100% !important;height:auto !important;aspect-ratio:16/11 !important;
+    margin:0 !important;
+  }
+  .hero-banner-image{object-position:left center !important}
+  .hero-art.hero-products::after{
+    background:linear-gradient(180deg,rgba(10,23,48,0) 55%,#0A1730 100%) !important}
+
+  .hero-content{padding:6px 6% 34px !important;max-width:none !important}
+  .hero .eyebrow{font-size:16px !important;gap:10px !important;white-space:nowrap}
+  .hero .eyebrow>span,.hero .eyebrow::after{width:26px !important}
+  .hero h1{font-size:34px !important;line-height:1.4 !important;margin:4px 0 12px !important}
+  .hero-description{font-size:14.5px !important;line-height:1.9 !important;margin-bottom:22px !important}
+
+  .hero-actions{flex-wrap:nowrap !important;gap:10px !important}
+  .hero-actions .btn{
+    flex:1 1 0 !important;min-width:0;padding:10px 8px !important;
+    font-size:15px !important;min-height:48px !important;gap:8px !important;white-space:nowrap}
 }
-.benefit-icon svg{padding:10px}
-عايزهم يصغروا شويه
