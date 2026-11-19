@@ -84,3 +84,9 @@
   .sq-row-fields input[data-f="note"]{grid-column:1/-1}
   .sq-suggest{right:auto;left:0}
 }
+.search-box,
+.product-tools,
+.section-heading,
+.products-section{overflow:visible !important}
+.search-box{position:relative !important}
+.sq-suggest{z-index:9999 !important}
