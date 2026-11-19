@@ -892,3 +892,48 @@ section .product-grid,
     height: auto;
   }
 }
+/* ضبط صورة الأبانر داخل حدود الصفحة */
+.hero {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.hero-art.hero-products {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.hero-banner-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 430px;
+  object-fit: contain;
+  object-position: center;
+  box-sizing: border-box;
+}
+
+/* الموبايل */
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-art.hero-products {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-banner-image {
+    max-height: 300px;
+  }
+}
