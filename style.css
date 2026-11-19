@@ -862,3 +862,33 @@ section .product-grid,
     font-size: 11px;
   }
 }
+/* صورة الأبانر الجديدة */
+.hero-art.hero-products {
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  display: block;
+  overflow: visible;
+  direction: ltr;
+  transform: none;
+}
+
+.hero-banner-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  filter: drop-shadow(0 12px 20px #0007);
+}
+
+@media (max-width: 800px) {
+  .hero-art.hero-products {
+    height: auto;
+  }
+
+  .hero-banner-image {
+    width: 100%;
+    height: auto;
+  }
+}
