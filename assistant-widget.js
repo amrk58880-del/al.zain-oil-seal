@@ -94,7 +94,9 @@
   launcher.type = "button";
   launcher.className = "az-launcher";
   launcher.setAttribute("aria-expanded", "false");
-  launcher.innerHTML = '<span aria-hidden="true">💬</span> اسأل المساعد';
+  launcher.setAttribute("aria-label", "المساعد الذكي");
+  launcher.title = "المساعد الذكي";
+  launcher.innerHTML = '<span aria-hidden="true">🤖</span>';
 
   const panel = document.createElement("section");
   panel.className = "az-panel";
