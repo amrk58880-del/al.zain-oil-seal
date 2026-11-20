@@ -311,5 +311,39 @@
       #0A1730 100%) !important;
   }
 }
-/* الهيدر أقل من نافذة المساعد */
-.site-header{z-index:20 !important}
+
+
+/* =========================================================
+   مساعد الزين: الفون ملء الشاشة + اقتراحات أفقية + زر بعيد عن الهيرو
+========================================================= */
+/* زر المساعد جنب زر واتساب بدل ما يغطّي أزرار الهيرو */
+.az-launcher{
+  right:auto !important;left:92px !important;bottom:30px !important;
+}
+
+@media(max-width:800px){
+  .az-launcher{left:76px !important;bottom:24px !important;padding:9px 14px !important;font-size:13px !important}
+
+  /* النافذة ملء الشاشة فوق الهيدر */
+  .az-panel{
+    position:fixed !important;inset:0 !important;width:100% !important;
+    height:100dvh !important;max-height:none !important;margin:0 !important;
+    border-radius:0 !important;z-index:3000 !important;
+    display:flex !important;flex-direction:column !important;
+  }
+  .az-panel[hidden]{display:none !important}
+
+  .az-head{flex:0 0 auto !important;padding-top:max(12px,env(safe-area-inset-top)) !important}
+  .az-log{flex:1 1 auto !important;min-height:0 !important;max-height:none !important;overflow-y:auto !important}
+
+  /* الاقتراحات الجاهزة: صف واحد قابل للسحب */
+  .az-chips{
+    flex:0 0 auto !important;display:flex !important;flex-wrap:nowrap !important;
+    gap:8px !important;padding:8px 12px !important;max-height:none !important;
+    overflow-x:auto !important;overflow-y:hidden !important;-webkit-overflow-scrolling:touch;
+  }
+  .az-chips[hidden]{display:none !important}
+  .az-chip{flex:0 0 auto !important;white-space:nowrap !important;width:auto !important}
+
+  .az-form{flex:0 0 auto !important;padding-bottom:max(10px,env(safe-area-inset-bottom)) !important}
+}
