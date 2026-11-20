@@ -249,3 +249,25 @@
   .hero h1{font-size:clamp(26px,8.2vw,36px) !important;line-height:1.45 !important}
   .hero h1 em{white-space:normal !important}
 }
+
+/* =========================================================
+   FIX v8 - الكمبيوتر: نص واضح فوق الصورة
+========================================================= */
+@media(min-width:801px){
+  /* تدرّج أقوى ناحية النص، والمنتجات على الشمال تفضل واضحة */
+  .hero-art.hero-products::after{
+    background:linear-gradient(90deg,
+      rgba(10,23,48,0) 0%,
+      rgba(10,23,48,0) 26%,
+      rgba(10,23,48,.55) 42%,
+      rgba(10,23,48,.9) 54%,
+      rgba(10,23,48,.97) 100%) !important;
+  }
+  .hero-banner-image{object-position:left center !important}
+
+  /* المحتوى أعلى شوية عشان الأزرار ما تقعش على حافة الشاشة */
+  .hero{padding-top:60px !important;padding-bottom:140px !important}
+  .hero-content{max-width:700px !important}
+  .hero h1{text-shadow:0 4px 22px rgba(0,0,0,.7)}
+  .hero-description{color:#eef2f8 !important;text-shadow:0 2px 10px rgba(0,0,0,.6)}
+}
