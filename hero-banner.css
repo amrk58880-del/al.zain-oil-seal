@@ -286,3 +286,28 @@
       rgba(10,23,48,0) 100%);
   }
 }
+
+/* =========================================================
+   FIX v10 - الكمبيوتر: الصورة كاملة بدون قص
+========================================================= */
+@media(min-width:801px){
+  .hero{min-height:clamp(620px,46vw,860px) !important}
+
+  /* الصورة بكامل أبعادها على الشمال، والباقي كحلي ورا النص */
+  .hero-art.hero-products{
+    background:linear-gradient(135deg,#0d2040,#0A1730 55%,#08122a) !important;
+  }
+  .hero-banner-image{
+    object-fit:contain !important;
+    object-position:left center !important;
+  }
+  /* تدرّج يخفي حافة الصورة ناحية النص */
+  .hero-art.hero-products::after{
+    background:linear-gradient(90deg,
+      rgba(10,23,48,0) 0%,
+      rgba(10,23,48,0) 40%,
+      rgba(10,23,48,.6) 56%,
+      rgba(10,23,48,.95) 70%,
+      #0A1730 100%) !important;
+  }
+}
