@@ -311,3 +311,5 @@
       #0A1730 100%) !important;
   }
 }
+/* الهيدر أقل من نافذة المساعد */
+.site-header{z-index:20 !important}
