@@ -254,7 +254,6 @@
    FIX v8 - الكمبيوتر: نص واضح فوق الصورة
 ========================================================= */
 @media(min-width:801px){
-  /* تدرّج أقوى ناحية النص، والمنتجات على الشمال تفضل واضحة */
   .hero-art.hero-products::after{
     background:linear-gradient(90deg,
       rgba(10,23,48,0) 0%,
@@ -265,7 +264,6 @@
   }
   .hero-banner-image{object-position:left center !important}
 
-  /* المحتوى أعلى شوية عشان الأزرار ما تقعش على حافة الشاشة */
   .hero{padding-top:60px !important;padding-bottom:140px !important}
   .hero-content{max-width:700px !important}
   .hero h1{text-shadow:0 4px 22px rgba(0,0,0,.7)}
@@ -273,7 +271,7 @@
 }
 
 /* =========================================================
-   FIX v9 - لوح كحلي ناعم ورا النص (مش معتمد على تدرّج الصورة)
+   FIX v9 - لوح كحلي ناعم ورا النص
 ========================================================= */
 @media(min-width:801px){
   .hero-content{position:relative;isolation:isolate}
@@ -292,8 +290,6 @@
 ========================================================= */
 @media(min-width:801px){
   .hero{min-height:clamp(620px,46vw,860px) !important}
-
-  /* الصورة بكامل أبعادها على الشمال، والباقي كحلي ورا النص */
   .hero-art.hero-products{
     background:linear-gradient(135deg,#0d2040,#0A1730 55%,#08122a) !important;
   }
@@ -301,7 +297,6 @@
     object-fit:contain !important;
     object-position:left center !important;
   }
-  /* تدرّج يخفي حافة الصورة ناحية النص */
   .hero-art.hero-products::after{
     background:linear-gradient(90deg,
       rgba(10,23,48,0) 0%,
@@ -312,22 +307,13 @@
   }
 }
 
-
 /* =========================================================
-   مساعد الزين: الفون ملء الشاشة + اقتراحات أفقية + زر بعيد عن الهيرو
+   مساعد الزين: نافذة الموبايل ملء الشاشة + اقتراحات أفقية
 ========================================================= */
-/* زر المساعد جنب زر واتساب بدل ما يغطّي أزرار الهيرو */
-.az-launcher{
-  right:auto !important;left:92px !important;bottom:30px !important;
-}
-
 @media(max-width:800px){
-  .az-launcher{left:76px !important;bottom:24px !important;padding:9px 14px !important;font-size:13px !important}
-
-  /* النافذة ملء الشاشة فوق الهيدر */
   .az-panel{
     position:fixed !important;inset:0 !important;width:100% !important;
-    height:100dvh !important;max-height:none !important;margin:0 !important;
+    height:100dvh !important;max-height:100dvh !important;margin:0 !important;
     border-radius:0 !important;z-index:3000 !important;
     display:flex !important;flex-direction:column !important;
   }
@@ -336,7 +322,6 @@
   .az-head{flex:0 0 auto !important;padding-top:max(12px,env(safe-area-inset-top)) !important}
   .az-log{flex:1 1 auto !important;min-height:0 !important;max-height:none !important;overflow-y:auto !important}
 
-  /* الاقتراحات الجاهزة: صف واحد قابل للسحب */
   .az-chips{
     flex:0 0 auto !important;display:flex !important;flex-wrap:nowrap !important;
     gap:8px !important;padding:8px 12px !important;max-height:none !important;
@@ -345,102 +330,74 @@
   .az-chips[hidden]{display:none !important}
   .az-chip{flex:0 0 auto !important;white-space:nowrap !important;width:auto !important}
 
-  .az-form{flex:0 0 auto !important;padding-bottom:max(10px,env(safe-area-inset-bottom)) !important}
-}
-/* أيقونة روبوت على زر المساعد */
-.az-launcher::before{
-  content:"";width:32px;height:32px;display:block;
-  background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1200' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='2.5' x2='12' y2='6'/%3E%3Ccircle cx='12' cy='2.3' r='1' fill='%231a1200'/%3E%3Crect x='4' y='6' width='16' height='13' rx='4'/%3E%3Ccircle cx='9' cy='12' r='1.6' fill='%231a1200'/%3E%3Ccircle cx='15' cy='12' r='1.6' fill='%231a1200'/%3E%3Cpath d='M9.5 16h5'/%3E%3Cpath d='M2 11v3M22 11v3'/%3E%3C/svg%3E");
+  .az-form{
+    flex:0 0 auto !important;position:sticky;bottom:0;display:flex !important;background:#101C2C;
+    padding-bottom:max(10px,env(safe-area-inset-bottom)) !important;
+  }
+  .az-input{display:block !important;visibility:visible !important}
 }
 
-@media(max-width:800px){
-  .az-launcher::before{width:28px;height:28px}
-}
-/* ===== زر المساعد: أيقونة روبوت + تلميح عند الـ hover ===== */
+/* ===== زر المساعد: أيقونة روبوت فوق واتساب + تلميح ===== */
 .az-launcher{
-  width:58px !important;height:58px !important;min-width:58px !important;
-  padding:0 !important;border-radius:50% !important;
-  display:flex !important;align-items:center !important;justify-content:center !important;
+  position:fixed !important;display:block !important;
+  left:22px !important;right:auto !important;bottom:92px !important;
+  width:58px !important;height:58px !important;min-width:58px !important;padding:0 !important;
+  border-radius:50% !important;border:0 !important;overflow:visible !important;
   font-size:0 !important;line-height:0 !important;color:transparent !important;
   background:linear-gradient(180deg,#F7D867,#E8B830) !important;
-  border:0 !important;
   box-shadow:0 6px 22px rgba(232,184,48,.45) !important;
-  overflow:visible !important;              /* عشان التلميح يظهر برا الدايرة */
-  position:fixed;
+  animation:azPulse 2.4s ease-in-out infinite;
 }
+.az-launcher[hidden]{display:none !important}
 .az-launcher *{display:none !important}
-
-/* أيقونة الروبوت */
 .az-launcher::before{
-  content:"";width:32px;height:32px;display:block;
-  background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1200' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='2.5' x2='12' y2='6'/%3E%3Ccircle cx='12' cy='2.3' r='1' fill='%231a1200'/%3E%3Crect x='4' y='6' width='16' height='13' rx='4'/%3E%3Ccircle cx='9' cy='12' r='1.6' fill='%231a1200'/%3E%3Ccircle cx='15' cy='12' r='1.6' fill='%231a1200'/%3E%3Cpath d='M9.5 16h5'/%3E%3Cpath d='M2 11v3M22 11v3'/%3E%3C/svg%3E");
-}
-
-/* التلميح: كلمة "المساعد الذكي" */
-.az-launcher::after{
-  content:"المساعد الذكي";
-  position:absolute;left:calc(100% + 10px);top:50%;
-  transform:translateY(-50%) translateX(-6px);
-  background:#0A1730;color:#F7D867;border:1px solid rgba(232,184,48,.6);
-  padding:7px 14px;border-radius:999px;
-  font-family:'Cairo',Arial,sans-serif;font-size:13px !important;font-weight:800;line-height:1.4;
-  white-space:nowrap;pointer-events:none;
-  opacity:0;visibility:hidden;
-  transition:opacity .25s ease,transform .25s ease,visibility .25s;
-  box-shadow:0 6px 18px rgba(0,0,0,.35);
-}
-.az-launcher:hover::after,
-.az-launcher:focus-visible::after{
-  opacity:1;visibility:visible;transform:translateY(-50%) translateX(0);
-}
-.az-launcher:hover{transform:translateY(-2px) scale(1.05) !important}
-
-/* نبضة خفيفة */
-.az-launcher{animation:azPulse 2.4s ease-in-out infinite}
-@keyframes azPulse{
-  0%,100%{box-shadow:0 6px 22px rgba(232,184,48,.45)}
-  50%{box-shadow:0 6px 30px rgba(232,184,48,.9)}
-}
-
-@media(max-width:800px){
-  .az-launcher{width:52px !important;height:52px !important;min-width:52px !important;
-    left:76px !important;bottom:24px !important;padding:0 !important}
-  .az-launcher::before{width:28px;height:28px}
-  .az-launcher::after{display:none}      /* مفيش hover على اللمس */
-}
-@media(prefers-reduced-motion:reduce){.az-launcher{animation:none}}
-/* تمركز الأيقونة في نص الدايرة تماماً */
-.az-launcher{
-  display:block !important;      /* بدل flex عشان ما يتأثرش بالـ ::after */
-  position:fixed;
-}
-.az-launcher::before{
-  content:"" !important;
-  position:absolute !important;
-  top:50% !important;left:50% !important;
-  width:32px !important;height:32px !important;
-  transform:translate(-50%,-48%) !important;   /* تعويض بسيط لثقل الهوائي */
-  margin:0 !important;
+  content:"" !important;position:absolute !important;top:50% !important;left:50% !important;
+  width:32px !important;height:32px !important;transform:translate(-50%,-50%) !important;
   background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1200' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='2.5' x2='12' y2='6'/%3E%3Ccircle cx='12' cy='2.3' r='1' fill='%231a1200'/%3E%3Crect x='4' y='6' width='16' height='13' rx='4'/%3E%3Ccircle cx='9' cy='12' r='1.6' fill='%231a1200'/%3E%3Ccircle cx='15' cy='12' r='1.6' fill='%231a1200'/%3E%3Cpath d='M9.5 16h5'/%3E%3Cpath d='M2 11v3M22 11v3'/%3E%3C/svg%3E") !important;
 }
+.az-launcher::after{
+  content:"المساعد الذكي";position:absolute;left:calc(100% + 10px);top:50%;
+  transform:translateY(-50%) translateX(-6px);
+  background:#0A1730;color:#F7D867;border:1px solid rgba(232,184,48,.6);
+  padding:7px 14px;border-radius:999px;font-family:'Cairo',Arial,sans-serif;
+  font-size:13px !important;font-weight:800;line-height:1.4;white-space:nowrap;pointer-events:none;
+  opacity:0;visibility:hidden;transition:opacity .25s,transform .25s,visibility .25s;
+}
+.az-launcher:hover::after,.az-launcher:focus-visible::after{opacity:1;visibility:visible;transform:translateY(-50%) translateX(0)}
+.az-launcher:hover{transform:translateY(-2px) scale(1.05) !important}
+@keyframes azPulse{0%,100%{box-shadow:0 6px 22px rgba(232,184,48,.45)}50%{box-shadow:0 6px 30px rgba(232,184,48,.9)}}
 
 @media(max-width:800px){
+  .az-launcher{width:52px !important;height:52px !important;min-width:52px !important;left:16px !important;bottom:80px !important}
   .az-launcher::before{width:28px !important;height:28px !important}
+  .az-launcher::after{display:none}
 }
-/* زر المساعد فوق زر واتساب */
-.az-launcher{
-  left:22px !important;right:auto !important;
-  bottom:92px !important;          /* واتساب 58px + bottom 22px + فاصل 12px */
-}
+@media(prefers-reduced-motion:reduce){.az-launcher{animation:none}}
 
+/* =========================================================
+   شركاء النجاح
+========================================================= */
+.partners-section{padding:80px 0 70px;background:#0D1724;border-top:1px solid #263B50;border-bottom:1px solid #263B50;overflow:hidden}
+.partners-head{text-align:center;padding:0 6%;margin-bottom:38px}
+.partners-head .eyebrow{justify-content:center}
+.partners-head h2{font-size:clamp(28px,3vw,40px);margin:0 0 8px}
+.partners-head h2 em{font-style:normal;color:var(--gold)}
+.partners-head .section-subtitle{margin:0 auto}
+.partners-marquee{direction:ltr;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);
+          mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.partners-track{display:flex;width:max-content;animation:partnersScroll 28s linear infinite}
+.partners-marquee:hover .partners-track{animation-play-state:paused}
+.partners-group{display:flex;align-items:center;gap:28px;padding-right:28px;flex-shrink:0}
+.partner-logo{width:170px;height:100px;flex:0 0 170px;display:grid;place-items:center;padding:14px 18px;background:#fff;border:1px solid rgba(214,173,87,.35);border-radius:14px;transition:transform .3s,border-color .3s,box-shadow .3s}
+.partner-logo img{max-width:100%;max-height:100%;object-fit:contain;display:block;filter:grayscale(1);opacity:.75;transition:filter .3s,opacity .3s}
+.partner-logo:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.partner-logo:hover img{filter:none;opacity:1}
+@keyframes partnersScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media(max-width:800px){
-  .az-launcher{
-    left:16px !important;
-    bottom:80px !important;        /* واتساب 52px + bottom 16px + فاصل 12px */
-  }
+  .partners-section{padding:60px 0 50px}
+  .partner-logo{width:130px;height:80px;flex-basis:130px;padding:10px 12px}
+  .partners-group{gap:16px;padding-right:16px}
+  .partners-track{animation-duration:22s}
 }
-
-/* مهم: عشان الدايرتين على نفس المحور بالضبط */
-@media(max-width:800px){
-  .az-launcher{width:52px !important;height:52px !important;min-width:52px !important}
-}
+@media(prefers-reduced-motion:reduce){.partners-track{animation:none}.partners-marquee{overflow-x:auto}}
