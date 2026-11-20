@@ -427,3 +427,20 @@
 @media(max-width:800px){
   .az-launcher::before{width:28px !important;height:28px !important}
 }
+/* زر المساعد فوق زر واتساب */
+.az-launcher{
+  left:22px !important;right:auto !important;
+  bottom:92px !important;          /* واتساب 58px + bottom 22px + فاصل 12px */
+}
+
+@media(max-width:800px){
+  .az-launcher{
+    left:16px !important;
+    bottom:80px !important;        /* واتساب 52px + bottom 16px + فاصل 12px */
+  }
+}
+
+/* مهم: عشان الدايرتين على نفس المحور بالضبط */
+@media(max-width:800px){
+  .az-launcher{width:52px !important;height:52px !important;min-width:52px !important}
+}
