@@ -409,3 +409,21 @@
   .az-launcher::after{display:none}      /* مفيش hover على اللمس */
 }
 @media(prefers-reduced-motion:reduce){.az-launcher{animation:none}}
+/* تمركز الأيقونة في نص الدايرة تماماً */
+.az-launcher{
+  display:block !important;      /* بدل flex عشان ما يتأثرش بالـ ::after */
+  position:fixed;
+}
+.az-launcher::before{
+  content:"" !important;
+  position:absolute !important;
+  top:50% !important;left:50% !important;
+  width:32px !important;height:32px !important;
+  transform:translate(-50%,-48%) !important;   /* تعويض بسيط لثقل الهوائي */
+  margin:0 !important;
+  background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231a1200' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cline x1='12' y1='2.5' x2='12' y2='6'/%3E%3Ccircle cx='12' cy='2.3' r='1' fill='%231a1200'/%3E%3Crect x='4' y='6' width='16' height='13' rx='4'/%3E%3Ccircle cx='9' cy='12' r='1.6' fill='%231a1200'/%3E%3Ccircle cx='15' cy='12' r='1.6' fill='%231a1200'/%3E%3Cpath d='M9.5 16h5'/%3E%3Cpath d='M2 11v3M22 11v3'/%3E%3C/svg%3E") !important;
+}
+
+@media(max-width:800px){
+  .az-launcher::before{width:28px !important;height:28px !important}
+}
