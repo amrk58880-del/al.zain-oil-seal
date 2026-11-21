@@ -401,3 +401,37 @@
   .partners-track{animation-duration:22s}
 }
 @media(prefers-reduced-motion:reduce){.partners-track{animation:none}.partners-marquee{overflow-x:auto}}
+/* ===== اقتراحات البحث الذكي: إصلاح الفون فقط ===== */
+@media(max-width:800px){
+  .search-box{position:relative}
+  .search-box .sq-suggest{
+    position:absolute !important;top:calc(100% + 6px) !important;
+    right:0 !important;left:0 !important;width:100% !important;max-width:100% !important;
+    max-height:60vh !important;overflow-y:auto !important;overflow-x:hidden !important;
+    box-sizing:border-box;z-index:200;
+  }
+  .search-box .sq-suggest[hidden]{display:none !important}
+
+  .search-box .sq-suggest .sq-item{
+    display:flex !important;flex-wrap:wrap !important;align-items:center !important;
+    gap:6px 8px !important;padding:10px 12px !important;min-width:0;box-sizing:border-box;
+  }
+  /* نلغي الـ 25px الموروثة من .search-box span */
+  .search-box .sq-suggest span{
+    font-size:13px !important;line-height:1.6 !important;
+    white-space:normal !important;word-break:break-word;
+  }
+  .search-box .sq-suggest .sq-name{
+    flex:1 1 100% !important;min-width:0;color:#fff !important;font-weight:700;
+    border:0 !important;padding:0 !important;border-radius:0 !important;background:none !important;
+  }
+  .search-box .sq-suggest .sq-tag{
+    flex:0 0 auto !important;font-size:11px !important;color:var(--gold) !important;
+    background:#1E3249 !important;border-radius:4px !important;padding:1px 8px !important;
+  }
+  .search-box .sq-suggest .sq-add{
+    flex:0 0 auto !important;margin-inline-start:auto;font-size:12px !important;
+    padding:5px 12px !important;white-space:nowrap;
+  }
+  .product-tools .search-box{min-width:0}
+}
