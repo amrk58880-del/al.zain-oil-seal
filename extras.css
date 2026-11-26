@@ -1210,3 +1210,169 @@ header.site-header .header-credit-photo { width: 26px !important; height: 26px !
     transform: none;
   }
 }
+/* ==========================================
+   CONTACT SECTION
+========================================== */
+.contact-strip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 38px;
+  padding: 80px 6%;
+  text-align: center;
+  overflow: hidden;
+  border-top: 1px solid rgba(214, 173, 87, .3);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(214, 173, 87, .10), transparent 60%),
+    linear-gradient(180deg, #17283B, #101C2C);
+}
+
+.contact-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .06;
+  pointer-events: none;
+  background-image:
+    linear-gradient(#fff 1px, transparent 1px),
+    linear-gradient(90deg, #fff 1px, transparent 1px);
+  background-size: 46px 46px;
+  mask-image: radial-gradient(ellipse at center, #000, transparent 75%);
+}
+
+.contact-strip > * { position: relative; z-index: 1; }
+
+.contact-strip .contact-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-strip .contact-intro h2 {
+  margin: 0;
+  font-size: clamp(22px, 2.8vw, 34px);
+  line-height: 1.6;
+}
+
+.contact-strip .contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  gap: 16px;
+  width: 100%;
+  max-width: 1150px;
+}
+
+.contact-strip .contact-card {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 20px 22px;
+  overflow: hidden;
+  text-align: right;
+  background: rgba(13, 23, 36, .85);
+  border: 1px solid #263B50;
+  border-radius: 14px;
+  backdrop-filter: blur(6px);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+/* خط ذهبي سفلي يتمدد عند المرور */
+.contact-strip .contact-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(270deg, var(--gold), var(--gold-light));
+  transition: width .35s ease;
+}
+
+.contact-strip .contact-card:hover,
+.contact-strip .contact-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: rgba(214, 173, 87, .7);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, .35);
+  outline: none;
+}
+
+.contact-strip .contact-card:hover::after,
+.contact-strip .contact-card:focus-visible::after { width: 100%; }
+
+.contact-strip .contact-ico {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(214, 173, 87, .12);
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  font-size: 22px;
+  transition: background .3s ease, color .3s ease, transform .3s ease;
+}
+
+.contact-strip .contact-ico svg {
+  width: 23px;
+  height: 23px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.contact-strip .contact-card:hover .contact-ico {
+  background: var(--gold);
+  color: #101C2C;
+  transform: rotate(-8deg) scale(1.06);
+}
+
+.contact-strip .contact-txt {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-width: 0;
+}
+
+.contact-strip .contact-txt small {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.contact-strip .contact-txt strong {
+  font-size: 16px;
+  color: #fff;
+  letter-spacing: .4px;
+  overflow-wrap: anywhere;
+}
+
+/* كارت واتساب (اختياري) */
+.contact-strip .contact-card.contact-wa {
+  border-color: rgba(37, 211, 102, .45);
+}
+.contact-strip .contact-card.contact-wa .contact-ico {
+  background: rgba(37, 211, 102, .14);
+  border-color: #25d366;
+  color: #25d366;
+}
+.contact-strip .contact-card.contact-wa:hover { border-color: #25d366; }
+.contact-strip .contact-card.contact-wa:hover .contact-ico { background: #25d366; color: #fff; }
+.contact-strip .contact-card.contact-wa::after { background: #25d366; }
+
+@media (max-width: 600px) {
+  .contact-strip { padding: 56px 5%; gap: 26px; }
+  .contact-strip .contact-cards { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-strip .contact-card,
+  .contact-strip .contact-card::after,
+  .contact-strip .contact-ico { transition: none !important; transform: none !important; }
+}
