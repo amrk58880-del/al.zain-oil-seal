@@ -1423,3 +1423,34 @@ header.site-header .header-credit-photo { width: 26px !important; height: 26px !
     grid-template-columns: 1fr;
   }
 }
+/* ===== كارت فيسبوك (أزرق) ===== */
+.contact-strip .contact-card.contact-fb {
+  border-color: rgba(24, 119, 242, .5) !important;
+}
+
+.contact-strip .contact-card.contact-fb .contact-ico {
+  background: transparent !important;
+  border: 0 !important;
+  color: #1877F2 !important;
+}
+
+.contact-strip .contact-card.contact-fb .contact-ico svg {
+  width: 52px !important;
+  height: 52px !important;
+  fill: #1877F2 !important;
+  stroke: none !important;
+}
+
+.contact-strip .contact-card.contact-fb:hover {
+  border-color: #1877F2 !important;
+}
+
+.contact-strip .contact-card.contact-fb:hover .contact-ico {
+  background: transparent !important;
+  color: #1877F2 !important;
+  transform: scale(1.08);
+}
+
+.contact-strip .contact-card.contact-fb::after {
+  background: #1877F2 !important;
+}
