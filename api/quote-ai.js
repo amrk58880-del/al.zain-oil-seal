@@ -12,7 +12,7 @@ function limited(ip) {
 
 // الموديل الأساسي يمكن تغييره من Vercel باسم GEMINI_MODEL، وإن كان مشغولًا يجرّب البدائل بالترتيب
 const MODELS = [
-  process.env.GEMINI_MODEL || "gemini-3.8-flash",
+  process.env.GEMINI_MODEL || "gemini-flash-latest",
   "gemini-flash-latest",
   "gemini-flash-lite-latest"
 ].filter((m, i, list) => m && list.indexOf(m) === i);
