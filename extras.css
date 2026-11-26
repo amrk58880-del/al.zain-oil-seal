@@ -1454,3 +1454,31 @@ header.site-header .header-credit-photo { width: 26px !important; height: 26px !
 .contact-strip .contact-card.contact-fb::after {
   background: #1877F2 !important;
 }
+/* ===== كارت جيميل ===== */
+.contact-strip .contact-card.contact-gmail {
+  border-color: rgba(234, 67, 53, .4) !important;
+}
+
+.contact-strip .contact-card.contact-gmail .contact-ico {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.contact-strip .contact-card.contact-gmail .contact-ico svg {
+  width: 48px !important;
+  height: 48px !important;
+  stroke: none !important;
+}
+
+.contact-strip .contact-card.contact-gmail:hover {
+  border-color: #EA4335 !important;
+}
+
+.contact-strip .contact-card.contact-gmail:hover .contact-ico {
+  background: transparent !important;
+  transform: scale(1.08);
+}
+
+.contact-strip .contact-card.contact-gmail::after {
+  background: #EA4335 !important;
+}
