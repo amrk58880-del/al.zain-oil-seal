@@ -575,7 +575,7 @@ section .product-grid,
     display: grid;
     grid-template-columns: 220px minmax(0, 1fr);
     align-items: center;
-    column-gap: 48px;
+    column-gap: 450px;
     row-gap: 35px;
 }
 
@@ -588,7 +588,7 @@ section .product-grid,
     grid-column: 2;
     grid-row: 1;
     min-width: 0;
-    padding-right: 60px;
+    padding-right: 100px;
     border-right: none;
     position: relative;
 }
@@ -596,7 +596,7 @@ section .product-grid,
 .about-content::before {
     content: "";
     position: absolute;
-    right: -50px;
+    right: -55px;
     top: 50%;
     transform: translateY(-50%);
     width: 1px;
