@@ -1376,3 +1376,48 @@ header.site-header .header-credit-photo { width: 26px !important; height: 26px !
   .contact-strip .contact-card::after,
   .contact-strip .contact-ico { transition: none !important; transform: none !important; }
 }
+/* ===== ضبط كروت التواصل ===== */
+.contact-strip .contact-cards {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+.contact-strip .contact-card {
+  flex: 1 1 210px;
+  max-width: 100%;
+  padding: 18px 20px;
+}
+
+/* كارت الإيميل أعرض علشان العنوان ما يتقطعش */
+.contact-strip .contact-card[href^="mailto"] {
+  flex: 1.5 1 300px;
+}
+
+.contact-strip .contact-card[href^="mailto"] .contact-txt strong {
+  font-size: 14.5px;
+  letter-spacing: 0;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  direction: ltr;
+}
+
+/* أيقونة واتساب (ممتلئة مش خطوط) */
+.contact-strip .contact-wa .contact-ico svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+  stroke: none;
+}
+
+@media (max-width: 600px) {
+  .contact-strip .contact-card,
+  .contact-strip .contact-card[href^="mailto"] {
+    flex: 1 1 100%;
+  }
+}
