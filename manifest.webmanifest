@@ -1,0 +1,23 @@
+{
+  "name": "AL ZAIN OIL SEAL",
+  "short_name": "الزين",
+  "description": "مستلزمات وقطع غيار صناعية - أويل سيل، ميكانيكال سيل، أورينجات، هيدروليك وأكثر",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#101C2C",
+  "theme_color": "#101C2C",
+  "icons": [
+    { "src": "/Al-Zain%20Oil%20Seal/image/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/Al-Zain%20Oil%20Seal/image/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/Al-Zain%20Oil%20Seal/image/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "المنتجات", "url": "/#products" },
+    { "name": "طلب عرض سعر", "url": "/#quote" },
+    { "name": "تواصل معنا", "url": "/#contact" }
+  ]
+}
