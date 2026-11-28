@@ -1,4 +1,4 @@
-/* AL ZAIN - تسجيل التطبيق + زر "ثبّت التطبيق" */
+/* AL ZAIN - تسجيل التطبيق + شريط "حمّل التطبيق" تحت الهيدر */
 (function () {
   "use strict";
 
@@ -8,51 +8,80 @@
     });
   }
 
-  /* لو التطبيق مثبّت ومفتوح كتطبيق، ما نعرضش الزر */
+  /* لو مفتوح كتطبيق مثبّت، ما نعرضش الشريط */
   const standalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
   if (standalone) return;
 
+  /* لو العميل قفل الشريط، ما نظهرهوش تاني لمدة 7 أيام */
+  const KEY = "pwaBannerClosedAt", DAYS = 7;
+  const closedRecently = () => {
+    try {
+      const t = Number(localStorage.getItem(KEY) || 0);
+      return t && Date.now() - t < DAYS * 864e5;
+    } catch (e) { return false; }
+  };
+  if (closedRecently()) return;
+
   const css = document.createElement("style");
   css.textContent =
-    ".pwa-install{position:fixed;right:16px;bottom:20px;z-index:55;display:none;align-items:center;gap:8px;" +
-    "padding:11px 18px;border:0;border-radius:999px;cursor:pointer;font-family:'Cairo',Arial,sans-serif;" +
-    "font-size:14px;font-weight:800;color:#1a1200;background:linear-gradient(180deg,#F7D867,#E8B830);" +
-    "box-shadow:0 6px 22px rgba(232,184,48,.45)}" +
-    ".pwa-install.show{display:inline-flex}" +
-    ".pwa-install button{all:unset;cursor:pointer;margin-inline-start:4px;opacity:.6;font-size:16px}" +
-    "@media(max-width:800px){.pwa-install{right:12px;bottom:16px;padding:10px 14px;font-size:13px}}";
+    ".pwa-bar{display:none;align-items:center;gap:10px;padding:8px 4%;direction:rtl;" +
+    "background:linear-gradient(90deg,#b8860b,#F7D867 35%,#E8B830 70%,#b8860b);color:#1a1200;" +
+    "font-family:'Cairo',Arial,sans-serif;font-size:13px;font-weight:800;line-height:1.4}" +
+    ".pwa-bar.show{display:flex}" +
+    ".pwa-bar img{width:30px;height:30px;border-radius:50%;background:#fff;object-fit:contain;flex:0 0 30px;" +
+    "border:1.5px solid #101C2C}" +
+    ".pwa-bar .pwa-txt{flex:1;min-width:0}" +
+    ".pwa-bar .pwa-go{flex:0 0 auto;border:0;cursor:pointer;border-radius:999px;padding:5px 16px;" +
+    "background:#101C2C;color:#F7D867;font:inherit;font-size:13px}" +
+    ".pwa-bar .pwa-x{flex:0 0 auto;border:0;background:none;cursor:pointer;color:#1a1200;opacity:.6;" +
+    "font-size:22px;line-height:1;padding:0 4px}" +
+    "@media(max-width:800px){.pwa-bar{font-size:12px;gap:8px;padding:7px 3%}" +
+    ".pwa-bar .pwa-go{padding:5px 12px;font-size:12px}}";
   document.head.appendChild(css);
 
-  const btn = document.createElement("div");
-  btn.className = "pwa-install";
-  btn.innerHTML = '<span role="button" tabindex="0">📲 ثبّت التطبيق</span><button type="button" aria-label="إخفاء">×</button>';
-  document.body.appendChild(btn);
+  const bar = document.createElement("div");
+  bar.className = "pwa-bar";
+  bar.setAttribute("role", "region");
+  bar.setAttribute("aria-label", "تثبيت التطبيق");
+  bar.innerHTML =
+    '<img src="/Al-Zain%20Oil%20Seal/image/icon-192.png" alt="">' +
+    '<span class="pwa-txt">حمّل تطبيق الزين على موبايلك</span>' +
+    '<button type="button" class="pwa-go">تثبيت</button>' +
+    '<button type="button" class="pwa-x" aria-label="إغلاق">×</button>';
 
-  const hidden = () => { try { return sessionStorage.getItem("pwaHide") === "1"; } catch (e) { return false; } };
-  const hide = () => { btn.classList.remove("show"); try { sessionStorage.setItem("pwaHide", "1"); } catch (e) {} };
-  btn.querySelector("button").addEventListener("click", hide);
+  const header = document.querySelector(".site-header");
+  if (header) header.insertAdjacentElement("afterend", bar);
+  else document.body.prepend(bar);
+
+  const txt = bar.querySelector(".pwa-txt");
+  const go = bar.querySelector(".pwa-go");
+
+  bar.querySelector(".pwa-x").addEventListener("click", () => {
+    bar.classList.remove("show");
+    try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {}
+  });
 
   let deferred = null;
   window.addEventListener("beforeinstallprompt", e => {
     e.preventDefault();
     deferred = e;
-    if (!hidden()) btn.classList.add("show");
+    bar.classList.add("show");
   });
 
-  btn.querySelector("span").addEventListener("click", async () => {
+  go.addEventListener("click", async () => {
     if (!deferred) return;
     deferred.prompt();
     await deferred.userChoice.catch(() => {});
     deferred = null;
-    btn.classList.remove("show");
+    bar.classList.remove("show");
   });
 
-  window.addEventListener("appinstalled", () => btn.classList.remove("show"));
+  window.addEventListener("appinstalled", () => bar.classList.remove("show"));
 
-  /* iPhone: مفيش زر تثبيت تلقائي، فنوضّح الخطوات */
-  const ios = /iphone|ipad|ipod/i.test(navigator.userAgent);
-  if (ios && !hidden()) {
-    btn.querySelector("span").textContent = "📲 للتثبيت: مشاركة ثم «إضافة إلى الشاشة الرئيسية»";
-    btn.classList.add("show");
+  /* آيفون: مفيش تثبيت تلقائي، فنوضّح الخطوات */
+  if (/iphone|ipad|ipod/i.test(navigator.userAgent)) {
+    txt.textContent = "للتثبيت: اضغط مشاركة ثم «إضافة إلى الشاشة الرئيسية»";
+    go.style.display = "none";
+    bar.classList.add("show");
   }
 })();
